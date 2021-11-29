@@ -8,12 +8,38 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class App {
-    static String DIR = "/media/joe/E/programming/java/code-library/library";
+    static final String DIR = "/media/joe/E/programming/java/code-library/library";
+    static final String[] literature = {
+            "<author> (<YYYY>): <title>, <edition>, <publisher>. [<char>]",
+            "<author> (<YYYY>): <title>, <edition>, <publisher>. [<char>]"
+    };
+    static final Scanner in = new Scanner(System.in);
+    static final int TOC = 0;
+    static final int EXIT = 667;
 
     public static void main(String[] args) {
+        if (args.length == 1) {
+            flags(args[0]);
+            return;
+        }
         Library lib = setupLib();
         lib.printToc();
-        lib.printEntry(lib.entries.get(44));
+        while (true) {
+            System.out.print("\nWhat would you like to read? ");
+            int input = in.nextInt();
+            if (input == TOC) {
+                System.out.println();
+                lib.printToc();
+                continue;
+            } else if (input == EXIT) {
+                System.out.println("Devil's neighbour wishes you a good day.");
+                break;
+            } else if (input < 0 || input > lib.entries.size()) {
+                System.out.print("Not a valid number.");
+                continue;
+            }
+            lib.entries.get(input - 1).printEntry();
+        }
     }
 
     static Library setupLib() {
@@ -44,5 +70,15 @@ public class App {
         int index = 1;
         for (Entry e : lib.entries) e.index = index++;
         return lib;
+    }
+
+    static void flags(String arg) {
+        if (arg.equals("-h") || arg.equals("-help")) {
+            System.out.printf("%s %s %s\n", Library.DELIMITER_TOC, "JAVA CODE LIBRARY", Library.DELIMITER_TOC);
+            System.out.println("Commands:");
+            System.out.printf("\t- %d: Table of Content (or any char)\n\t- %d: Exit\n", TOC, EXIT);
+            System.out.println("Literature:");
+            for (String s : literature) System.out.printf("\t- %s\n", s);
+        }
     }
 }
