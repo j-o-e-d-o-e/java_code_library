@@ -1,0 +1,40 @@
+hash maps
+
+
+
+- similar to 'dictionaries' in python with <key><value>-pairs
+- 'HashMap<String, Integer> name = new HashMap<String, Integer>()'
+- 'name.put(key, value)' adds/updates a key and its associated value & returns the previous value
+- 'name.size()' returns the size of the collection
+- 'name.keySet()' returns a list of all keys
+- 'name.get(key)' gets the value associated by that key
+
+EXAMPLES
+import java.util.HashMap;
+import java.util.Map;
+
+public class Test {
+
+    public static void main(String[] args) {
+
+        Map<String, Integer> restaurantMenu = new HashMap<String, Integer>();
+        restaurantMenu.put("Burger", 13);
+        restaurantMenu.put("Pizza", 1);
+        restaurantMenu.put("Salad", 10);
+        for (String item : restaurantMenu.keySet()) {
+            System.out.println("A " + item + " costs " + restaurantMenu.get(item) + " dollars.");
+        }
+        Map<Integer, String> m = new HashMap<Integer, String>();
+        String a = "Hi";
+        String b = "Joerg!";
+        System.out.println(m.put(10, a)); // prints: null
+        System.out.println(m.put(10, "Hallo")); // prints: Hi
+        m.put(12, b);
+        System.out.println(m.get(10)); // prints: "Hallo"
+        System.out.println(m.size()); // prints: 2
+        System.out.println(m.remove(12)); // prints: Joerg!
+        System.out.println(m.size()); // prints: 1
+    }
+}
+
+#generics/collections

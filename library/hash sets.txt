@@ -1,0 +1,33 @@
+hash sets
+
+
+
+- Similar to sets in python containing only unique elements
+- Stored in neither alphabetical nor numerical order
+
+EXAMPLE
+import java.util.HashSet;
+import java.util.Set;
+
+public class Test {
+
+    public static void main(String[] args) {
+
+        Set<String> menge = new HashSet<String>();
+        String a = "Hallo Joerg!";
+        String b = "Hi";
+        String c = "Du!";
+        String d = b + " " + c;
+        System.out.println(menge.add(a)); // prints: true
+        menge.add(b);
+        menge.add(c);
+        System.out.println(menge.add(b)); // prints: false
+        System.out.println(menge.size()); // prints: 3
+        System.out.println(menge.contains(b)); // prints: true
+        System.out.println(menge.contains(d)); // prints: false
+        menge.remove(b);
+        System.out.println(menge.contains(b)); // prints: false
+    }
+}
+
+#generics/collections

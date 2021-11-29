@@ -1,0 +1,51 @@
+loops
+
+
+
+Overview for loops displaying similarities & differences of the following loops:
+- for
+- for-each
+- while
+- iterator
+
+EXAMPLE
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class Test {
+
+    static void schreiben(List<String> liste) {
+
+        for (int i = 0; i < liste.size(); i++) {
+            System.out.print(liste.get(i) + " ");
+        }
+        System.out.println();
+
+        for (String i : liste) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+
+        int i = 0;
+        while (i < liste.size()) {
+            System.out.print(liste.get(i++) + " ");
+        }
+        System.out.println();
+
+        Iterator<String> iterator = liste.iterator();
+        while (iterator.hasNext()) {
+            System.out.print(iterator.next() + " ");
+        }
+    }
+
+    public static void main(String[] args) {
+        List<String> eineListe = new ArrayList<String>();
+        eineListe.add("Alle");
+        eineListe.add("meine");
+        eineListe.add("Entchen");
+        eineListe.add("...");
+        schreiben(eineListe);
+    }
+
+}

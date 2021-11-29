@@ -1,0 +1,26 @@
+swing: listeners
+
+
+- controller sets listener in view
+- view triggers listener's method in controller
+- so, view and controller share the same reference to listener
+- this reference is created anonymously in controller and saved in view
+- but the method body of this listener is defined in controller
+- this allows controller to handle the further processing
+
+EXAMPLE
+view.setListener(new ActionListener(){ // in controller
+    public void actionPerformed(ActionEvent e) {
+        ...
+    }
+});
+
+
+public void setListener(ActionListener listener){ // in view
+    this.viewlistener = listener;
+}
+okBtn.addActionListener(new ActionListener() { // in view
+    public void actionPerformed(ActionEvent e){
+        viewListener.actionPerformed(e); // triggers listener's method in controller
+    }
+});

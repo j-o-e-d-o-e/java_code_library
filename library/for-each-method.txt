@@ -1,0 +1,21 @@
+for-each method
+
+
+
+- shortcut for for-each-loops
+- forEach() expects @FunctionalInterface Consumer as parameter
+1. using lambda to provide implementation of Consumer OR
+2. using method reference, if method already exists
+
+EXAMPLE:
+public class ForEach {
+    public static void main(String args[]) {
+        List<String> names = new ArrayList<String>();
+        names.add("joe doe");
+        names.add("mary jane");
+        // 1. LAMBDA
+        names.forEach(quark -> System.out.println(quark));
+        // 2. METHOD REFERENCE
+        names.forEach(System.out::println);
+    }
+}

@@ -1,0 +1,28 @@
+sublist()
+
+
+
+- 'sublist(indexFrom, indexTo)' creates new sublist, 'indexTo' excluded
+
+EXAMPLE
+import java.util.LinkedList;
+import java.util.List;
+
+public class Test {
+
+    public static void main(String[] args) {
+        List<String> s = new LinkedList<String>();
+        s.add("satan rules");
+        for (int i = 0; i < 3; i++) {
+            s.add("6");
+        }
+        System.out.println(s.toString()); // prints: [satan rules, 6, 6, 6]
+        List<String> s1 = s.subList(1, 4);
+        System.out.println(s1.toString()); // prints: [6, 6, 6]
+        List<Integer> i = new LinkedList<Integer>();
+        for (String x : s1) {
+            i.add(Integer.parseInt(x));
+        }
+        System.out.println(i.toString()); // prints: [6, 6, 6]
+    }
+}

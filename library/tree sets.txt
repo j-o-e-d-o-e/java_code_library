@@ -1,0 +1,24 @@
+tree sets
+
+
+
+- Like hashSets, contains only unique elements
+- Additionally, elements are stored in alphabetical or numerical order
+
+EXAMPLE
+import java.util.*;
+
+public class Test {
+
+    public static void main(String[] args) {
+        TreeSet<String> ts = new TreeSet<String>();
+        ts.add("C");
+        ts.add("B");
+        ts.add("C");
+        ts.add("C");
+        ts.add("A");
+        System.out.println(ts); // prints: [A, B, C]
+    }
+}
+
+#generic type/collection

@@ -1,0 +1,27 @@
+inner classes
+
+
+
+- instances of inner classes are created upon instances of their outer classes
+
+EXAMPLE
+public class Test {
+    public void a() {
+        System.out.print("outside");
+    }
+
+    public static void test() {
+        Test c = new Test().new InnerClass();
+        c.a(); // prints: inside
+    }
+
+    class InnerClass extends Test {
+        public void a() {
+            System.out.print("inside");
+        }
+    }
+
+    public static void main(String[] args) {
+        test();
+    }
+}

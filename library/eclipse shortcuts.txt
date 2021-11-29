@@ -1,0 +1,17 @@
+eclipse shortcuts
+
+
+
+- F2 : pop up javadocs
+- F3: go to declaration
+- Ctrl + d: delete current line
+- Ctrl + m: maximize editor window
+- Ctrl + F11: run
+- Ctrl + Shift + d: copy line (user-specific)
+- Ctrl + Shift + f: format code
+- Ctrl + Shift + o: generate imports
+- Ctrl + Shift + l: shows list of shortcuts
+- Ctrl + 7: toggle comment
+- Ctrl + F6/Ctrl + e: switch editor tabs
+- Alt + Shift + s: generate getters/setters
+- Alt Gr + \ + t: opens terminal

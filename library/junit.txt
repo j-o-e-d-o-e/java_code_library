@@ -1,0 +1,69 @@
+junit
+
+
+
+- Normally original sourcecode and testcode are defined in two separate classes. Therefore, create a new TestClass as 'JUnit Test Case'.
+- TestClasses are subclasses of 'junit.framework.TestCase': either TestClass 'extends junit.framework.TestCase' or 'import static org.junit.Assert.*'
+- testMethod needs to be 'public', 'void', have no parameters & begin with 'test...()'
+- 'assertEquals(["message"],expected, actual) checks if the values for 'expected' and 'actual' are equal. '["message"]' is optional and gets displayed if test fails
+- 'setUp()' is used for initialization of objects and is executed before testMethod. 'tearDown()' is executed after testMethod for shutdown
+
+EXAMPLES
+import static org.junit.Assert.*;
+
+import org.junit.Test; // needed for '@Test'-functionality
+
+class Add {
+    public int add(int x, int y) {
+        int z = x + y;
+        return z;
+    }
+}
+
+// class name 'Test' is not allowed
+public class TestAdd {
+
+    @Test // indicates JUnit that method is part of test
+    public void testAdd() {
+        Add a = new Add();
+        int expected = 5;
+        int result = a.add(2, 3);
+        assertEquals(expected, result); // correct
+        assertEquals("Leider falsch", 6, a.add(2, 3));
+        // prompts: Leider falsch expected:<6> but was:<5>
+    }
+
+    /*
+     * @Test. 'test2Add()' is not part of test, since '@Test' is invalid.
+     * Applies only if 'import static org.junit.Assert.*' is used instead of
+     * 'public class TestAdd extends junit.framework.TestCase'
+     */
+    public void test2Add() {
+        Add b = new Add();
+        assertEquals(5, b.add(2, 3));
+    }
+}
+-------------------------
+//alternatively, using 'setUp()':
+
+class Add {
+    public int add(int x, int y) {
+        int z = x + y;
+        return z;
+    }
+}
+
+public class TestAdd extends junit.framework.TestCase {
+    Add a;
+
+    public void setUp() {
+        a = new Add();
+    }
+
+    public void testAdd() {
+        int expected = 5;
+        int result = a.add(2, 3);
+        assertEquals(expected, result); // correct
+    }
+}
+#testing

@@ -1,0 +1,22 @@
+Consumer
+
+
+
+- @FunctionalInterface, mainly for using lambdas
+- accept(T t) runs specified operation on the given argument t
+- andThen(Consumer<? super T> after) returns a composed Consumer that performs, in sequence, this operation
+
+EXAMPLE:
+public class IConsumer {
+    public static void main(String[] args) {
+        Consumer<String> consumer1 = (arg) -> {
+            System.out.println(arg + "OK");
+        };
+        consumer1.accept("TestConsumerAccept - ");
+
+        Consumer<String> consumer2 = (arg) -> {
+            System.out.println(arg + "OK!!!");
+        };
+        consumer1.andThen(consumer2).accept("TestConsumerAfterThen - ");
+    }
+}
