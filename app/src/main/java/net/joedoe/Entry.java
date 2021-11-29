@@ -22,12 +22,14 @@ public class Entry implements Comparable<Entry> {
     public void printEntry() {
         System.out.printf("\n%s\n", DELIMITER_ENTRY);
         System.out.printf("%d - %s\n\n", index, title);
-        int count = 0;
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+            int count = 0;
             String line;
             while ((line = br.readLine()) != null) {
-                count++;
-                if (count <= 4) continue;
+                if (count <= 4){
+                    count++;
+                    continue;
+                }
                 System.out.println(line);
             }
         } catch (IOException e) {
