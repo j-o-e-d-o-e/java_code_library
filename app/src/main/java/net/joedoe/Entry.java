@@ -14,11 +14,6 @@ public class Entry implements Comparable<Entry> {
     String title;
     String src;
 
-    @Override
-    public int compareTo(Entry other) {
-        return title.toLowerCase().compareTo(other.title.toLowerCase());
-    }
-
     public void printEntry() {
         System.out.printf("\n%s\n", DELIMITER_ENTRY);
         System.out.printf("%d - %s\n\n", index, title);
@@ -26,7 +21,7 @@ public class Entry implements Comparable<Entry> {
             int count = 0;
             String line;
             while ((line = br.readLine()) != null) {
-                if (count <= 4){
+                if (count <= 4) {
                     count++;
                     continue;
                 }
@@ -39,10 +34,14 @@ public class Entry implements Comparable<Entry> {
     }
 
     @Override
+    public int compareTo(Entry other) {
+        return title.toLowerCase().compareTo(other.title.toLowerCase());
+    }
+
+    @Override
     public String toString() {
         return "Entry{" +
                 "index=" + index +
-//                ", path='" + path + '\'' +
                 ", title='" + title + '\'' +
                 ", src='" + src + '\'' +
                 '}';

@@ -1,21 +1,25 @@
 package net.joedoe;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class App {
-    static final String DIR = "/media/joe/E/programming/java/code-library/library";
-    static final String[] literature = {
-            "<author> (<YYYY>): <title>, <edition>, <publisher>. [<char>]",
-            "<author> (<YYYY>): <title>, <edition>, <publisher>. [<char>]"
-    };
-    static final Scanner in = new Scanner(System.in);
+    static final String DIR = "./library";
     static final int TOC = 0;
     static final int EXIT = 667;
+    static final String[] LITERATURE = {
+            "Joshua Bloch (2018): Effective Java, 3rd edition, Addison-Wesley. [e]",
+            "<author> (<YYYY>): <title>, <edition>, <publisher>. [<char>]"
+    };
 
     public static void main(String[] args) {
         if (args.length == 1) {
@@ -24,6 +28,7 @@ public class App {
         }
         Library lib = setupLib();
         lib.printToc();
+        Scanner in = new Scanner(System.in);
         while (true) {
             System.out.print("\nWhat would you like to read? ");
             int input = in.nextInt();
@@ -40,6 +45,7 @@ public class App {
             }
             lib.entries.get(input - 1).printEntry();
         }
+        in.close();
     }
 
     static Library setupLib() {
@@ -78,7 +84,7 @@ public class App {
             System.out.println("Commands:");
             System.out.printf("\t- %d: Table of Content (or any char)\n\t- %d: Exit\n", TOC, EXIT);
             System.out.println("Literature:");
-            for (String s : literature) System.out.printf("\t- %s\n", s);
+            for (String s : LITERATURE) System.out.printf("\t- %s\n", s);
         }
     }
 }
