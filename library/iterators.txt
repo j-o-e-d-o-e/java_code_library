@@ -6,6 +6,7 @@ iterators
 - 'hasNext()' checks, if there is another element in the iterable
 - 'next()' returns next element of the iterable
 - 'remove()' removes the current element from iterable
+- SEE ALSO: /exercism/java/zebra-puzzle
 
 EXAMPLE
 import java.util.Iterator;
