@@ -1,0 +1,47 @@
+varargs
+
+
+
+- variable arguments allow methods to take a variable number of arguments of the same type
+- need to be last method param
+
+EXAMPLE
+// FROM: exercism/java/two-buckets
+static class Move {
+    Operation op;
+    Bucket actor, other;
+
+    Move(Operation op, Bucket... buckets) {
+        this.op = op;
+        this.actor = buckets[0];
+        this.other = buckets.length == 2 ? buckets[1] : null;
+        this.op.apply(this.actor, this.other);
+    }
+
+    enum Operation {
+        // pouring from either bucket to another
+        POUR {
+            public void apply(Bucket... buckets) {
+                if (buckets[0].amount >= (buckets[1].size - buckets[1].amount)) {
+                    buckets[0].amount -= (buckets[1].size - buckets[1].amount);
+                    buckets[1].amount = buckets[1].size;
+                } else {
+                    buckets[1].amount += buckets[0].amount;
+                    buckets[0].amount = 0;
+                }
+            }
+        }, // emptying either bucket and doing nothing to the other
+        EMPTY {
+            public void apply(Bucket... buckets) {
+                buckets[0].amount = 0;
+            }
+        }, // filling either bucket and doing nothing to the other
+        FILL {
+            public void apply(Bucket... buckets) {
+                buckets[0].amount = buckets[0].size;
+            }
+        };
+
+        public abstract void apply(Bucket... buckets);
+    }
+}
