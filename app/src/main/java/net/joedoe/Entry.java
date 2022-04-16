@@ -21,7 +21,7 @@ public class Entry implements Comparable<Entry> {
             int count = 0;
             String line;
             while ((line = br.readLine()) != null) {
-                if (count <= 4) {
+                if (count <= 3) {
                     count++;
                     continue;
                 }
