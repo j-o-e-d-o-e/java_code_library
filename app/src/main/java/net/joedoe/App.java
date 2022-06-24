@@ -60,13 +60,9 @@ public class App {
             try (BufferedReader br = new BufferedReader(new FileReader(path.toFile()))) {
                 Entry entry = new Entry();
                 entry.path = path.toString();
-                int count = 0;
-                while (count < 3) {
-                    String line = br.readLine();
-                    if (count == 0) entry.title = line;
-                    if (count == 2) entry.src = line;
-                    count++;
-                }
+                entry.title = br.readLine();
+                br.readLine();
+                entry.src = br.readLine();
                 lib.entries.add(entry);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -79,7 +75,7 @@ public class App {
     }
 
     static void flags(String arg) {
-        if (arg.equals("-h") || arg.equals("-help")) {
+        if (arg.equals("-h") || arg.equals("--h") || arg.equals("-help") || arg.equals("--help")) {
             System.out.printf("%s %s %s\n", Library.DELIMITER_TOC, "JAVA CODE LIBRARY", Library.DELIMITER_TOC);
             System.out.println("Commands:");
             System.out.printf("\t- %d: Table of Content (or any char)\n\t- %d: Exit\n", TOC, EXIT);
