@@ -1,0 +1,13 @@
+set->tree set
+
+
+
+- like HashSet, contains only unique elements
+- additionally, elements are stored in alphabetical or numerical order
+
+EXAMPLE
+var tree = new TreeSet<Integer>(Comparator.reverseOrder());
+var ls = Arrays.asList(2, 2, 2, 5, 10);
+tree.addAll(ls); // tree ==> [10, 5, 2]
+
+#generic type/collection

@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+import static net.joedoe.Format.output;
+
 public class App {
     static final String DIR = "./library";
     static final int TOC = 0;
@@ -30,17 +32,17 @@ public class App {
         lib.printToc();
         Scanner in = new Scanner(System.in);
         while (true) {
-            System.out.print("\nWhat would you like to read? ");
+            output("\nWhat would you like to read? ");
             int input = in.nextInt();
             if (input == TOC) {
                 System.out.println();
                 lib.printToc();
                 continue;
             } else if (input == EXIT) {
-                System.out.println("Devil's neighbour wishes you a good day.");
+                output("Devil's neighbour wishes you a good day.\n");
                 break;
             } else if (input < 0 || input > lib.entries.size()) {
-                System.out.print("Not a valid number.");
+                output("Not a valid number.");
                 continue;
             }
             lib.entries.get(input - 1).printEntry();
@@ -53,7 +55,7 @@ public class App {
         try {
             paths = Files.walk(Paths.get(DIR)).filter(Files::isRegularFile).collect(Collectors.toList());
         } catch (IOException e) {
-            System.out.println("Opening Directory " + DIR + " failed.");
+            output("Opening Directory " + DIR + " failed.");
         }
         Library lib = new Library();
         for (Path path : paths) {
@@ -76,11 +78,10 @@ public class App {
 
     static void flags(String arg) {
         if (arg.equals("-h") || arg.equals("--h") || arg.equals("-help") || arg.equals("--help")) {
-            System.out.printf("%s %s %s\n", Library.DELIMITER_TOC, "JAVA CODE LIBRARY", Library.DELIMITER_TOC);
-            System.out.println("Commands:");
-            System.out.printf("\t- %d: Table of Content (or any char)\n\t- %d: Exit\n", TOC, EXIT);
-            System.out.println("Literature:");
-            for (String s : LITERATURE) System.out.printf("\t- %s\n", s);
+            output(String.format("%s %s %s%nCommands:\t- %d: Table of Content (or any char)%n\t- %d: Exit%n",
+                    Library.DELIMITER_TOC, "JAVA CODE LIBRARY", Library.DELIMITER_TOC, TOC, EXIT));
+            output("Literature:");
+            for (String s : LITERATURE) output(String.format("\t- %s\n", s));
         }
     }
 }

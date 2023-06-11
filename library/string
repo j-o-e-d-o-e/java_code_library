@@ -1,0 +1,41 @@
+string
+
+
+- 's.length()' returns the length of the string s
+- 's.indexOf("x")' returns the index within 's' of the first occurrence of the specified substring "x". If no such value exists, then -1 is returned.
+- 's.contains("j")' returns true if s contains "j"
+- 's.charAt(int)' returns the char value at the specified index
+- 's.concat("string")' concatenates the specified string to the end of 's'
+
+EXAMPLE
+public class Test {
+
+    public static void main(String[] args) {
+        char[] letters = { 'H', 'a', 'u', 's' }; // single quotation marks
+
+        String s = new String(letters);
+        System.out.println(s); // prints: Haus
+
+        System.out.println(s.length()); // prints: 4
+        System.out.println(s.indexOf("aus")); // prints: 1
+        System.out.println(s.indexOf("x")); // prints: -1
+        System.out.println(s.contains("j")); // prints: false
+
+        char c = s.charAt(0);
+        System.out.println(c); // prints: H
+
+        boolean b = s.startsWith("H");
+        System.out.println(b); // prints: true
+
+        String u = s.concat(" Nr.175");
+        System.out.println(u); // prints: Haus Nr. 175
+
+        String v = u.toLowerCase();
+        System.out.println(v); // prints: haus nr.175
+
+        String t = "MISSISSIPPI";
+        System.out.println(t.lastIndexOf("I")); // prints: 10
+        boolean a = t.substring(0, 5).equals("MISSI");
+        System.out.println(a); // prints: true
+    }
+}

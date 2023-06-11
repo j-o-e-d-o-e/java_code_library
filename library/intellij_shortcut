@@ -1,0 +1,13 @@
+ide->intellij
+
+
+
+- Ctrl + Shift + Arrow keys: enlarge/minimize size of current view (e.g. project explorer or run menu)
+- Ctrl + Shift + a: find actions
+- Ctrl + Shift + F12: Hide all other views except editor
+
+- Ctrl + tab: opens switcher to switch to other view or file
+- Ctrl + e: opens list with recent files and tools
+- Ctrl + f4: close current editor tab
+
+- set tab limit in settings to 1 (not multiple tabs at the same time)

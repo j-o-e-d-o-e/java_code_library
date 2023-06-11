@@ -1,0 +1,27 @@
+string->builder
+
+
+
+- unlike Strings, StringBuilder is a mutable object that represents a string of charachters
+- 'StringBuilder name = new Stringbuilder("a")' initializes a new object
+- 'name.append("string")' appends a string
+- 'name.delete(start,end)' deletes characters from start to end (end not included)
+- 'name.insert(index, "string")' inserts string at specified index
+
+EXAMPLE
+public class Test {
+
+    public static void main(String[] args) {
+        StringBuilder mutant = new StringBuilder("adam");
+        
+        mutant.append(" und eva");
+        System.out.println(mutant); //prints: adam und eva
+        
+        mutant.delete(5,8);
+        mutant.insert(5, "&");
+        System.out.println(mutant); //prints: adam & eva
+        
+        mutant.reverse();
+        System.out.println(mutant); // prints: ave & mada
+    }
+}

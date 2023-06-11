@@ -1,0 +1,34 @@
+iterator
+
+
+
+- usable for all iterable-classes which implement java.lang.Iterable, ie 'collections'
+- 'hasNext()' checks, if there is another element in the iterable
+- 'next()' returns next element of the iterable
+- 'remove()' removes the current element from iterable
+- SEE ALSO: /exercism/java/zebra-puzzle
+
+EXAMPLE
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Test {
+
+    public static void main(String[] args) {
+        List<String> s = new LinkedList<String>();
+        for (int i = 0; i < 3; i++) {
+            s.add("6");
+        }
+        Iterator<String> is = s.iterator();
+        while (is.hasNext()) {
+            System.out.print(is.next()); // prints: 666
+        }
+        System.out.println();
+        for (Iterator<String> it = s.iterator(); it.hasNext();) {
+            System.out.print(it.next()); // prints: 666
+        }
+    }
+}
+
+#generics

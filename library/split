@@ -1,0 +1,24 @@
+split
+
+
+
+- 'public String[] split(String regex)'
+- splits string around matches of the given regular expression
+
+EXAMPLE
+package testing;
+
+import java.util.ArrayList;
+
+public class Test {
+
+    public static void main(String[] args) {
+
+        ArrayList<String> a = new ArrayList<String>();
+        String b = "adam und eva";
+        for (String x : b.split(" ")) {
+            a.add(x);
+        }
+        System.out.println(a.toString());
+    }
+}

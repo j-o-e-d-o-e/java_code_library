@@ -1,22 +1,22 @@
 package net.joedoe;
 
-import lombok.Data;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-@Data
+import static net.joedoe.Format.*;
+
 public class Entry implements Comparable<Entry> {
-    static String DELIMITER_ENTRY = "-------------------------------------";
+    static final String DELIMITER_ENTRY = "-------------------------------------";
     int index;
     String path;
     String title;
     String src;
 
     public void printEntry() {
-        System.out.printf("\n%s\n", DELIMITER_ENTRY);
-        System.out.printf("%d - %s\n\n", index, title);
+        output(String.format("%n%s%n", DELIMITER_ENTRY));
+        int color = index % 2 == 0 ? GREEN : CYAN;
+        output(String.format("%d - %s%n%n", index, title), color, false, true, true);
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             int count = 0;
             String line;
@@ -25,12 +25,12 @@ public class Entry implements Comparable<Entry> {
                     count++;
                     continue;
                 }
-                System.out.println(line);
+                output(line + "\n", color, false, line.equals("EXAMPLE"), false);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.printf("%s\n", DELIMITER_ENTRY);
+        output(String.format("%s%n", DELIMITER_ENTRY));
     }
 
     @Override

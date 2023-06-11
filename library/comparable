@@ -1,0 +1,29 @@
+comparable
+
+
+
+- '<T extends ...>' defines a superclass whose subclasses get accepted as parameters within the method
+- '<T extends Comparable<T>>' accepts all subclasses of 'Comparable' which implement 'compareTo()'
+
+EXAMPLE
+public class Test {
+    public static <T extends CharSequence> T random(T m, T n) {
+        // @param m,n Strings or StringBuilder
+        return Math.random() > 0.5 ? m : n;
+    }
+
+    public static <T extends Comparable<T>> T max(T m, T n) {
+        return m.compareTo(n) > 0 ? m : n;
+    }
+
+    public static void main(String[] args) {
+        StringBuilder a = new StringBuilder("good");
+        // prints: Floccinaucinihilipilification is good/bad
+        System.out.println("Floccinaucinihilipilification is " + random(a, "bad"));
+
+        System.out.println(max("elephant", "giraffe")); // prints: giraffe
+        System.out.println(max(12, 100)); // prints: 100
+    }
+}
+
+#generics

@@ -1,25 +1,25 @@
 package net.joedoe;
 
-import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+import static net.joedoe.Format.*;
+
 public class Library {
-    static String DELIMITER_TOC = "=======================================";
+    static String DELIMITER_TOC = "=================================";
     List<Entry> entries = new ArrayList<>();
 
     void printToc() {
-        System.out.printf("%s %s %s\n", DELIMITER_TOC, "JAVA CODE LIBRARY", DELIMITER_TOC);
+        output(String.format("%s %s %s%n", DELIMITER_TOC, "JAVA CODE LIBRARY", DELIMITER_TOC), RED, false, true, false);
         for (Entry e : entries) {
-            System.out.printf("%d - %s", e.index, e.title);
-            if (!e.src.isEmpty()) {
-                int n = 52 - e.title.length();
-                if (e.index < 10) n++;
-                String whitespace = String.format("%1$" + n + "s", " ");
-                System.out.printf("%s-> (%d) %s", whitespace, e.index, e.src);
-            }
+            String str = String.format("%s%d - %s",
+                    " ".repeat(e.index < 10 ? 1 : 0),
+                    e.index,
+                    e.title);
+            if (e.src.length() > 0) str += " ".repeat(47 - e.title.length()) + e.src;
+            if (e.index % 2 == 0) output(str, GREEN);
+            else output(str, CYAN, true, false, false);
             System.out.println();
         }
     }

@@ -1,5 +1,0 @@
-maven
-
-
-
-- repository folder: ~/.m2/repository/

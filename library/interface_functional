@@ -1,0 +1,33 @@
+interface->functional
+
+
+
+- @FunctionalInterface: purely informative annotation
+- contains only single method
+- can be implemented using lambda or method reference
+
+EXAMPLE
+// see: exercism/java/forth
+@FunctionalInterface
+public interface Operation {
+    int operate(List<Integer> ls);
+}
+class Word {
+    Operation op;
+    
+    int operate(List<Integer> ls){ return op.operate(ls); }
+}
+Word w = new Word();
+w.op = (ls -> ls.stream().reduce(0, Integer::sum));
+int res = w.operate(Arrays.asList(1, 2, 3)); // 6
+w.op = (ls -> ls.stream().skip(1).reduce(ls.get(0), (a, b) -> a - b));
+res = w.operate(Arrays.asList(3, 2, 1)); // 0
+            
+// lambda calls single method run() of @FuntionalInterface Runnable
+SwingUtilities.invokeLater(() -> new MainFrame());
+// instead of:
+// SwingUtilities.invokeLater(new Runnable() {
+//      public void run() {
+//          new MainFrame();
+//      }
+// };

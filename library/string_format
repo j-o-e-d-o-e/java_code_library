@@ -1,0 +1,18 @@
+string->format
+
+javatpoint.com/java-string-format
+
+- like sprintf() in C
+- alternatively: System.out.printf()
+
+two variants
+    - public static String format(String format, Object... args)  
+    - public static String format(Locale locale, String format, Object... args)
+
+format specifiers
+    - %c: char
+    - %d: integer
+    - %f: floating point
+    - %n: line separator
+    - %s: string
+    - %x: hex
