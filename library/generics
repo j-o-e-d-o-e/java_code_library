@@ -1,0 +1,65 @@
+generics
+
+baeldung.com/java-generics
+
+allow for different (parameterized) types and still ensure type safety
+    - type parameter cannot be a primitive
+
+- with bound/constraint
+    - <T extends superClass>
+    - accepts superClass and all its subtypes
+    - multiple bounds
+        - e.g. List<T extends Number & Comparable>
+        - list of Number or its subtypes that implement Comparable
+        - classes first (here: Number before Comparable)
+- generic methods
+    - <T> T name(T t)
+    - type parameter (here: <T>) before return type (here: T)
+    - multiple type params separated by commas within diamond opreator
+
+- see also
+    - entry comparable
+    - /exercism/java/binary-search-tree
+
+EXAMPLE
+class BinarySearchTree<T extends Comparable<T>> {
+    Node<T> root;
+
+    void insert(T value) {
+        if (root == null) this.root = new Node<>(value);
+        else {
+            Node<T> n = root;
+            while (true) {
+                // works because class accepts only T which implement Comparable
+                if (value.compareTo(n.data) <= 0) {
+                    if (n.left == null) {
+                        n.left = new Node<>(value);
+                        break;
+                    } else n = n.left;
+                } else {
+                    if (n.right == null) {
+                        n.right = new Node<>(value);
+                        break;
+                    } else n = n.right;
+                }
+            }
+        }
+    }
+
+static class Node<T> {
+    T data;
+    Node<T> left;
+    Node<T> right;
+
+    Node(T data) {
+        this.data = data;
+    }
+}
+public static void main(String[] args){
+    BinarySearchTree<String> treeS = new BinarySearchTree<>();
+    treeS.insert("1");
+    treeS.insert("2");
+    BinarySearchTree<Integer> treeI = new BinarySearchTree<>();
+    treeI.insert(1);
+    treeI.insert(2);
+}

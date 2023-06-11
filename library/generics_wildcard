@@ -1,0 +1,43 @@
+generics->wildcard
+
+geeksforgeeks.org/wildcards-in-java/
+
+- represents an unknown type
+    - mainly used with collections and specified bounds/constraints
+- upper bound (1)
+    - <? extends superClass>
+    - accepts superClass and all its subtypes
+- lower bound (2)
+    - <? super subClass>
+    - accepts subClass and all its supertypes (including Object)
+
+EXAMPLE
+(1)
+static double sum(List<? extends Number> ls) {
+    double sum = 0.0;
+    for (Number i : ls) sum += i.doubleValue();
+    return sum;
+}
+public static void main(String[] args) {
+    List<Integer> l1 = Arrays.asList(4, 5, 6, 7);
+    System.out.printf("Sum = %.2f%n", sum(l1)); // 22.00
+    List<Double> l2 = Arrays.asList(4.1, 5.1, 6.1);
+    System.out.printf("Sum = %.2f%n", sum(l2)); // 15.30
+}
+(2)
+public static void addOnly(List<? super Analog> ls) {
+    ls.add(new Analog());
+}
+
+public static void main(String[] args) {
+    List<Audio> audio = new ArrayList<>();
+    addOnly(audio);
+    List<Analog> analog = new ArrayList<>();
+    addOnly(analog);
+    List<Digital> digital = new ArrayList<>();
+    // listen(digital); // unsupported
+}
+
+static class Audio {}
+static class Analog extends Audio {}
+static class Digital extends Audio {}

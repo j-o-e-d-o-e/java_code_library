@@ -1,0 +1,28 @@
+list->initialization
+
+baeldung.com/java-init-list-one-line
+
+in one line
+(1) Arrays.asList
+    - fixed size
+    - mutable
+(2) List.of
+    - immutable
+(3) new ArrayList<>(List.of())
+    - mutable
+(4) new ArrayList<>(Arrays.asList())
+    - mutable
+
+EXAMPLE
+(1)
+List<Integer> l = Arrays.asList(1, 2, 3); // [1, 2, 3]
+l.set(2,4); // [1, 2, 4]
+// l.add(4); // unsupported
+(2)
+List<Integer> l = List.of(1, 2, 3);
+// l.set(2,4); // unsupported
+// l.add(4); // unsupported
+(3)
+List<Integer> l = new ArrayList<>(List.of(1, 2, 3));
+l.set(2,4);
+l.add(4); // [1, 2, 4, 4]
