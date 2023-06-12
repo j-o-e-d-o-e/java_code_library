@@ -25,17 +25,17 @@ public static void main(String[] args) {
     System.out.printf("Sum = %.2f%n", sum(l2)); // 15.30
 }
 (2)
-public static void addOnly(List<? super Analog> ls) {
+public static void add(List<? super Analog> ls) {
     ls.add(new Analog());
 }
 
 public static void main(String[] args) {
     List<Audio> audio = new ArrayList<>();
-    addOnly(audio);
+    add(audio);
     List<Analog> analog = new ArrayList<>();
-    addOnly(analog);
+    add(analog);
     List<Digital> digital = new ArrayList<>();
-    // listen(digital); // unsupported
+    // add(digital); // unsupported
 }
 
 static class Audio {}
