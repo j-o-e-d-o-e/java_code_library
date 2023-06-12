@@ -1,0 +1,19 @@
+thread->stream
+
+
+
+- parallel() allows to execute streams in parallel
+
+EXAMPLE
+static Map<Character, Integer> letterCounts(String input) {
+    return input.chars().parallel()
+            .filter(Character::isAlphabetic)
+            .map(Character::toLowerCase)
+            .boxed()
+            .collect(Collectors.toConcurrentMap(k -> (char) k.intValue(), k -> 1, Integer::sum));
+}
+
+public static void main(String[] args) {
+    Map<Character, Integer> res = letterCounts("joe doe and mary jane");
+    System.out.println(res); // {a=3, r=1, d=2, e=3, y=1, j=2, m=1, n=2, o=2}
+}
