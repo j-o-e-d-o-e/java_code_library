@@ -13,11 +13,10 @@ static class BasicThread extends Thread {
 
     @Override
     public void run() {
-        while (i < 3) {
-            System.out.printf("%s: %d%n", this.getName(), i++);
-        }
+        while (i < 3) System.out.printf("%s: %d%n", this.getName(), i++);
     }
 }
+
 public static void main(String[] args) {
     IntStream.rangeClosed(1, 2).mapToObj(i -> {
         BasicThread t = new BasicThread();
@@ -27,25 +26,26 @@ public static void main(String[] args) {
         t.start();
         while (true) {
             if (!t.isAlive()) {
-                System.out.println("Main: " + i++);
+                System.out.println("Main: " + t.i++);
                 break;
             }
         }
     });
 } // t1: 0 t1: 1 t1: 2 Main: 3 t2: 0 t2: 1 t2: 2 Main: 3
 (2)
-public static int i = 0;
+static int i = 0;
 
 public static void main(String[] args) {
     Runnable r = () -> {
-        System.out.printf("Thread: %d%n", ++i);
+        while (i < 3) System.out.printf("%s: %d%n", Thread.currentThread().getName(), i++);
     };
-    Thread t = new Thread(r);
-    t.start();
-    while (true) {
-        if (!t.isAlive()) {
-            System.out.printf("Main: %d%n", ++i);
-            break;
+    IntStream.rangeClosed(1, 2).mapToObj(i -> new Thread(r, "t" + i)).forEach(t -> {
+        t.start();
+        while (true) {
+            if (!t.isAlive()) {
+                System.out.println("Main: " + i++);
+                break;
+            }
         }
-    }
-}
+    });
+} // t1: 0 t1: 1 t1: 2 Main: 3 Main: 4
