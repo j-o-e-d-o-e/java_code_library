@@ -1,0 +1,44 @@
+thread
+
+
+
+basic example to define run()
+    (1) subclass of Thread
+    (2) interface Runnable
+
+EXAMPLE
+(1)
+public static void main(String[] args) {
+    MyThread t = new MyThread();
+    t.start();
+    while (true) {
+        if (!t.isAlive()) {
+            System.out.printf("Main: %d%n", ++t.i);
+            break;
+        }
+    }
+}
+static class MyThread extends Thread {
+    int i;
+
+    @Override
+    public void run() {
+        System.out.printf("Thread: %d%n", ++i);
+    }
+}
+(2)
+public static int i = 0;
+
+public static void main(String[] args) {
+    Runnable r = () -> {
+        System.out.printf("Thread: %d%n", ++i);
+    };
+    Thread t = new Thread(r);
+    t.start();
+    while (true) {
+        if (!t.isAlive()) {
+            System.out.printf("Main: %d%n", ++i);
+            break;
+        }
+    }
+}
