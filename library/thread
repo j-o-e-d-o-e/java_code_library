@@ -8,24 +8,31 @@ basic example to define run()
 
 EXAMPLE
 (1)
-public static void main(String[] args) {
-    MyThread t = new MyThread();
-    t.start();
-    while (true) {
-        if (!t.isAlive()) {
-            System.out.printf("Main: %d%n", ++t.i);
-            break;
-        }
-    }
-}
-static class MyThread extends Thread {
-    int i;
+static class BasicThread extends Thread {
+    int i = 0;
 
     @Override
     public void run() {
-        System.out.printf("Thread: %d%n", ++i);
+        while (i < 3) {
+            System.out.printf("%s: %d%n", this.getName(), i++);
+        }
     }
 }
+public static void main(String[] args) {
+    IntStream.rangeClosed(1, 2).mapToObj(i -> {
+        BasicThread t = new BasicThread();
+        t.setName("t" + i);
+        return t;
+    }).forEach(t -> {
+        t.start();
+        while (true) {
+            if (!t.isAlive()) {
+                System.out.println("Main: " + i++);
+                break;
+            }
+        }
+    });
+} // t1: 0 t1: 1 t1: 2 Main: 3 t2: 0 t2: 1 t2: 2 Main: 3
 (2)
 public static int i = 0;
 
