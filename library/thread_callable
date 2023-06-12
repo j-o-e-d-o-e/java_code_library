@@ -1,0 +1,40 @@
+thread->callable
+
+baeldung.com/java-runnable-callable
+
+- improved version of Runnable since JDK5
+- only usable in conjunction with ExecutorService
+    - unlike Runnable, which can be used with Thread and ExecutorService
+- returns a value according to the parametrized type V, e.g. Integer
+    - submit() of executor returns a Future containing this value
+
+
+EXAMPLE
+static class BasicCall implements Callable<Integer> {
+    private final int num;
+
+    public BasicCall(int num) {
+        this.num = num;
+    }
+
+    @Override
+    public Integer call() {
+        int fact = 1;
+        for (int i = num; i > 1; i--) fact = fact * i;
+        return fact;
+    }
+}
+
+public static void main(String[] args) {
+    ExecutorService executor = Executors.newCachedThreadPool();
+    IntStream.rangeClosed(1, 5).forEach(i -> {
+        BasicCall call = new BasicCall(i);
+        Future<Integer> future = executor.submit(call);
+        try {
+            System.out.println(future.get().intValue()); // 1 2 6 24 120
+        } catch (InterruptedException | ExecutionException e) {
+            throw new RuntimeException(e);
+        }
+    });
+    executor.shutdown();
+}

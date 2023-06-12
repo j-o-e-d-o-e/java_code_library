@@ -2,7 +2,7 @@ thread->executor
 
 geeksforgeeks.org/thread-pools-java/
 
-- allows to run Runnables without creating new threads
+- allows to run Runnables and Callables without creating new threads
 - takes care of thread-creation and re-using the already created ones (thread pools)
 - framework since JDK5
 
@@ -45,3 +45,11 @@ public static void main(String[] args) {
     });
     executor.shutdown();
 }
+// summary:
+// Initialize task 1-3: 00:00
+// Execute task 1-3: 00:01-00:03
+// Completed first two tasks, e.g. 2 & 3
+// Initialize tasks 4 & 5: 00:00
+// Completed 3rd task, 1||2||3
+// Execute task 4 & 5: 00:01-00:03
+// Completed task 4 & 5
