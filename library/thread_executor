@@ -1,8 +1,47 @@
 thread->executor
 
-xxx
+geeksforgeeks.org/thread-pools-java/
 
-xxx
+- allows to run Runnables without creating new threads
+- takes care of thread-creation and re-using the already created ones (thread pools)
+- framework since JDK5
+
+- factory methods to create thread pools, e.g.
+    - newCachedThreadPool(): threads are created as needed
+    - newFixedThreadPool(int n): fixed sized thread pool
+    - newSingleThreadExecutor(): single thread
 
 EXAMPLE
+static class BasicRun implements Runnable {
+    private final String name;
+    private LocalTime lt = LocalTime.of(0, 0, 0);
+    static DateTimeFormatter ft = DateTimeFormatter.ofPattern("mm:ss");
 
+    public BasicRun(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void run() {
+        try {
+            System.out.printf("Initialize %s: %s%n", name, ft.format(lt));
+            while (lt.getSecond() < 3) {
+                Thread.sleep(1000);
+                lt = lt.plusSeconds(1);
+                System.out.printf("Execute %s: %s%n", name, ft.format(lt));
+            }
+            System.out.println("Completed " + name);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+public static void main(String[] args) {
+    ExecutorService executor = Executors.newFixedThreadPool(3);
+    IntStream.rangeClosed(1, 5).forEach(i -> {
+        Runnable r = new BasicRun("task " + i);
+        executor.execute(r);
+    });
+    executor.shutdown();
+}

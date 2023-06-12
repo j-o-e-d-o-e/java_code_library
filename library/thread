@@ -2,9 +2,9 @@ thread
 
 
 
-basic example to define run()
+basic examples to run threads
     (1) subclass of Thread
-    (2) interface Runnable
+    (2) functional interface Runnable
 
 EXAMPLE
 (1)
