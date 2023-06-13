@@ -5,14 +5,14 @@ baeldung.com/java-generics
 allow for different (parameterized) types and still ensure type safety
     - type parameter cannot be a primitive
 
-- with bound/constraint
+- with bound/constraint (1)
     - <T extends superClass>
     - accepts superClass and all its subtypes
     - multiple bounds
         - e.g. List<T extends Number & Comparable>
         - list of Number or its subtypes that implement Comparable
         - classes first (here: Number before Comparable)
-- generic methods
+- generic methods (2)
     - <T> T name(T t)
     - type parameter (here: <T>) before return type (here: T)
     - multiple type params separated by commas within diamond opreator
@@ -22,6 +22,7 @@ allow for different (parameterized) types and still ensure type safety
     - /exercism/java/binary-search-tree
 
 EXAMPLE
+(1)
 class BinarySearchTree<T extends Comparable<T>> {
     Node<T> root;
 
@@ -62,4 +63,16 @@ public static void main(String[] args){
     BinarySearchTree<Integer> treeI = new BinarySearchTree<>();
     treeI.insert(1);
     treeI.insert(2);
+}
+(2)
+static public <T extends Comparable<T>> Integer comp2(List<T> ls1, List<T> ls2) {
+    if (ls1.size() < 2 || ls2.size() < 2) return null;
+    return ls1.get(1).compareTo(ls2.get(1));
+}
+
+public static void main(String[] args) {
+    System.out.println(comp2(List.of(1, 1), List.of(1, 2)));        // -1
+    System.out.println(comp2(List.of("1", "2"), List.of("1", "2")));// 0
+    System.out.println(comp2(List.of('1', '3'), List.of('1', '2')));// 1
+    System.out.println(comp2(List.of(1, 1), List.of(1)));           // null
 }
