@@ -5,23 +5,20 @@ vogella.com/tutorials/RxJava/article.html
 reactive extensions (Rx)
     - external library 'RxJava 2' via maven/gradle (3)
 - Observable
-    - represents data/state
-    - either blocking or non-blocking (async)
+    - represents source of data and emits items
     - creation (1)
         - Observable.just(T item) returns Observable from one or multiple entities
-        - Observerable.fromArray() returns Observerable from given array
+        - Observerable.fromArray() returns Observable from given array
     - intermediate (2)
         - obs.map() transforms items to be emitted
         - obs.scan() allows to carry forward state from event to event
         - obs.filter()
-    - terminal/final
+    - final
         - obs.subsribe() subscribes consumer/observer and emits its items
     - misc
         - obs.toBlocking() converts observable 'obs' to sync
-
 - Observer
-    - subscribes to an Observable
-    - gets notified when state changes
+    - listens to observerable and consumes its items
     - methods (1)
         - OnNext: called each time a new event is published
         - OnError: called when exception is thrown
@@ -29,7 +26,7 @@ reactive extensions (Rx)
 
 EXAMPLE
 (1)
-static String res;
+static String res = "";
 
 public static void main(String[] args) {
     Observable<Data<String>> obs = Observable.just(
@@ -37,14 +34,11 @@ public static void main(String[] args) {
             new Data<>("more data")
     );
     // alternatively: only 'OnNext'
-    // Disposable dispo = obs.subscribe(s -> res = s.data);
+    // Disposable dispo = obs.subscribe(s -> res += s.data + ", ");
     Disposable dispo = obs.subscribe(
-            s -> {
-                System.out.println("bla");
-                res += s.data + ", ";
-            },   // OnNext
+            s -> res += s.data + ", ",  // OnNext
             Throwable::printStackTrace, // OnError
-            () -> res += "completed."    // OnCompleted
+            () -> res += "completed."   // OnCompleted
     );
     if (dispo.isDisposed()) System.out.println(res); // some data, more data, completed.
 }
