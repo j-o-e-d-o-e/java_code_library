@@ -2,29 +2,31 @@ lib->reactive
 
 vogella.com/tutorials/RxJava/article.html
 
-reactive extensions (Rx)
-    - external library 'RxJava 2' via maven/gradle (3)
+extension of the ReactiveX (Rx) project
+    - aims to provide reactive (event-based) concept to various languages
+    - lib 'RxJava 2' via maven/gradle (3)
 - Observable
     - represents source of data and emits items
-    - creation (1)
+    - similar to streams
+    - creation, e.g. (1)
         - Observable.just(T item) returns Observable from one or multiple entities
         - Observerable.fromArray() returns Observable from given array
-    - intermediate (2)
+    - intermediate, e.g. (2)
         - obs.map() transforms items to be emitted
         - obs.scan() allows to carry forward state from event to event
         - obs.filter()
-    - final
+    - final, e.g.
         - obs.subsribe() subscribes consumer/observer and emits its items
-    - misc
         - obs.toBlocking() converts observable 'obs' to sync
 - Observer
-    - listens to observerable and consumes its items
-    - methods (1)
+    - subcribes/listens to observerable and consumes its items
+    - structure (1)
         - OnNext: called each time a new event is published
-        - OnError: called when exception is thrown
-        - OnCompleted: when complete
+        - OnError: called when exception is thrown (optional)
+        - OnCompleted: when complete (optional)
 - SEE ALSO
     - /exercism/java/hangman
+    - tutorialspoint.com/rxjava/index.htm
 
 EXAMPLE
 (1)
