@@ -1,0 +1,26 @@
+loops
+
+
+
+- similarities/differences between
+    - for
+    - for-each
+    - while
+    - iterator
+
+EXAMPLE
+List<String> ls = List.of("one", "two", "three");
+
+for (int i = 0; i < ls.size(); i++)
+    System.out.print(ls.get(i) + " ");
+
+for (String i : ls)
+    System.out.print(i + " ");
+
+int i = 0;
+while (i < ls.size())
+    System.out.print(ls.get(i++) + " ");
+
+Iterator<String> iterator = ls.iterator();
+while (iterator.hasNext())
+    System.out.print(iterator.next() + " ");

@@ -6,28 +6,17 @@ set
 - stored in neither alphabetical nor numerical order
 
 EXAMPLE
-import java.util.HashSet;
-import java.util.Set;
-
-public class Test {
-
-    public static void main(String[] args) {
-
-        Set<String> menge = new HashSet<String>();
-        String a = "Hallo Joerg!";
-        String b = "Hi";
-        String c = "Du!";
-        String d = b + " " + c;
-        System.out.println(menge.add(a)); // prints: true
-        menge.add(b);
-        menge.add(c);
-        System.out.println(menge.add(b)); // prints: false
-        System.out.println(menge.size()); // prints: 3
-        System.out.println(menge.contains(b)); // prints: true
-        System.out.println(menge.contains(d)); // prints: false
-        menge.remove(b);
-        System.out.println(menge.contains(b)); // prints: false
-    }
-}
-
-#generics/collections
+Set<String> set = new HashSet<>();
+String a = "Hey!";
+String b = "Hi";
+String c = "Ho!";
+String d = b + " " + c;
+System.out.println(set.add(a)); // true
+set.add(b);
+set.add(c);
+System.out.println(set.add(b)); // false
+System.out.println(set.size()); // 3
+System.out.println(set.contains(b)); // true
+System.out.println(set.contains(d)); // false
+set.remove(b);
+System.out.println(set.contains(b)); // false

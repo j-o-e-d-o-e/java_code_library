@@ -2,13 +2,7 @@ ternary conditional
 
 
 
-- (boolean expression) ? 'true-statement':'false-statement';
-- shortcut for if/else-statement
+- boolean expression ? value-if-true : value-if-false;
 
 EXAMPLE
-int fuelLevel = 3;
-char canDrive = (fuelLevel > 0) ? 'Y':'N';
-System.out.println(canDrive);
-//prints: Y
-
-#advanced boolean expression
+char c = 3 > 0 ? 'Y':'N'; // Y

@@ -10,7 +10,6 @@ list->array list
 
 EXAMPLE
 import java.util.ArrayList;
-import java.util.ArrayList;
 
 public class Test {
 

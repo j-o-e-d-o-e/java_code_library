@@ -2,33 +2,31 @@ stream
 
 
 
-- provices a set of elements in a sequential manner
+- provides a set of elements in a sequential manner
 - computes elements on demand, never stores them
-- supports aggreagate operations like: filter, map, limit, reduce, find, match
-- Collection-interface has two methods to generate streams: stream() and parallelStream()
+- supports intermediate operations, e.g. filter, map, limit, reduce, find, match
+- two methods to generate streams
+    - stream()
+    - parallelStream()
 
 EXAMPLE
-public class Streams {
-    public static void main(String[] args) {
-        List<Integer> numbers = Arrays.asList(3, 2, 2, 3, 7, 3, 5);
+List<Integer> nums = Arrays.asList(3, 2, 2, 3, 7, 3, 5);
 
-        // MAP: get list of unique squares
-        List<Integer> squaresList = numbers.stream().map(i -> i * i).distinct().collect(Collectors.toList());
-        System.out.println(squaresList);
+// MAP: get list of unique squares
+List<Integer> squaresList = nums.stream().map(i -> i * i).distinct().collect(Collectors.toList());
+System.out.println(squaresList); // [9, 4, 49, 25]
 
-        // FILTER: get list
-        List<Integer> filter = numbers.stream().filter(num -> num < 3).collect(Collectors.toList());
-        System.out.println(filter);
+// FILTER: get list
+List<Integer> filter = nums.stream().filter(num -> num < 3).collect(Collectors.toList());
+System.out.println(filter); // [2, 2]
 
-        // FILTER: get count
-        int count = (int) numbers.stream().filter(num -> num < 4).count();
-        System.out.println(count);
+// FILTER: get count
+int count = (int) nums.stream().filter(num -> num < 4).count();
+System.out.println(count); // 5
 
-        // LIMIT: reduce size of stream
-        numbers.stream().limit(3).forEach(System.out::println);
+// LIMIT: reduce size of stream
+nums.stream().limit(3).forEach(System.out::print); // 322
 
-        // SORTED: sort list
-        List<Integer> sorted = numbers.stream().sorted().collect(Collectors.toList());
-        System.out.println(sorted);
-    }
-}
+// SORTED: sort list
+List<Integer> sorted = nums.stream().sorted().collect(Collectors.toList());
+System.out.println(sorted); // [2, 2, 3, 3, 3, 5, 7]
