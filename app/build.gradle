@@ -33,8 +33,6 @@ application {
     mainClass = 'net.joedoe.App'
 }
 
-// COMPILE: $ gradle jar
-// EXECUTE: $ java -jar app/build/libs/app.jar
 jar {
     manifest {
         attributes 'Main-Class': 'net.joedoe.App'

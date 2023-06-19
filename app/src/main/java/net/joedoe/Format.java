@@ -3,7 +3,7 @@ package net.joedoe;
 public class Format {
     static final String ANSI_ESC = "\033[";
     static final int RED = 91; // text
-    static final int GREEN = 32;
+    static final int GREEN = 92;
     static final int CYAN = 96;
     static final int BLACK = 40; // background
 
