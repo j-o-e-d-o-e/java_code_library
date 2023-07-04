@@ -2,20 +2,17 @@ queue
 
 javatpoint.com/java-queue
 
-
-public interface Queue<T> extends Collection<T>
+- public interface Queue<T> extends Collection<T>
     - interface with FIFO (first in, first out)
     - extends the Collection interface
-
-methods
+- methods
     - offer(): inserts elem at the end and returns true upon success
     - add(): like offer(), but throws (more) exceptions if insertion fails
     - poll(): removes and returns elem from the front or null if queue is empty
     - remove(): like poll(), but throws exception if queue is empty
     - peek(): returns the head (front) without removing it
     - element(): like peek(), but throws exception if queue is empty
-
-implementations
+- implementations
     - LinkedList
     - PriorityQueue
 

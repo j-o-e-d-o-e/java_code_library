@@ -2,7 +2,7 @@ thread
 
 
 
-basic examples to run threads
+- basic examples to run threads
     (1) subclass of Thread
     (2) functional interface Runnable
 

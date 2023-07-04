@@ -4,12 +4,10 @@ javatpoint.com/java-string-format
 
 - like sprintf() in C
 - alternatively: System.out.printf()
-
-two variants
+- two variants
     - public static String format(String format, Object... args)  
     - public static String format(Locale locale, String format, Object... args)
-
-format specifiers
+- format specifiers
     - %c: char
     - %d: integer
     - %f: floating point
