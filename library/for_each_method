@@ -1,6 +1,6 @@
 for-each->method
 
-
+loop
 
 - shortcut for for-each-loops
 - forEach() expects @FunctionalInterface-Consumer as parameter

@@ -1,12 +1,15 @@
 thread->callable
 
-baeldung.com/java-runnable-callable
+
 
 - improved version of Runnable since JDK5
 - only usable in conjunction with ExecutorService
     - unlike Runnable, which can be used with Thread and ExecutorService
 - returns a value according to the parametrized type V, e.g. Integer
     - submit() of executor returns a Future containing this value
+
+- SEE ALSO
+    - baeldung.com/java-runnable-callable
 
 
 EXAMPLE

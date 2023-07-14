@@ -1,6 +1,6 @@
 lambda
 
-
+lambda
 
 - <parameter> -> <expression body>
 - used primarily to define inline implementation of a functional interface, i.e. an interface with a single method only

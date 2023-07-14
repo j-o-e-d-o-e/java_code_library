@@ -1,6 +1,6 @@
 map
 
-
+data structure
 
 - similar to 'dictionaries' in python with <key><value>-pairs
 - 'HashMap<String, Integer> name = new HashMap<String, Integer>()'

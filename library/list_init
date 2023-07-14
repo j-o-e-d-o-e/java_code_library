@@ -1,6 +1,6 @@
 list->initialization
 
-baeldung.com/java-init-list-one-line
+data structure
 
 - in one line
     (1) Arrays.asList
@@ -12,6 +12,9 @@ baeldung.com/java-init-list-one-line
         - mutable
     (4) new ArrayList<>(Arrays.asList())
         - mutable
+
+- SEE ALSO
+    - baeldung.com/java-init-list-one-line
 
 EXAMPLE
 (1)

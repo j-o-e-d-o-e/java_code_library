@@ -1,6 +1,6 @@
 enumeration
 
-
+data type
 
 - special data type that enables for a variable to be a set of predefined constants
 - common examples: compass directions(NORTH, SOUTH, EAST, WEST) & the days of the week

@@ -1,6 +1,6 @@
 string->format
 
-javatpoint.com/java-string-format
+data type
 
 - like sprintf() in C
 - alternatively: System.out.printf()
@@ -14,3 +14,7 @@ javatpoint.com/java-string-format
     - %n: line separator
     - %s: string
     - %x: hex
+
+- SEE ALSO
+    - javatpoint.com/java-string-format
+

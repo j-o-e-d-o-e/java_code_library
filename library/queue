@@ -1,6 +1,6 @@
 queue
 
-javatpoint.com/java-queue
+data structure
 
 - public interface Queue<T> extends Collection<T>
     - interface with FIFO (first in, first out)
@@ -15,6 +15,9 @@ javatpoint.com/java-queue
 - implementations
     - LinkedList
     - PriorityQueue
+
+- SEE ALSO
+    - javatpoint.com/java-queue
 
 EXAMPLE
 Queue<Integer> q = new LinkedList<>();

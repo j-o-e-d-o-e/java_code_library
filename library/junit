@@ -1,6 +1,6 @@
 junit
 
-
+testing
 
 - normally, original source-code and test-code are defined in two separate classes. Therefore, create a new TestClass as 'JUnit Test Case'.
 - test-classes are subclasses of 'junit.framework.TestCase': either TestClass 'extends junit.framework.TestCase' or 'import static org.junit.Assert.*'

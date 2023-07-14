@@ -1,6 +1,6 @@
 conversion->string/int
 
-
+data type
 
 - 'String <str> = Integer.toString(<int>)' converts <int> to String <str>
 - 'int <int> = Integer.parseInt(<str>)' converts <str> to Integer <int>

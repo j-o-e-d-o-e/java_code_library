@@ -1,6 +1,6 @@
 set->tree set
 
-
+data structure
 
 - like HashSet, contains only unique elements
 - additionally, elements are stored in alphabetical or numerical order

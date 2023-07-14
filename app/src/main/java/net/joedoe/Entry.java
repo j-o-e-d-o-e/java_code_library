@@ -11,7 +11,7 @@ public class Entry implements Comparable<Entry> {
     int index;
     String path;
     String title;
-    String src;
+    String tags;
 
     public void printEntry() {
         output(String.format("%n%s%n", DELIMITER_ENTRY));
@@ -43,7 +43,7 @@ public class Entry implements Comparable<Entry> {
         return "Entry{" +
                 "index=" + index +
                 ", title='" + title + '\'' +
-                ", src='" + src + '\'' +
+                ", src='" + tags + '\'' +
                 '}';
     }
 }

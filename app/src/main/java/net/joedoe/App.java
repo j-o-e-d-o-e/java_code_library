@@ -28,52 +28,67 @@ public class App {
             flags(args[0]);
             return;
         }
-        Library lib = setupLib();
-        lib.printToc();
+        List<Entry> entries = setupLib();
+        Library.printToc(entries);
         Scanner in = new Scanner(System.in);
         while (true) {
             output("\nWhat would you like to read? ");
-            int input = in.nextInt();
-            if (input == TOC) {
+            String input = in.next();
+            if (input.startsWith("s:")) {
                 System.out.println();
-                lib.printToc();
+                String search = input.substring(2).trim();
+                Library.printToc(entries.stream()
+                        .filter(entry -> entry.tags.toLowerCase().contains(search))
+                        .collect(Collectors.toList()));
                 continue;
-            } else if (input == EXIT) {
+            }
+            int num;
+            try {
+                num = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                output("Not a valid input.\n");
+                continue;
+            }
+            if (num == TOC) {
+                System.out.println();
+                Library.printToc(entries);
+                continue;
+            } else if (num == EXIT) {
                 output("Devil's neighbour wishes you a good day.\n");
                 break;
-            } else if (input < 0 || input > lib.entries.size()) {
+            } else if (num < 0 || num > entries.size()) {
                 output("Not a valid number.");
                 continue;
             }
-            lib.entries.get(input - 1).printEntry();
+            entries.get(num - 1).printEntry();
         }
         in.close();
     }
 
-    static Library setupLib() {
+    static List<Entry> setupLib() {
         List<Path> paths = new ArrayList<>();
         try {
             paths = Files.walk(Paths.get(DIR)).filter(Files::isRegularFile).collect(Collectors.toList());
         } catch (IOException e) {
             output("Opening Directory " + DIR + " failed.");
         }
-        Library lib = new Library();
+        List<Entry> entries = new ArrayList<>();
         for (Path path : paths) {
             try (BufferedReader br = new BufferedReader(new FileReader(path.toFile()))) {
                 Entry entry = new Entry();
                 entry.path = path.toString();
                 entry.title = br.readLine();
                 br.readLine();
-                entry.src = br.readLine();
-                lib.entries.add(entry);
+                entry.tags = br.readLine();
+                entries.add(entry);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        Collections.sort(lib.entries);
+        Collections.sort(entries);
         int index = 1;
-        for (Entry e : lib.entries) e.index = index++;
-        return lib;
+        for (Entry e : entries) e.index = index++;
+        return entries;
     }
 
     static void flags(String arg) {

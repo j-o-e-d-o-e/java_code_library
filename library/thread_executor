@@ -1,6 +1,6 @@
 thread->executor
 
-geeksforgeeks.org/thread-pools-java/
+
 
 - allows to run Runnables and Callables without creating new threads
 - takes care of thread-creation and re-using the already created ones (thread pools)
@@ -9,6 +9,9 @@ geeksforgeeks.org/thread-pools-java/
     - newCachedThreadPool(): threads are created as needed
     - newFixedThreadPool(int n): fixed sized thread pool
     - newSingleThreadExecutor(): single thread
+
+- SEE ALSO
+    - geeksforgeeks.org/thread-pools-java/
 
 EXAMPLE
 static class BasicRun implements Runnable {

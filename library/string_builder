@@ -1,6 +1,6 @@
 string->builder
 
-
+data type
 
 - mutable object (unlike string)
 - 'append(str)' appends a string

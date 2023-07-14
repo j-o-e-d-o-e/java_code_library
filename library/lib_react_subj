@@ -1,6 +1,6 @@
 lib->reactive->subject
 
-reactivex.io/documentation/subject.html
+
 
 - acts as a bridge/proxy
 - abstract class Subject<T> extends Observable<T> implements Observer<T>
@@ -12,7 +12,10 @@ reactivex.io/documentation/subject.html
     - BehaviorSubject: begins by emitting the item most recently emitted by the source
     - PublishSubject: emits only items that are emitted the source to the time of the subscription
     - ReplaySubject: emits all of the items that were emitted by the source
-- See ALSO: /exercism/java/hangman
+
+- See ALSO
+    - reactivex.io/documentation/subject.html
+    - /exercism/java/hangman
 
 EXAMPLE
 Subject<String> subject = ReplaySubject.create();

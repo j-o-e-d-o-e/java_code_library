@@ -1,6 +1,6 @@
 interface->functional
 
-
+lambda
 
 - @FunctionalInterface: purely informative annotation
 - contains only single method

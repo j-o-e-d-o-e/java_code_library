@@ -10,6 +10,6 @@ import static org.junit.Assert.assertNotNull;
 public class AppTest {
     @Test
     public void appHasAGreeting() {
-        assertNotNull("library should have entries", App.setupLib().entries);
+        assertNotNull("library should have entries", App.setupLib());
     }
 }

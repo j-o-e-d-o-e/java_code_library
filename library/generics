@@ -1,6 +1,6 @@
 generics
 
-baeldung.com/java-generics
+generics
 
 allow for different (parameterized) types and still ensure type safety
     - type parameter cannot be a primitive
@@ -20,6 +20,7 @@ allow for different (parameterized) types and still ensure type safety
 - see also
     - entry comparable
     - /exercism/java/binary-search-tree
+    - baeldung.com/java-generics
 
 EXAMPLE
 (1)

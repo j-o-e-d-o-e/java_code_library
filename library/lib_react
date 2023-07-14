@@ -1,6 +1,6 @@
 lib->reactive
 
-vogella.com/tutorials/RxJava/article.html
+
 
 extension of the ReactiveX (Rx) project
     - aims to provide reactive (event-based) concept to various languages
@@ -26,6 +26,7 @@ extension of the ReactiveX (Rx) project
         - OnCompleted: when complete (optional)
 - SEE ALSO
     - /exercism/java/hangman
+    - vogella.com/tutorials/RxJava/article.html
     - tutorialspoint.com/rxjava/index.htm
 
 EXAMPLE

@@ -1,6 +1,6 @@
 do-while-loop
 
-
+loop
 
 - similar to while-loop, except that a do-while-loop is guaranteed to execute at least one time
 - boolean expression is at the end of the loop

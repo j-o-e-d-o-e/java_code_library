@@ -1,6 +1,6 @@
 generics->wildcard
 
-geeksforgeeks.org/wildcards-in-java/
+generics
 
 - represents an unknown type
     - mainly used with collections and specified bounds/constraints
@@ -10,6 +10,9 @@ geeksforgeeks.org/wildcards-in-java/
 - lower bound (2)
     - <? super subClass>
     - accepts subClass and all its supertypes (including Object)
+
+- SEE ALSO
+    - geeksforgeeks.org/wildcards-in-java/
 
 EXAMPLE
 (1)

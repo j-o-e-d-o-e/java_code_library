@@ -1,6 +1,6 @@
 string->toString/deepToString
 
-
+data type
 
 - 'Arrays.toString(arr)' converts array to printable strings
 - 'Arrays.deepToString(arr)' converts nested array

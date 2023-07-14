@@ -1,6 +1,6 @@
 list->array list
 
-
+data structure
 
 - 'List<type> name = new ArrayList<>()' initializes the data structure
 - 'name.add(index, value)' adds the 'value' at a specific 'index'

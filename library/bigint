@@ -1,12 +1,15 @@
 big integer
 
-javatpoint.com/java-biginteger
+data type
 
 - extends Number and implements Comparable
 - methods, e.g.
     - add(BigInteger val)
     - modPow(BigInteger exponent, BigInteger m): this^exponent mod m
     - BigInteger.valueOf(Long l) returns big-int
+
+- SEE ALSO
+    - javatpoint.com/java-biginteger
 
 EXAMPLE
 (1)

@@ -1,6 +1,6 @@
 collections->sort
 
-
+collections
 
 - 'Collections.sort()' sorts iterables of type Collections, ie ArrayLists
 

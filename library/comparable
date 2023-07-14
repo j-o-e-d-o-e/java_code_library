@@ -1,6 +1,6 @@
 comparable
 
-
+generics
 
 - '<T extends ...>' defines a superclass whose subclasses get accepted as parameters within the method
 - '<T extends Comparable<T>>' accepts all subclasses of 'Comparable' which implement 'compareTo()'
@@ -25,5 +25,3 @@ public class Test {
         System.out.println(max(12, 100)); // prints: 100
     }
 }
-
-#generics
