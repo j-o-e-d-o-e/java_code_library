@@ -9,6 +9,9 @@ data structure
 - 'name.keySet()' returns a list of all keys
 - 'name.get(key)' gets the value associated by that key
 
+- SEE ALSO
+    - /exercism/java/forth
+
 EXAMPLE
 import java.util.HashMap;
 import java.util.Map;
