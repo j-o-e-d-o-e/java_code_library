@@ -2,12 +2,12 @@ access modifier
 
 
 
-- for classes:
+- for classes
     - public: visible anywhere
     - default: visible only within its package
-    - Inner classes also allow for 'protected & 'private'
-    - 'public class' needs to be saved in its own file 'classname.java'
-- for class-elements(attributes, methods & constructors):
+    - inner classes also allow for 'protected & 'private'
+    - public class needs to be saved in its own file 'classname.java'
+- for class-elements (attributes, methods & constructors)
     - public: visible where its class is visible
     - protected: visible within its package & for subclasses(if superclass is 'public' and call on subclass-typ)
     - default: visible within its package

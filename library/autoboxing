@@ -2,7 +2,7 @@ autoboxing
 
 
 
-- for every primitive type, there exists also a class extending 'Objects', eg. boolean -> Boolean
+- for every primitive type, there exists also a class extending 'Objects', e.g. boolean -> Boolean
 - if primitives need to be handled like 'objects', they get wrapped by their corresponding class
 - ArrayLists only store elements of type 'Object' and not primitive types, therefore the compiler automatically boxes primitive types in wrapper classes
 

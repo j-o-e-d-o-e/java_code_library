@@ -3,7 +3,7 @@ array
 data structure
 
 - unlike array lists, the length of arrays is immutable
-- '<array>.length' returns length (for array lists: using method 'size()')
+- '<array>.length' returns length (for array lists: use 'size()')
 - 'Arrays.toString()' and 'Arrays.deepToString()' print arrays and nested arrays
 
 EXAMPLE

@@ -4,8 +4,8 @@ binding
 
 - for methods:
     - their static & dynamic types are considered
-    - during compilation, the corresponding signature is defined(static)
-    - during runtime, java looks up the most specified method in the hierarchy according to the previously defined signature(dynamic)
+    - during compilation, the corresponding signature is defined (static)
+    - during runtime, java looks up the most specified method in the hierarchy according to the previously defined signature (dynamic)
 - for attributes:
     - only their static type is considered
 
