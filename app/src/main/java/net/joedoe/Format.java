@@ -7,20 +7,29 @@ public class Format {
     static final int CYAN = 96;
     static final int BLACK = 40; // background
 
-    static void output(String str) {
-        output(str, RED, false, false, false);
+    static void outputFormat(String str) {
+        outputFormat(str, RED, false, false, false);
     }
 
-    static void output(String str, int color) {
-        output(str, color, false, false, false);
+    static void outputFormat(String str, int color) {
+        outputFormat(str, color, false, false, false);
     }
 
-    static void output(String str, int color, boolean... styles) {
+    static void outputFormat(String str, int color, boolean... styles) {
+        System.out.print(format(str, color, styles));
+    }
+
+
+    static String format(String str) {
+        return format(str, RED, false, false, false);
+    }
+
+    static String format(String str, int color, boolean... styles) {
         String s = ANSI_ESC + color;
         if (styles[0]) s += ";" + BLACK;    // background color
         if (styles[1]) s += ";1";           // bold
         if (styles[2]) s += ";4";           // underline
         s += "m" + str + ANSI_ESC + "0m";
-        System.out.print(s);
+        return s;
     }
 }

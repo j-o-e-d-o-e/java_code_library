@@ -1,5 +1,8 @@
 package net.joedoe;
 
+import org.jline.reader.LineReader;
+import org.jline.reader.LineReaderBuilder;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -9,10 +12,10 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
-import static net.joedoe.Format.output;
+import static net.joedoe.Format.format;
+import static net.joedoe.Format.outputFormat;
 
 public class App {
     static final String DIR = "./library";
@@ -30,10 +33,9 @@ public class App {
         }
         List<Entry> entries = setupLib();
         Library.printToc(entries);
-        Scanner in = new Scanner(System.in);
+        LineReader reader = LineReaderBuilder.builder().build();
         while (true) {
-            output("\nWhat would you like to read? ");
-            String input = in.next();
+            String input = reader.readLine(format("\nWhat would you like to read? "));
             if (input.startsWith("s:")) {
                 System.out.println();
                 String search = input.substring(2).trim();
@@ -46,7 +48,7 @@ public class App {
             try {
                 num = Integer.parseInt(input);
             } catch (NumberFormatException e) {
-                output("Not a valid input.\n");
+                outputFormat("Not a valid input.\n");
                 continue;
             }
             if (num == TOC) {
@@ -54,15 +56,14 @@ public class App {
                 Library.printToc(entries);
                 continue;
             } else if (num == EXIT) {
-                output("Devil's neighbour wishes you a good day.\n");
+                outputFormat("Devil's neighbour wishes you a good day.\n");
                 break;
             } else if (num < 0 || num > entries.size()) {
-                output("Not a valid number.");
+                outputFormat("Not a valid number.");
                 continue;
             }
             entries.get(num - 1).printEntry();
         }
-        in.close();
     }
 
     static List<Entry> setupLib() {
@@ -70,7 +71,7 @@ public class App {
         try {
             paths = Files.walk(Paths.get(DIR)).filter(Files::isRegularFile).collect(Collectors.toList());
         } catch (IOException e) {
-            output("Opening Directory " + DIR + " failed.");
+            outputFormat("Opening Directory " + DIR + " failed.");
         }
         List<Entry> entries = new ArrayList<>();
         for (Path path : paths) {
@@ -93,10 +94,10 @@ public class App {
 
     static void flags(String arg) {
         if (arg.equals("-h") || arg.equals("--h") || arg.equals("-help") || arg.equals("--help")) {
-            output(String.format("%s %s %s%nCommands:\t- %d: Table of Content (or any char)%n\t- %d: Exit%n",
+            outputFormat(String.format("%s %s %s%nCommands:\t- %d: Table of Content (or any char)%n\t- %d: Exit%n",
                     Library.DELIMITER_TOC, "JAVA CODE LIBRARY", Library.DELIMITER_TOC, TOC, EXIT));
-            output("Literature:");
-            for (String s : LITERATURE) output(String.format("\t- %s\n", s));
+            outputFormat("Literature:");
+            for (String s : LITERATURE) outputFormat(String.format("\t- %s\n", s));
         }
     }
 }

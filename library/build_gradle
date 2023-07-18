@@ -1,0 +1,65 @@
+build->gradle
+
+tool
+
+- 3 stages: init (1) -> configure (2) -> execute (3)
+    (1) evaluation of settings.gradle
+    (2) evaluation of build.gradle
+    (3) execution of gradle tasks (build steps)
+- settings.gradle
+    - allows for multi-project builds, e.g. include 'client', 'service' 
+- build.gradle
+    - plugins, e.g.
+        - id 'java': basic app in java
+            - defines gradle tasks, props like source path, etc.
+            - defaults according to maven
+        - id 'application': CLI app in java
+            - extends java-plugin
+        - id 'com.github.johnrengelman.shadow': creates fat jar including dependencies
+            - only works if java-plugin is explicitly applied
+            - outputs <name>-all.jar to /build/libs
+    - repositories
+        - mavenCentral(): searches central.sonatype.com (remote)
+        - mavenLocal(): searches ~/.m2/repository (local)
+        - maven {url <URL>} searches given <URL>
+        - flatDir dirs: "${projectDir}/libs" searches speficied folder(s)
+    - dependencies
+        - declaration: category <group>:<name>:<version>
+            - e.g. testImplementation 'junit:junit:4.13.2'
+            - '+' indicates newest version (instead of parts of or whole version num)
+        - category types, e.g.
+            - implementation: for app itself
+            - testImplementation: for tests
+            - compileOnly: for translating into byte-code
+- wrapper
+    - ./gradlew: starts gradle-wrapper.jar in /gradle/wrapper (on unix)
+        - for win: gradlew.bat
+    - installs specific version of gradle if needed
+        - according to /gradle/wrapper/gradle-wrapper.properties
+- gradle tasks
+    - init: starts wizard to initialize project
+    - wrapper: creates /gradle/wrapper and scripts
+    - build: builds project and saves byte code and artifact to /build 
+        - /build/libs contains executable .jar
+    - clean: removes /build
+    - properties: shows state of the main project-obj
+    - dependencies: shows declared and transitive dependencies
+    - help: shows further info
+        - --task <name>: shows info about specified task
+    - tasks (--all): shows (all) build steps
+    - (task) <task>: executes specific task
+        - -m/--dry-run: simulates execution
+    
+- SEE ALSO
+    - docs.gradle.org/current/userguide/userguide.html
+    - gradle.org
+    - github.com/gradle/gradle
+
+EXAMPLE
+// build.gradle
+task hello(group: 'Custom tasks', description: 'Says hello') {
+    println "Hi, there"
+}
+$gradle hello
+// > Configure project :
+// Hi, there
