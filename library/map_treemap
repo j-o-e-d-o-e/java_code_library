@@ -1,0 +1,51 @@
+map->treemap
+
+data structure
+
+- ordered, indexed map implementation of Map and NavigableMap
+(1) init (additionally to map-interface)
+    - new TreeMap<>(Comparator c) creates new, empty map with ordered keys according to c
+- methods (additionally)
+(2) retrieve
+    - firstEntry() returns 1st (lowest) entry according to order
+    - firstKey() returns 1st key
+    - lastEntry() returns last (highest) entry
+    - lastKey() returns last key
+    - floorEntry(K e) returns entry with key less than or equal to e
+        - if no such entry present, returns null
+    - floorKey(K e) returns key less than e
+    - lowerEntry(K e) returns entry with key less than e
+    - lowerKey(K e) returns key less than e
+    - ceilingEntry(K e) returns entry with key greater than or equal to e
+    - ceilingKey(K e) returns key greater than or equal to e
+    - higerEntry(K e) returns entry with key greater than e
+    - higherKey(K e) returns key greater than e
+    - headMap(K to) returns SortedMap<K, V> with entries whose keys are strictly less than to
+        - returned set is backed by this set, so changes to the set are reflected in the descending set, and vice-versa
+    - tailMap(K from) returns SortedMap<K, V> with entries whose keys are greater than or equal to from
+    - subMap(K from, boolean fromInclusive, K to, boolean toInclusive) returns SortedMap<K, V> with entries whose keys are in range
+        - from/to: range (inclusive/exclusive)
+        - fromInclusive/toInclusive: true if endpoint is to be included (optional)
+(3) delete
+    - pollFirstEntry() removes and returns 1st (lowest) entry; or returns null if this map is empty
+    - pollLastEntry() removes and returns last entry
+(4) iterate
+    - descendingMap() returns a NavigableMap<K, V> in descending order
+        - returned map is backed by this set
+    - descendingKeySet() returns a NavigableSet<K> of the keys in reversed order
+    - navigableKeySet() returns a NavigableSet<K> of the keys 
+(5) utils
+    - comparator() returns comparator used to order the keys in this map, if set; otherwise, null
+
+EXAMPLE
+(1)
+TreeMap<String, Integer> m = new TreeMap<>(Comparator.reverseOrder());
+m.putAll(Map.of("a", 1, "b", 2));                               // {b=2, a=1}
+(2)
+var m = new TreeMap<>(Map.of("a", 1, "c", 2));                  // {a=1, d=2}
+Map.Entry<String, Integer> x = m.firstEntry();                  // x = a=1
+String y = m.ceilingKey("b");                                   // y = c
+(3)
+Map.Entry<String, Integer> z = m.pollLastEntry();               // z = c=2
+(4)
+var m = new TreeMap<>(Map.of("a", 1, "b", 2)).descendingMap();  // {b=2, a=1}

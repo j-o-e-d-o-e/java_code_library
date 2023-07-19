@@ -2,42 +2,71 @@ map
 
 data structure
 
-- similar to 'dictionaries' in python with <key><value>-pairs
-- 'HashMap<String, Integer> name = new HashMap<String, Integer>()'
-- 'name.put(key, value)' adds/updates a key and its associated value & returns the previous value
-- 'name.size()' returns the size of the collection
-- 'name.keySet()' returns a list of all keys
-- 'name.get(key)' gets the value associated by that key
+- unordered, unindexed iterable containing key/value-pairs
+    - contains only unique keys
+- implementing classes: HashMap, TreeMap
+- methods
+(1) add/update
+    - put(K key, V val) adds/updates entry and returns null or previous val
+        - if key is present, updates val and returns previous val
+    - putIfAbsent(K key, V val) adds entry only if key is not present or its val is null
+        - if key is present, returns its val
+    - putAll(Map<K, V> m) adds/updates all entries from m in this map
+    - compute(K key, BiFunction<K, V, V> func) updates val of key with result of func
+        - for the case that key is not present, func should have a null check
+    - computeIfAbsent(K key, Function<K, V> func) adds entry with given key and result of func as val
+        - if func returns null, does nothing
+        - useful for creating a new obj
+    - computeIfPresent(K key, BiFunction<K, V,V> func) updates val of key with result of func
+        - if func returns null, removes entry
+(2) retrieve
+    - get(Object key) returns val of key or null if key not present
+    - getOrDefault(Object key, V default) returns val of key or default if key not present
+    - size() returns number of entries in this map
+(3) update
+    - replace(K key, V val) updates val of key with given val if key is present and returns previous val
+        - if key not present, returns null
+    - replace(K key, V old, V new) updates val of key with new only if key maps to old and returns boolean
+    - replaceAll(BiFunction<K, V, V> func) replaces each entry's val with the result of the given func on that entry
+    - merge(K key, V val, BiFunction<V, V, V> func) replaces val of key with result of func if key is present
+        - if key not present, adds key with given val
+        - func merges previous val with given val
+(4) delete
+    - clear() removes all elems
+    - remove(Object key) removes entry for key and returns its val if it was present
+        - if key not present, returns null
+    - remove(Object key, V val) removes entry for key and returns true if present
+(5) iterate
+    - forEach(BiConsumer<K, V> func) applies func to each entry
+    - entrySet() returns a Set<Map.Entry<K, V> of the entries in this map
+        - returned set is backed by the map, so changes to the map are reflected in the set, and vice-versa
+    - keySet() returns a Set<K> of the keys
+        - returned set is backed by the map
+    - values() returns a Collection<V> of th vals
+        - returned collection is backed by the map
+(6) check
+    - containsKey(Object key) returns true if map contains key
+    - containsValue(Object val) returns true if this map maps one or more keys to val
+    - equals(Object o) returns true if o is a map and both have the same mappings
+    - isEmpty() returns true if this map contains no entries
 
 - SEE ALSO
     - /exercism/java/forth
 
 EXAMPLE
-import java.util.HashMap;
-import java.util.Map;
+Map<String, Integer> m = new HashMap<>(Map.of("a", 1, "b", 2)); // {a=1, b=2}
+(1)
+m.put("c", null);           // {a=1, b=2, c=null}
+m.putIfAbsent("c", 3);      // {a=1, b=2, c=3}
 
-public class Test {
+BiFunction<String, Integer, Integer> bi = (k, v) -> (v == null) ? 10 : v + 10;
+m.compute("c", bi);         // {a=1, b=2, c=13}
+m.compute("d", bi);         // {d=10, a=1, b=2, c=13}
 
-    public static void main(String[] args) {
+m.computeIfAbsent("e", k -> (int) k.charAt(0)); // {a=1, b=2, c=13, d=10, e=101}
+m.computeIfPresent("e", (k, v) -> null);        // {a=1, b=2, c=13, d=10}
+(3)
+m.replace("b", 2, 4); // {a=1, b=4, c=13, d=10}
+m.replaceAll((k, v) -> v + 10);     // {a=11, b=14, c=23, d=20}
 
-        Map<String, Integer> restaurantMenu = new HashMap<String, Integer>();
-        restaurantMenu.put("Burger", 13);
-        restaurantMenu.put("Pizza", 1);
-        restaurantMenu.put("Salad", 10);
-        for (String item : restaurantMenu.keySet()) {
-            System.out.println("A " + item + " costs " + restaurantMenu.get(item) + " dollars.");
-        }
-        Map<Integer, String> m = new HashMap<Integer, String>();
-        String a = "Hi";
-        String b = "Joerg!";
-        System.out.println(m.put(10, a)); // prints: null
-        System.out.println(m.put(10, "Hallo")); // prints: Hi
-        m.put(12, b);
-        System.out.println(m.get(10)); // prints: "Hallo"
-        System.out.println(m.size()); // prints: 2
-        System.out.println(m.remove(12)); // prints: Joerg!
-        System.out.println(m.size()); // prints: 1
-    }
-}
-
-#generics/collections
+m.merge("a", 100, Integer::sum);    // {a=111, b=14, c=23, d=20}

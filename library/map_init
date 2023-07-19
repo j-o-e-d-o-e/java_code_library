@@ -1,0 +1,20 @@
+map->init
+
+
+
+- in one line
+    (1) Map.of(K k1, V v1, K k2, V v2, ...)
+        - immutable
+        - for up to 10 key/value-pairs
+    (2) Map.ofEntries(Map.Entry<K, V>... entries)
+        - immutable
+    (3) new HashSet<>(Map.of(K k1, V v1, ...))
+        - mutable
+
+EXAMPLE
+(1)
+Map<String, Integer> m = Map.of("a", 1, "b", 2); // {b=2, a=1}
+(2)
+Map<String, Integer> m = Map.ofEntries(Map.entry("a", 1), Map.entry("b", 2));
+(3)
+Map<String, Integer> m = new HashMap<>(Map.of("a", 1, "b", 2));

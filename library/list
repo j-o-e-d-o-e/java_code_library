@@ -2,7 +2,7 @@ list
 
 data structure/interface
 
-- ordered, indexed, mutable iterable implementing Collection<E>
+- ordered, indexed iterable implementing Collection<E>
 - implementing classes: ArrayList, LinkedList, Stack
 (1) add
     - add(T elem) appends elem and returns true/false

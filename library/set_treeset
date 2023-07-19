@@ -2,12 +2,43 @@ set->tree set
 
 data structure
 
-- like HashSet, contains only unique elements
-- additionally, elements are stored in alphabetical or numerical order
+- ordered, indexed set implementation of Set and NavigableSet
+(1) init (additionally to set-interface)
+    - new TreeSet<>(Comparator<T> c) creates new, empty set ordered according to c
+- methods (additionally)
+(2) retrieve
+    - first() returns 1st (lowest) elem according to order
+    - last() returns last (highest) elem
+    - floor(T e) returns elem less than or equal to e
+        - if no such elem present, returns null
+    - lower(T e) returns elem less than e
+    - ceiling(T e) returns elem greater than or equal to e
+    - higher(T e) returns elem greater than e
+    - headSet(T to) returns SortedSet<T> whose elems are strictly less than to
+        - returned set is backed by this set, so changes to the set are reflected in the descending set, and vice-versa
+    - tailSet(T from) returns SortedSet<T> whose elemes are greater than or equal to from
+    - subSet(T from, boolean fromInclusive, T to, boolean toInclusive) returns SortedSet<T> whose elems are in range
+        - from/to: range (inclusive/exclusive)
+        - fromInclusive/toInclusive: true if endpoint is to be included (optional)
+(3) delete
+    - pollFirst() removes and returns 1st (lowest) elem; or returns null if this set is empty
+    - pollLast() removes and returns last elem
+(4) iterate
+    - descendingSet() returns a NavigableSet<T> in descending order
+        - returned set is backed by this set
+    - descendingIterator() returns Iterator<T> over elems in descending order
+(5) utils
+    - comparator() returns Comparator<T> of this set, if set; otherwise, null
 
 EXAMPLE
-var tree = new TreeSet<Integer>(Comparator.reverseOrder());
-var ls = Arrays.asList(2, 2, 2, 5, 10);
-tree.addAll(ls); // tree ==> [10, 5, 2]
-
-#generic type/collection
+(1)
+TreeSet<Integer> s = new TreeSet<>(Comparator.reverseOrder());
+s.addAll(Arrays.asList(1, 1, 3, 5)); // s = [3, 2, 1]
+(2)
+var s = new TreeSet<>(Set.of(1, 3, 5));
+Integer a = s.first(); // a = 1
+Integer b = s.ceiling(2); // b = 3
+(3)
+Integer c = s.pollLast(); // c = 5
+(4)
+var s = new TreeSet<>(Set.of(1, 3, 5)).descendingSet(); // s = [5, 3, 1]

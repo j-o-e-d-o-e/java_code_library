@@ -3,14 +3,14 @@ list->init
 data structure
 
 - in one line
-    (1) Arrays.asList
+    (1) Arrays.asList(T... a)
         - fixed size
         - mutable
-    (2) List.of
+    (2) List.of(T... elems)
         - immutable
-    (3) new ArrayList<>(List.of())
+    (3) new ArrayList<>(List.of(T... elems))
         - mutable
-    (4) new ArrayList<>(Arrays.asList())
+    (4) new ArrayList<>(Arrays.asList(T... a))
         - mutable
 
 - SEE ALSO
@@ -19,13 +19,13 @@ data structure
 EXAMPLE
 (1)
 List<Integer> l = Arrays.asList(1, 2, 3); // [1, 2, 3]
-l.set(2,4); // [1, 2, 4]
-// l.add(4); // unsupported
+l.set(2,4);     // [1, 2, 4]
+// l.add(4);    // unsupported
 (2)
 List<Integer> l = List.of(1, 2, 3);
-// l.set(2,4); // unsupported
-// l.add(4); // unsupported
+// l.set(2,4);  // unsupported
+// l.add(4);    // unsupported
 (3)
 List<Integer> l = new ArrayList<>(List.of(1, 2, 3));
 l.set(2,4);
-l.add(4); // [1, 2, 4, 4]
+l.add(4);       // [1, 2, 4, 4]

@@ -1,0 +1,9 @@
+set->init
+
+
+
+- in one line
+    (1) Set.of(T... elems)
+        - immutable
+    (2) new HashSet<>(Set.of())
+        - mutable
