@@ -4,15 +4,15 @@ access modifier
 
 - for classes
     - public: visible anywhere
+        - needs to be saved in its own file 'classname.java'
     - default: visible only within its package
-    - inner classes also allow for 'protected & 'private'
-    - public class needs to be saved in its own file 'classname.java'
+    - inner classes also allow for 'protected' & 'private'
 - for class-elements (attributes, methods & constructors)
     - public: visible where its class is visible
-    - protected: visible within its package & for subclasses(if superclass is 'public' and call on subclass-typ)
+    - protected: visible within its package & for subclasses (if superclass is 'public' and call on subclass-typ)
     - default: visible within its package
     - private: visible only within its class
-- overwritten methods are not to be narrowed(compared to their implementation in the superclass)
+- overwritten methods are not to be narrowed (compared to their implementation in the superclass)
 
 EXAMPLE
 package a;

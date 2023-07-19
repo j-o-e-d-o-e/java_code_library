@@ -2,9 +2,9 @@ array
 
 data structure
 
-- unlike array lists, the length of arrays is immutable
-- '<array>.length' returns length (for array lists: use 'size()')
-- 'Arrays.toString()' and 'Arrays.deepToString()' print arrays and nested arrays
+- immutable, indexed collection
+- properties
+    - length: returns length
 
 EXAMPLE
 import java.util.Arrays;

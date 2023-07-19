@@ -1,0 +1,69 @@
+array->arrays
+
+built-in class
+
+- contains methods for manipulating arrays
+(1) compare
+    - compare(T[] a, int aFrom, int aTo, T[] b, int bFrom, int bTo, Comparator c)
+        - a/b: arrays to compare
+        - aFrom/bFrom: inclusive index (optional)
+        - aTo/bTo: exclusive index (optional)
+        - c: func to compare elems (optional, if order defined by type)
+        - if equal, returns 0; if a < b, returns val less than 0; otherwise, val greater than 0
+    - equals(T[] a, int aFrom, int aTo, T[] b, int bFrom, int bTo, Comparator c)
+(2) convert
+    - asList(T... a) returns fixed-size List<T>
+        - a: T[] or var args
+        - changes made to given array/returned list will be visible in the other
+    - spliterator(T[] a, int start, int end) returns spliterator
+    - stream(T[] a, int start, int end) returns stream with the specified range
+        - 2nd/3rd arg: start inclusive, end exclusive (optional)
+(3) copy
+    - copyOf(T[] a, int len) returns copy of a
+        - if len > a.length, copy is padded with nulls
+        - if len < a.length, copy is truncated
+    - copyOfRange(T[] a, int from, int to) copies specified range of a
+        - if from < 0 or from > a.length, throws ArrayIndexOutOfBoundsException
+        - if to > a.length, copy is padded with nulls
+(4) modify
+    - fill(Object[] a, int from, int to, Object val) assigns val to each elem within specified range of a
+    - setAll(T[] a, IntFunction generator) sets all elems of a
+        - generator: func accepting an index and producing the desired val for that position
+(5) search
+    - binarySearch(T[] a, int from, int to, T key, Comparator c) returns index of searched key
+        - a: array to be searched
+        - key: val to be searched for
+        - c: func to order array prior to search (optional)
+        - if not found, returns negative int (-(insertion point) - 1) 
+    - mismatch(T[] a, int aFrom, int aTo, T[] b, int bFrom, int bTo, Comparator c)
+        - returns index of 1st mismatch between a and b, otherwise -1
+(6) sort
+    - sort(T[] a, int from, int to, Comparator c)
+        - 
+(7) stringify
+    - toString(Object[] a): for 1-dim arrays
+    - deepToString(Object[] a):  for nested arrays
+
+EXAMPLE
+(1)
+Integer[] a = new Integer[]{1, 2, 3};
+Integer[] b = new Integer[]{1, 3, 2};
+int c = Arrays.compare(a, 1, 3, b, 0, 3);   // 1
+(2)
+Integer[] a = new Integer[]{1, 2, 3};
+List<Integer> b = Arrays.asList(a);         // [1, 2, 3]
+
+List<Integer> c = Arrays.asList(1, 2, 3);   // [1, 2, 3]
+(3)
+Integer[] b = Arrays.copyOf(a, 4);          // [1, 2, 3, null]
+(4)
+Arrays.fill(a, 2, 3, 1);                    // [1, 2, 1]
+
+Integer[] a = new Integer[]{1, 2, 3};
+Arrays.setAll(a, i-> a[i] + 10);            // [11, 12, 13]
+(5)
+Integer[] a = new Integer[]{1, 2, 3};
+int b = Arrays.binarySearch(a, 1, 3, 3);    // 2
+(6)
+Integer[] a = new Integer[]{3, 2, 1};
+Arrays.sort(a, 1, 3);                       // [3, 1, 2]

@@ -1,0 +1,41 @@
+list
+
+data structure/interface
+
+- add
+    - add(E elem)
+    - add(int index, E elem)
+    - addAll(
+- retrieve
+    - get(
+    - subList(
+    - size(
+- update
+    - replaceAll(
+    - retainAll(
+    - set(
+- delete
+    - clear()
+    - remove(
+    - remove(
+    - removeAll(
+- convert
+    - stream()
+    - toArray(
+    - toArray(T[] a)
+- search
+    - indexOf(
+    - lastIndexOf(
+- sort
+    - sort(
+- check
+    - contains(
+    - containsAll(
+    - equals(
+    - isEmpty(
+- iterate
+    - iterator(
+    - listIterator(
+    - spliterator(
+
+EXAMPLE
