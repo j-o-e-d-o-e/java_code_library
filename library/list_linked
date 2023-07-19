@@ -1,0 +1,36 @@
+list->linked list
+
+data structure
+
+- doubly-linked list implementation of List and Deque interfaces
+- operations that index into this list will traverse it from the beginning or the end, whichever is closer to the specified index
+- methods (additional to list-interface)
+(1) add
+    - addFirst(T elem) inserts elem at the beginning 
+        - similar to: offerFirst(T elem) returns true/false (queue)
+    - addLast(T elem) appends elem to the end
+        - equivalent to: add(T elem) (list)
+        - similar to: offer(T elem)/offerLast(T elem)
+    - push(T elem) inserts elem at the front
+(2) retrieve
+    - element() returns 1st elem (head)
+        - similar to: getFirst(), peek(), peekFirst()
+    - getLast() returns last elem (tail)
+        - similar to: peekLast()
+(3) delete
+    - remove() removes and returns 1st elem (head)
+        - similar to: removeFirst(), poll(), pollFirst()
+    - removeLast() removes and returns last elem
+        - similar to: pollLast()
+    - removeFirstOccurence(Object o) removes 1st occurrence of o and returns true if list contained o
+        - if not found, list is unchanged
+    - removeLastOccurence(Object o) removes last occurence and returns true/false
+    - pop() returns 1st elem
+(4) iterate
+    - descendingIterator() returns iterator over elem in reverse order
+
+EXAMPLE
+(3)
+LinkedList<Integer> a = new LinkedList<>(List.of(1, 2, 3));
+boolean b = a.removeFirstOccurrence(1); // true, a = [2, 3]
+b = a.removeLastOccurrence(1); // false

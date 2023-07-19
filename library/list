@@ -2,40 +2,81 @@ list
 
 data structure/interface
 
-- add
-    - add(E elem)
-    - add(int index, E elem)
-    - addAll(
-- retrieve
-    - get(
-    - subList(
-    - size(
-- update
-    - replaceAll(
-    - retainAll(
-    - set(
-- delete
-    - clear()
-    - remove(
-    - remove(
-    - removeAll(
-- convert
-    - stream()
-    - toArray(
-    - toArray(T[] a)
-- search
-    - indexOf(
-    - lastIndexOf(
-- sort
-    - sort(
-- check
-    - contains(
-    - containsAll(
-    - equals(
-    - isEmpty(
-- iterate
-    - iterator(
-    - listIterator(
-    - spliterator(
+- ordered, indexed, mutable iterable implementing Collection<E>
+- implementing classes: ArrayList, LinkedList, Stack
+(1) add
+    - add(T elem) appends elem and returns true/false
+    - add(int index, T elem) inserts elem at index
+        - shifts elem currently at given index and any subsequent elements to the right
+    - addAll(int index, Collection<T> c) inserts all elems from c at index and returns true/false
+        - index: optional; if not given, at the end
+(2) retrieve
+    - get(int index) returns elem at index
+    - subList(int from, int to) returns list of specified range
+        - from/to: inclusive/exclusive
+        - if from == to, returns empty list
+        - if from < 0 || to > size || from > toIndex, throws IndexOutOfBoundsException
+        - returned list is backed by this list and vice-versa, i.e. changes propagate
+    - size() returns number of elems in this list
+(3) update
+    - set(int index, T elem) replaces elem at index with specified elem and returns former elem
+    - replaceAll(UnaryOperator<T> func) replaces each elem with result of applying func to that elem
+(4) delete
+    - clear() removes all elems
+    - remove(int index) removes elem at index and returns elem
+        - shifts subsequent elems to the left
+    - remove(Object o) removes 1st occurence of o and returns true if o in list
+    - removeAll(Collection c) removes all elems that are in c and returns true/false
+    - retainAll(Collection c) removes all elems that are not in c and returns true/false
+(5) convert
+    - stream() returns stream with this collection as its source
+    - toArray(IntFunction generator) returns new array containing all elems in this collection
+(6) iterate
+    - forEach(Consumer func) applies func to each elem
+    - iterator() returns iterator over elems
+    - listIterator() returns list-iterator over elems
+    - spliterator() returns spliterator
+(7) search
+    - indexOf(Object o) returns index of 1st occurence of o; if not found, returns -1
+        - for all occurences, e.g. see example below
+    - lastIndexOf(Object o) returns index of last occurence of o or -1
+(8) sort
+    - sort(Comparator c) sorts list according to c
+        - all elems must be mutually comparable using c, i.e. c.compare(e1, e2) must not throw
+(9) check
+    - contains(Object o) returns true if this list contains o
+    - containsAll(Collection c) returns true if this list contains all elems of c
+    - equals(Object o) returns true if o is list and both contain the same elems in the same order
+    - isEmpty() returns true if this list contains no elems
 
 EXAMPLE
+(2)
+List<Integer> a = new ArrayList<>(List.of(1, 2, 3));
+a.subList(1, 3).clear(); // a = [1]
+(3)
+List<String> a = new ArrayList<>(List.of("joe", "doe"));
+a.replaceAll(s -> s + "y"); // [joey, doey]
+(4)
+List<Integer> a = new ArrayList<>(List.of(1, 2, 3));
+a.remove(Integer.valueOf(1)); // [2, 3]
+
+List<Integer> a = new ArrayList<>(List.of(1, 2, 3));
+a.retainAll(List.of(1, 2));  // [1, 2]
+(5)
+List<Integer> a = new ArrayList<>(List.of(1, 2, 3));
+Integer[] b = a.toArray(Integer[]::new); // b = [1, 2, 3]
+(7)
+static <T> List<Integer> allOccurrences(List<T> ls, T elem) {
+    List<Integer> res = new ArrayList<>();
+    int i = 0;
+    while (true) {
+        int index = ls.subList(i, ls.size()).indexOf(elem);
+        if (index == -1) break;
+        i += index + 1;
+        res.add(i - 1);
+    }
+    return res;
+}
+(8)
+List<Integer> a = new ArrayList<>(List.of(3, 1, 2));
+a.sort(Comparator.naturalOrder()); // [1, 2, 3]

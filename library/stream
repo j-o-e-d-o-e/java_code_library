@@ -1,7 +1,8 @@
 stream
 
+sequence/interface
 
-
+//TODO
 - provides a set of elements in a sequential manner
 - computes elements on demand, never stores them
 - supports intermediate operations, e.g. filter, map, limit, reduce, find, match

@@ -39,7 +39,6 @@ built-in class
         - returns index of 1st mismatch between a and b, otherwise -1
 (6) sort
     - sort(T[] a, int from, int to, Comparator c)
-        - 
 (7) stringify
     - toString(Object[] a): for 1-dim arrays
     - deepToString(Object[] a):  for nested arrays
