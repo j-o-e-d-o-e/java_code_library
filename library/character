@@ -1,0 +1,25 @@
+Character
+
+built-in class
+
+- retrieve
+    - valueOf(char c) returns Character of c
+- compare
+    - compareTo(char x, char y) compares two char values numerically
+- convert
+    - digit(char ch, int radix) returns numeric val of ch in the specified radix
+    - toChars(int codePoint) returns char[] containing the UTF-16 representation of given char (Unicode code point)
+    - toTitleCase(char ch)
+    - toUpperCase(char ch)
+    - toLowerCase(char ch)
+    - toString(char c)
+- check
+    - isLetter(char ch)
+    - isLetterOrDigit(char ch)
+    - isDigit(char ch)
+    - isAlphabetic(int codePoint)
+    - isSpaceChar(char ch)
+    - isLowerCase(char ch)
+    - isUpperCase(char ch)
+    - isTitleCase(char ch)
+    - isWhiteSpace(char ch)

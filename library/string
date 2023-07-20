@@ -2,18 +2,59 @@ string
 
 data type
 
-- methods
-- format(Locale locale, String format, Object... args) returns formatted string
-    - locale: optional
-    - format specifiers
-        - %c: char
-        - %d: integer
-        - %f: floating point
-        - %n: line separator
-        - %s: string
-        - %x: hex
-    - alternatively: System.out.printf()
-
-- SEE ALSO
-    - javatpoint.com/java-string-format
-
+- implements CharSequence, Comparable<String>
+(1) retrieve
+    - split(String regex, int limit) splits this string around matches of regex and returns String[]
+        - limit: how many splits (optional)
+    - charAt(int index) returns char at index
+    - getChars(int srcBegin, int srcEnd, char[] dst, int dstBegin) copies chars from this string into dst
+        - srcBegin/dstBegin: start indices of src/dest (inclusive)
+        - srdEnd: end index of src (exclusive)
+    - indexOf(String str, int from) returns index of 1st occurrence of str starting at from
+        - from: from where to start search (optional)
+        - if str not present in this string, returns -1
+    - indexOf(int ch, int from) returns index of 1st occurrence of ch starting at from; otherwise, -1
+    - lastIndexOf(String str, int from) returns index of last occurrence of str, searching backward starting at from
+    - lastIndexOf(int ch, int from) returns index of last occurence of ch, searching backward
+    - length() returns length of this string
+    - substring(int start, int end) returns substring from start (inclusive) to end (exclusive)
+    - subSequence(int start, int end) returns a CharSequence that is a subsequence of this sequence
+(2) update
+    - concat(String str) concatenates str to the end of this string and returns new string
+    - replace(char old, char nw) replaces all occurrences of old with nw and returns new string
+    - replace(CharSequence target, CharSequence repl) replaces each substring that matches target with repl
+    - replaceFirst(String regex, String repl) replaces 1st substring that matches regex with repl
+    - replaceAll(String regex, String repl) replaces each substring that matches regex with repl
+(3) compare
+    - compareTo(String other) compares this string with other
+        - if this string precedes other, returns negative int
+        - if this string follows other, returns positive int
+        - if strings are equal, returns zero
+    - compareToIgnoreCase(String other) compares ignoring case differences
+    - equals(Object other) returns true if other is a String that represents the same sequence of char
+    - equalsIgnoseCase(String other) compares this String to other, ignoring case considerations
+    - contentEquals(CharSequence cs) returns true if cs represents the same sequence of char vals
+(4) convert
+    - toCharArray() returns new array char[] containing the char sequence of this string
+    - chars() returns IntStream according to char vals of this string
+    - lines() returns Stream<String> of lines extracted from this string, separated by line terminators
+(5) format
+    - repeat(int count) returns a string concatenated to itself repeated count times
+    - strip() removes all leading and trailing white space and returns new string
+    - stripLeading() removes all leading whitespace
+    - stripTrailing() removes all trailing whitespace
+    - trim() removes all leading and trailing space
+        - space is defined as any char whose codepoint is less than or equal to 'U+0020' (the space character)
+    - toLowerCase(Locale locale) converts all chars to lower case using locale (optional)
+    - toUpperCase(Local locale) conerts all chars to upper case
+(6) check
+    - contains(CharSequence s) returns true if this string contains s
+    - matches(String regex) tells whether or not this string matches regex
+    - regionMatches(boolean ignoreCase, int toffset, String other, int ooffset, int len) tests if two string regions are equal
+        - ignoreCase: if true, ignores case when comparing chars (optional)
+        - toffset/ooffset: the starting offset of the subregion in this string/other
+        - len: number of chars to compare
+    - startsWith(String prefix, int offset) returns true if this string starts with prefix beginning at offset (optional)
+    - endsWith(String suffix) returns true if this string ends with suffix
+    - isBlank() returns true if this string is empty or contains only white space codepoints
+    - isEmpty() returns true if length() == 0
