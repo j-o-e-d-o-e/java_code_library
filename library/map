@@ -4,7 +4,7 @@ data structure
 
 - unordered, unindexed iterable containing key/value-pairs
     - contains only unique keys
-- implementing classes: HashMap, TreeMap
+- implementing classes: HashMap<K, V>, TreeMap<K, V>
 - methods
 (1) add/update
     - put(K key, V val) adds/updates entry and returns null or previous val

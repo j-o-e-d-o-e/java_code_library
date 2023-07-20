@@ -4,7 +4,7 @@ data structure
 
 - unordered, unindexed iterable implementing Collection<T>
     - contains only unique elems
-- implementing classes: HashSet, TreeSet
+- implementing classes: HashSet<T>, TreeSet<T>
 (1) add
     - add(T elem) adds elem and returns true if elem is not already present
     - addAll(Collection<? extends T> c) adds all elems from c and returns true if this set changed as a result

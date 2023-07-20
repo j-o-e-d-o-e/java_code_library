@@ -3,7 +3,7 @@ list
 data structure/interface
 
 - ordered, indexed iterable implementing Collection<T>
-- implementing classes: ArrayList, LinkedList, Stack
+- implementing classes: ArrayList<T>, LinkedList<T>, Stack<T>
 (1) add
     - add(T elem) appends elem and returns true/false
     - add(int index, T elem) inserts elem at index

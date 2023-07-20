@@ -3,9 +3,9 @@ map->treemap
 data structure
 
 - ordered, indexed map implementation of Map and NavigableMap
-(1) init (additionally to map-interface)
-    - new TreeMap<>(Comparator c) creates new, empty map with ordered keys according to c
-- methods (additionally)
+(1) init (additionally to map)
+    - new TreeMap<>(Comparator<K> c) creates new, empty map with ordered keys according to c
+- methods (additionally to map)
 (2) retrieve
     - firstEntry() returns 1st (lowest) entry according to order
     - firstKey() returns 1st key

@@ -2,10 +2,10 @@ set->tree set
 
 data structure
 
-- ordered, indexed set implementation of Set and NavigableSet
-(1) init (additionally to set-interface)
+- ordered, indexed set implementation of Set<T> and NavigableSet<T>
+(1) init (additionally to set)
     - new TreeSet<>(Comparator<T> c) creates new, empty set ordered according to c
-- methods (additionally)
+- methods (additionally to set)
 (2) retrieve
     - first() returns 1st (lowest) elem according to order
     - last() returns last (highest) elem

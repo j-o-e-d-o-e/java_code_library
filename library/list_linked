@@ -2,30 +2,35 @@ list->linked list
 
 data structure
 
-- doubly-linked list implementation of List and Deque interfaces
+- doubly-linked list implementation of List<T> and Queue<T> interfaces
 - operations that index into this list will traverse it from the beginning or the end, whichever is closer to the specified index
-- methods (additionally to list-interface)
+- methods (additionally to list and queue)
 (1) add
     - addFirst(T elem) inserts elem at the beginning 
-        - similar to: offerFirst(T elem) returns true/false (queue)
+    - offerFirst(T elem) inserts elem at beginnging and returns boolean
     - addLast(T elem) appends elem to the end
-        - equivalent to: add(T elem) (list)
-        - similar to: offer(T elem)/offerLast(T elem)
+    - offerLast(T elem) inserts elem at the end and returns boolean
     - push(T elem) inserts elem at the front
 (2) retrieve
-    - element() returns 1st elem (head)
-        - similar to: getFirst(), peek(), peekFirst()
+    - getFirst() returns 1st elem (head)
+        - if list is empty, throws Exception
     - getLast() returns last elem (tail)
-        - similar to: peekLast()
+        - if list is empty, throws Exception
+    - peekFirst() returns 1stt elem or null if list is empty
+    - peekLast() returns last elem or null if list is empty
 (3) delete
-    - remove() removes and returns 1st elem (head)
-        - similar to: removeFirst(), poll(), pollFirst()
+    - removeFirst() removes and returns 1st elem
+        - if list is empty, throws Exception
     - removeLast() removes and returns last elem
-        - similar to: pollLast()
+        - if list is empty, throws Exception
     - removeFirstOccurence(Object o) removes 1st occurrence of o and returns true if list contained o
         - if not found, list is unchanged
     - removeLastOccurence(Object o) removes last occurence and returns true/false
+        - if not found, list is unchanged
+    - pollFirst() removes and returns 1st elem or null if list is empty
+    - pollLast() removes and returns last elem or null if list is empty
     - pop() returns 1st elem
+        - if list is empty, throws Exception
 (4) iterate
     - descendingIterator() returns Iterator<T> over elem in reverse order
 
