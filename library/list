@@ -2,7 +2,7 @@ list
 
 data structure/interface
 
-- ordered, indexed iterable implementing Collection<E>
+- ordered, indexed iterable implementing Collection<T>
 - implementing classes: ArrayList, LinkedList, Stack
 (1) add
     - add(T elem) appends elem and returns true/false
@@ -12,7 +12,7 @@ data structure/interface
         - index: optional; if not given, at the end
 (2) retrieve
     - get(int index) returns elem at index
-    - subList(int from, int to) returns list of specified range
+    - subList(int from, int to) returns List<T> of specified range
         - from/to: inclusive/exclusive
         - if from == to, returns empty list
         - if from < 0 || to > size || from > toIndex, throws IndexOutOfBoundsException
@@ -26,26 +26,26 @@ data structure/interface
     - remove(int index) removes elem at index and returns elem
         - shifts subsequent elems to the left
     - remove(Object o) removes 1st occurence of o and returns true if o in list
-    - removeAll(Collection c) removes all elems that are in c and returns true/false
-    - retainAll(Collection c) removes all elems that are not in c and returns true/false
+    - removeAll(Collection<?> c) removes all elems that are in c and returns true/false
+    - retainAll(Collection<?> c) removes all elems that are not in c and returns true/false
 (5) convert
-    - stream() returns stream with this collection as its source
-    - toArray(IntFunction generator) returns new array containing all elems in this collection
+    - stream() returns Stream<T> with this collection as its source
+    - toArray(IntFunction<T[]> generator) returns new array T[] containing all elems in this collection
 (6) iterate
-    - forEach(Consumer func) applies func to each elem
-    - iterator() returns iterator over elems
-    - listIterator() returns list-iterator over elems
-    - spliterator() returns spliterator
+    - forEach(Consumer<? super T> func) applies func to each elem
+    - iterator() returns Iterator<T> over elems
+    - listIterator() returns ListIterator<T> over elems
+    - spliterator() returns Spliterator<T>
 (7) search
     - indexOf(Object o) returns index of 1st occurence of o; if not found, returns -1
         - for all occurences, e.g. see example below
     - lastIndexOf(Object o) returns index of last occurence of o or -1
 (8) sort
-    - sort(Comparator c) sorts list according to c
+    - sort(Comparator<? super T> c) sorts list according to c
         - all elems must be mutually comparable using c, i.e. c.compare(e1, e2) must not throw
 (9) check
     - contains(Object o) returns true if this list contains o
-    - containsAll(Collection c) returns true if this list contains all elems of c
+    - containsAll(Collection<?> c) returns true if this list contains all elems of c
     - equals(Object o) returns true if o is list and both contain the same elems in the same order
     - isEmpty() returns true if this list contains no elems
 

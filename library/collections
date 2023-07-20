@@ -1,0 +1,16 @@
+collections
+
+built-in class
+
+- static methods
+    - sort() sorts iterables of type Collections, ie ArrayLists
+
+EXAMPLE
+ArrayList<String> a = new ArrayList<String>();
+String b = "adam und eva";
+for (String x : b.split(" ")) {
+    a.add(x);
+}
+System.out.println(a); // prints: [adam, und, eva]
+Collections.sort(a);
+System.out.println(a); // prints: [adam, eva, und]

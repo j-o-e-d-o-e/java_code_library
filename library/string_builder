@@ -1,11 +1,12 @@
 string->builder
 
-data type
+built-in class
 
-- mutable object (unlike string)
-- 'append(str)' appends a string
-- 'delete(start, end)' deletes characters from start to end (exclusive)
-- 'insert(i, str)' inserts string at specified index
+- mutable (unlike String)
+- methods
+    - append(str) appends str to this
+    - delete(start, end) deletes chars from start to end (exclusive)
+    - insert(index, str) inserts str at index of this
 
 EXAMPLE
 StringBuilder mutant = new StringBuilder("some");

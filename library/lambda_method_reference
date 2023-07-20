@@ -1,6 +1,6 @@
-method::reference
+lambda->method::reference
 
-lambda
+
 
 - <obj>::<method>
 - allows for converting a method call into an instance of a @FunctionalInterface

@@ -2,7 +2,7 @@ array->arrays
 
 built-in class
 
-- contains methods for manipulating arrays
+- contains static methods for manipulating arrays
 (1) compare
     - compare(T[] a, int aFrom, int aTo, T[] b, int bFrom, int bTo, Comparator c)
         - a/b: arrays to compare

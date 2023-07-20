@@ -4,7 +4,7 @@ data structure
 
 - doubly-linked list implementation of List and Deque interfaces
 - operations that index into this list will traverse it from the beginning or the end, whichever is closer to the specified index
-- methods (additional to list-interface)
+- methods (additionally to list-interface)
 (1) add
     - addFirst(T elem) inserts elem at the beginning 
         - similar to: offerFirst(T elem) returns true/false (queue)
@@ -27,7 +27,7 @@ data structure
     - removeLastOccurence(Object o) removes last occurence and returns true/false
     - pop() returns 1st elem
 (4) iterate
-    - descendingIterator() returns iterator over elem in reverse order
+    - descendingIterator() returns Iterator<T> over elem in reverse order
 
 EXAMPLE
 (3)
