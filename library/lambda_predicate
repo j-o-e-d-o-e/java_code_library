@@ -1,0 +1,19 @@
+lambda->Predicate
+
+built-in funcs
+
+- Predicate<T> accepts arg of type T and returns boolean
+    - test(T t) evaluates this predicate on t
+    - and(Predicate<? super T> other) returns composed predicate of this and other
+        - equivalent to: this && other
+    - and(Predicate<? super T> other) returns composed predicate of this or another
+        - equivalent to: this || other
+    - negate() returns a predicate that is the negation of this predicate
+    - specializations of Predicate<T> for primitives: int, double, long, e.g.
+        - IntPredicate accepts arg of int and returns boolean
+
+EXAMPLE
+Predicate<List<Integer>> isSmall = ls -> ls.size() < 2;
+Predicate<List<Integer>> contains3 = ls -> ls.contains(3);
+Predicate<List<Integer>> composed = isSmall.or(contains3);
+boolean a = composed.test(List.of(1, 2, 3)); // a = true

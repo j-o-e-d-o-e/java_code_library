@@ -1,4 +1,4 @@
-map
+Map
 
 data structure
 
@@ -16,7 +16,7 @@ data structure
         - for the case that key is not present, func should have a null check
     - computeIfAbsent(K key, Function<K, V> func) adds entry with given key and result of func as val
         - if func returns null, does nothing
-        - useful for creating a new obj
+        - useful for creating a value for a key based on the given key
     - computeIfPresent(K key, BiFunction<K, V,V> func) updates val of key with result of func
         - if func returns null, removes entry
 (2) retrieve
@@ -27,7 +27,8 @@ data structure
     - replace(K key, V val) updates val of key with given val if key is present and returns previous val
         - if key not present, returns null
     - replace(K key, V old, V new) updates val of key with new only if key maps to old and returns boolean
-    - replaceAll(BiFunction<K, V, V> func) replaces each entry's val with the result of the given func on that entry
+    - replaceAll(BiFunction<K, V, V> func) replaces each entry's val with the result of func on that entry
+        - useful for replacing val of each entry based on its key and val
     - merge(K key, V val, BiFunction<V, V, V> func) replaces val of key with result of func if key is present
         - if key not present, adds key with given val
         - func merges previous val with given val
@@ -67,6 +68,6 @@ m.computeIfAbsent("e", k -> (int) k.charAt(0)); // {a=1, b=2, c=13, d=10, e=101}
 m.computeIfPresent("e", (k, v) -> null);        // {a=1, b=2, c=13, d=10}
 (3)
 m.replace("b", 2, 4); // {a=1, b=4, c=13, d=10}
-m.replaceAll((k, v) -> v + 10);     // {a=11, b=14, c=23, d=20}
+m.replaceAll((k, v) -> k.compareTo("b") < 0 ? v: v + 10);     // {a=1, b=14, c=23, d=20}
 
-m.merge("a", 100, Integer::sum);    // {a=111, b=14, c=23, d=20}
+m.merge("a", 100, Integer::sum);    // {a=11, b=14, c=23, d=20}

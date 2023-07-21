@@ -2,10 +2,17 @@ type conversion
 
 data types
 
-- Integer.toString(Integer i) converts i to String
-- Integer.parseInt(String s) converts s to Integer
+(1) Integer.toString(Integer i) converts i to String
+(2) Integer.parseInt(String s) converts s to Integer
+(3) (char) i converts i to char
+(4) (int) c converts c to int
 
 EXAMPLE
-int year = 2000;
-String x = Integer.toString(2000);
-int y = Integer.parseInt(x.substring(0, 2)); // y = 20
+(1)
+String a = Integer.toString(20); // a = 20
+(2)
+int b = Integer.parseInt("20"); // b = "20"
+(3)
+int c = 'a';        // c = 97
+(4)
+char d = (char) 97; // d = 'a'

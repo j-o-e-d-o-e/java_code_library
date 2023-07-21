@@ -1,34 +1,29 @@
 lambda
 
-lambda
+anonymous func
 
-- <parameter> -> <expression body>
-- used primarily to define inline implementation of a functional interface, i.e. an interface with a single method only
-- eliminates the need of an anonymous class, e.g. new MathOperation()
-- optional type declaration for parameters
-- optional parenthesis around single parameter. For multiple parameters, parentheses are required
-- optional curly braces if the <expression body> contains only single statement
+- primarily, used for inline implementation of a functional interface
+- (param, param) -> { body }
+    - type declaration for params optional
+    - parenthesis optional, if only single param without type
+    - curly braces optional, if body contains only single statement
+- all external vars used inside lambda have to be effectively final
+    - workaround: use external array to store var (instead of var itself)
 
 EXAMPLE
-public class MathOps {
-    @FunctionalInterface
-    interface MathOperation {
-        int operation(int a, int b);
-    }
+@FunctionalInterface
+interface MathOperation {
+    int op(int a, int b);
+}
 
-    public static void main(String args[]) {
-        // with type declaration
-        MathOperation addition = (int a, int b) -> a + b;
-        // with out type declaration
-        MathOperation subtraction = (a, b) -> a - b;
-        // with return statement along with curly braces
-        MathOperation multiplication = (int a, int b) -> { return a * b; };
-        // without return statement and without curly braces
-        MathOperation division = (int a, int b) -> a / b;
+public static void main(String[] args) {
+    MathOperation minus = (a, b) -> a - b;
+    MathOperation multiply = (a, b) -> {
+        return a * b;
+    };
+    MathOperation divide = (int a, int b) -> a / b;
 
-        System.out.println(addition.operation(10, 5));
-        System.out.println(subtraction.operation(10, 5));
-        System.out.println(multiplication.operation(10, 5));
-        System.out.println(division.operation(10, 5));
-    }
+    int a = minus.op(10, 5);    // a = 5
+    int b = multiply.op(10, 5); // b = 50
+    int c = divide.op(10, 5);   // c = 2
 }

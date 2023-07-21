@@ -1,0 +1,32 @@
+lambda->Supplier
+
+built-in funcs
+
+- accepts no args, but returns val (contrary to Consumer<T>)
+- Supplier<T> has return type of T
+    - get() returns the next result
+    - useful for lazy generation of vals based on an external state
+- specializations of Supplier<T> for primitives: boolean, int, double, long, e.g.
+    - BooleanSupplier has return type of boolean
+        - getAsBoolean() returns next boolean
+
+- SEE ALSO
+    - entry: lambda->functional interface
+
+EXAMPLE
+List<Integer> cache = new ArrayList<>();    // ext state
+final int[] n = {2};                        // ext state
+IntSupplier primes = () -> {
+    while (true) {
+        if (cache.stream().allMatch(p -> n[0] % p != 0)) {
+            cache.add(n[0]);
+            return n[0];
+        }
+        n[0]++;
+    }
+};
+int res = primes.getAsInt();
+while (res < 20) {
+    System.out.printf("%d ", res); // 2 3 5 7 11 13 17 19
+    res = primes.getAsInt();
+}
