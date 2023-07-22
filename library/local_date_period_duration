@@ -1,0 +1,39 @@
+LocalDate->Period/Duration
+
+built-in classes
+
+- Period
+    - represents time in terms of years, months and days
+    - used to modify LocalDate or to obtain difference between two of them
+- Duration
+    - represents time in terms of seconds and nanoseconds
+    - used to modify LocalDateTime or to obtain difference between two of them
+(1) static methods of Period
+    - of(int years, int months, int days)
+    - ofDays(int i), ofWeeks(int i), ofMonths(int i ), ofYears(int i)
+    - between(LocalDate startDateInclusive, endDateExclusive)
+    - from(TemporalAmount amount)
+(2) methods on Period-obj
+- get
+    - get(TemporalUnit unit)
+    - getDays(), getMonths(), getYears()
+    - lengthOfMonth()/lengthOfYear()
+- set
+    - atTime(LocalTime t)
+    - atTime(int hour, int min, int sec, int nanoSec )
+        - sec/nanoSec: optional
+    - withDays(int i), withMonths(int i), withYears(int i)
+- operations
+    - minus(TemporalAmount amountToSubtract)
+    - minusDays(long substract), minusMonths(long substract), minusYears(long substract)
+    - plus(TemporalAmount amountToSubtract)
+    - plusDays(long substract), plusMonths(long substract), plusYears(long substract)
+- check
+    - isNegative()
+    - isZero()
+
+EXAMPLE
+LocalDate millennium = LocalDate.of(2000, 1, 1);
+LocalDate now = LocalDate.now();
+long daysBetween = DAYS.between(millennium, now);
+System.out.printf("Since millennium, %,d days have passed.", daysBetween);

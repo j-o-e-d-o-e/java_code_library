@@ -1,0 +1,49 @@
+LocalDate
+
+built-in classes
+
+- LocalDate, LocalTime, LocalDateTime
+(1) static methods of LocalDate
+    - now()
+    - of(int year, int month, int dayOfMonth)
+    - from(TemporalAccessor temporal)
+    - parse(CharSequence text, DateTimeFormatter formatter)
+        - formatter: optional
+(2) methods on LocalDate-obj
+- get
+    - get(TemporalField field)
+    - getMonth(), getYear(), getDayOfWeek(), getDayOfMonth, getDayOfYear, etc.
+    - lengthOfMonth()/lengthOfYear()
+- set
+    - atTime(LocalTime t)
+    - atTime(int hour, int min, int sec, int nanoSec)
+        - sec/nanoSec: optional
+    - with(TemporalAdjuster adjuster)
+    - with(TemporalField field, long newValue)
+    - withMonth(int i), withYear(int i), withDayOfMonth(int i), withDayOfYear(int i)
+- operations
+    - minus(TemporalAmount amountToSubtract)
+    - minus(long amountToSubtract, TemporalUnit unit) 
+    - minusDays(long i), minusMonths(long i), minusWeeks(long i), minusYears(long i)
+    - plus(TemporalAmount amountToSubtract)
+    - plus(long amountToAdd, TemporalUnit unit)
+    - plusDays(long i), plusMonths(long i), plusWeeks(long i), plusYears(long i)
+    - until(ChronoLocalDate endDateExclusive)
+- check
+    - isAfter(ChronoLocalDate other)
+    - isBefore(ChronoLocalDate other)
+    - isEqual(ChronoLocalDate other)
+
+- SEE ALSO
+    - baeldung.com/java-8-date-time-intro
+    
+EXAMPLE
+(1)
+LocalTime noon = LocalTime.parse("12:00");
+LocalDate now = LocalDate.from(ZonedDateTime.now());
+LocalDateTime millennium = LocalDateTime.parse("2000-01-01T00:00:00");
+(2)
+int dayOfMonth = now.get(ChronoField.DAY_OF_MONTH);
+LocalDateTime nowAtNoon = now.atTime(noon);
+LocalDateTime firstDayOfMonth = nowAtNoon.with(TemporalAdjusters.firstDayOfMonth());
+LocalDateTime lastDayOfPrev = firstDayOfMonth.minus(1, ChronoUnit.DAYS);
