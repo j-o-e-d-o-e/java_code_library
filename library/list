@@ -26,6 +26,7 @@ data structure/interface
     - remove(int index) removes elem at index and returns elem
         - shifts subsequent elems to the left
     - remove(Object o) removes 1st occurence of o and returns true if o in list
+    - removeIf(Predicate<? super E> pred) removes all elems that satisfy pred
     - removeAll(Collection<?> c) removes all elems that are in c and returns true/false
     - retainAll(Collection<?> c) removes all elems that are not in c and returns true/false
 (5) convert

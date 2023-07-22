@@ -1,27 +1,31 @@
 Comparable
 
-generics
+built-in interface
 
-- '<T extends ...>' defines a superclass whose subclasses get accepted as parameters within the method
-- '<T extends Comparable<T>>' accepts all subclasses of 'Comparable' which implement 'compareTo()'
+
+- Comparable<T> contains one single abstract method: compareTo(T o)
+- declared in
+(1) class definition
+(2) method declaration
+    - <T extends Comparable<T>> accepts all classes which implement 'compareTo()'
+
+- SEE ALSO
+    - entry: generics
 
 EXAMPLE
-public class Test {
-    public static <T extends CharSequence> T random(T m, T n) {
-        // @param m,n Strings or StringBuilder
-        return Math.random() > 0.5 ? m : n;
-    }
-
-    public static <T extends Comparable<T>> T max(T m, T n) {
-        return m.compareTo(n) > 0 ? m : n;
-    }
-
-    public static void main(String[] args) {
-        StringBuilder a = new StringBuilder("good");
-        // prints: Floccinaucinihilipilification is good/bad
-        System.out.println("Floccinaucinihilipilification is " + random(a, "bad"));
-
-        System.out.println(max("elephant", "giraffe")); // prints: giraffe
-        System.out.println(max(12, 100)); // prints: 100
+(1)
+record Person(String name) implements Comparable<Person> {
+    @Override
+    public int compareTo(Person o) {
+        return name.compareTo(o.name);
     }
 }
+List<Person> ls = new java.util.ArrayList<>(List.of(new Person("mary"), new Person("joe")));
+Collections.sort(ls); // ls = [Person[name=joe], Person[name=mary]]
+
+(2)
+static <T extends Comparable<T>> T max(T m, T n) {
+    return m.compareTo(n) > 0 ? m : n;
+}
+String max1 = max("cat", "dog");// max1 = dog
+Integer max2 = max(2, 1);// max2 = 2
