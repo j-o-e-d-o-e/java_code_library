@@ -2,7 +2,7 @@ Queue
 
 data structure
 
-- unindexed, ordered iterable implementing Collection<T>
+- ordered iterable implementing Collection<T>
     - designed for holding elems prior to processing
     - typically, orders its elems in FIFO manner (first in, first out)
 - implementing classes: LinkedList<T>, PriorityQueue<T>

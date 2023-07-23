@@ -2,8 +2,7 @@ Map
 
 data structure
 
-- unordered, unindexed iterable containing key/value-pairs
-    - contains only unique keys
+- unordered iterable containing key/value-pairs containing only unique keys
 - implementing classes: HashMap<K, V>, TreeMap<K, V>
 - methods
 (1) add/update

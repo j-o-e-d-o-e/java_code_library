@@ -1,0 +1,8 @@
+Set->LinkedHashSet
+
+data structure
+
+- ordered subclass of HashSet<T>
+    - maintains insertion order
+- init (additionally to hashset)
+    - LinkedHashSet(int initialCapacity, float loadFactor)

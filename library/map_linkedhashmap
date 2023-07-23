@@ -1,0 +1,11 @@
+Map->LinkedHashMap
+
+data structure
+
+- ordered, indexed subclass of HashMap<K, V>
+    - maintains insertion order or access order
+- init (additionally to hashmap)
+    - LinkedHashMap(int initCapacity, float loadFactor, boolean accessOrder)
+        - accessOrder: if true, orders elems by access
+            - from least-recently to most-recently accessed
+            - if false, uses insertion order

@@ -3,7 +3,6 @@ List->LinkedList
 data structure
 
 - doubly-linked list implementation of List<T> and Queue<T> interfaces
-- operations that index into this list will traverse it from the beginning or the end, whichever is closer to the specified index
 - methods (additionally to list and queue)
 (1) add
     - addFirst(T elem) inserts elem at the beginning 

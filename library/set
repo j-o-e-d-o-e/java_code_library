@@ -2,8 +2,7 @@ Set
 
 data structure
 
-- unordered, unindexed iterable implementing Collection<T>
-    - contains only unique elems
+- unordered iterable implementing Collection<T> containing only unique elems
 - implementing classes: HashSet<T>, TreeSet<T>
 (1) add
     - add(T elem) adds elem and returns true if elem is not already present
