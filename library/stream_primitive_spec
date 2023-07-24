@@ -6,6 +6,8 @@ specializations of Stream<T> for primitives: int, double, long
 (1) static methods of IntStream (additionally to Stream<T>)
     - range(int start, int end) returns IntStream from start (incl) to end (excl)
     - rangeClosed(int start, int end) returns IntStream from start (incl) to end (incl)
+    - iterate(T seed, Predicate<T> hasNext, UnaryOperator<T> next) allows for reversed stream
+        - see also: entry Stream
 - methods on IntStream
 (2) intermediate
     - boxed() returns stream consisting of the elems each boxed
@@ -19,6 +21,10 @@ specializations of Stream<T> for primitives: int, double, long
     - average() returns average
 
 EXAMPLE
+(1)
+int[] a = IntStream.iterate(3, i -> i > 0, i -> i - 1).toArray(); // a = [3, 2, 1]
+
+(2)
 IntStream is = IntStream.rangeClosed(0, 3);
 OptionalDouble average = is.asDoubleStream()
         .map(d -> d * 1.23).average(); // 1.845
