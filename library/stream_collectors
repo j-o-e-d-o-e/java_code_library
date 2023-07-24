@@ -52,7 +52,7 @@ built-in class
     - downstream: collector which will accept mapped vals
 - flatMapping(Function<T, Stream<U>> mapper, Collector<U, A, R> downstream) returns collector that accepts elems of different type
     - mapper: applied to elems and returns stream of results
-    -  downstream: collector which will receive elems of stream returned by mapper
+    - downstream: collector which will receive elems of stream returned by mapper
 - filtering(Predicate<T> pred, Collector<T, A, R> downstream) returns collector that only accumulates if pred returns true
 - reducing(U identity, Function<T, U> mapper, BinaryOperator<U> op)
     - identity: initial val for reduction (optional)

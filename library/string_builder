@@ -2,15 +2,42 @@ String->StringBuilder
 
 built-in class
 
-- mutable (unlike String)
+(1) constructors
+  - StringBuilder(String str)
+  - StringBuilder(CharSequence seq)
+      - CharSequence: interface which String, StringBuilder, StringBuffer implement
 - methods
-    - append(str) appends str to this
+(2) add (return StringBuilder)
+    - append(String str) appends str to end of this
+        - if str is null, the chars "null" are appended
+        - also for: int, float, double, long, boolean, char, char[], Object
+    - append(CharSequence s, int start, int end) appends subsequence of s to this
+        - if end > s.length(), throws Error
+        - also for: char[]
+    - appendCodePoint(int codePoint) appends string representation of codePoint
+    - insert(int index, String str) inserts str at index of this
+        - if str is null, the chars "null" are inserted
+        - also for: int, float, double, long, boolean, char, char[], Object
+    - insert(int index, CharSequence s, int start, int end) inserts subsequence of s to this
+        - also for: char[]
+(3) modify (return StringBuilder)
+    - replace(int start, int end, String str) repalces substring of this with str
+    - reverse() replaces this by its reverse
+(4) remove (return StringBuilder)
+    - deleteCharAt(int index) deletes char at index
     - delete(start, end) deletes chars from start to end (exclusive)
-    - insert(index, str) inserts str at index of this
+(5) misc
+    - indexOf(String str, int from) returns index of 1st occurrence of str
+        - from: where to start searching (optional)
+    - lastIndexOf(String str, int from) returns index of 1st occurrence of str
+        - from: where to start searching (optional)
+    - compareTo(StringBuilder other) compares two StringBuilder lexicographically
 
 EXAMPLE
-StringBuilder mutant = new StringBuilder("some");
-mutant.append(" ").append("stuff"); // some stuff
-mutant.delete(5,7);                 // some uff
-mutant.insert(5, "p");              // some puff
-mutant.reverse();                   // ffup emos
+StringBuilder sb = new StringBuilder("joe");
+sb.append("+doe+", 1, 4);                 // joedoe
+sb.appendCodePoint(121);                  // joedoey
+sb.insert(3, "y +", 0, 2);                // joey doey
+sb.delete(sb.length() - 1, sb.length());  // joey doe
+sb.replace(3, 5, " ");                    // joe doe
+sb.reverse();                             // eod eoj
