@@ -1,0 +1,24 @@
+Stream->primitive specials
+
+Int/Double/LongStream
+
+specializations of Stream<T> for primitives: int, double, long
+(1) static methods of IntStream (additionally to Stream<T>)
+    - range(int start, int end) returns IntStream from start (incl) to end (excl)
+    - rangeClosed(int start, int end) returns IntStream from start (incl) to end (incl)
+- methods on IntStream
+(2) intermediate
+    - boxed() returns stream consisting of the elems each boxed
+    - mapToObj(IntFunction<? extends U> mapper) applies mapper to each elem and returns returns obj-valued stream
+    - asDoubleStream() returns DoubleStream
+    - mapToDouble(IntToDoubleFunction mapper) applies mapper and returns DoubleStream
+    - asLongStream() returns LongStream
+    - mapToLong(IntToLongFunction mapper) applies mapper and returns LongStream
+(3) terminal
+    - sum() returns sum of all elems
+    - average() returns average
+
+EXAMPLE
+IntStream is = IntStream.rangeClosed(0, 3);
+OptionalDouble average = is.asDoubleStream()
+        .map(d -> d * 1.23).average(); // 1.845

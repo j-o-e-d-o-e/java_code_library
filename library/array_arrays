@@ -1,6 +1,6 @@
 array->Arrays
 
-built-in class
+api for arrays
 
 - contains static methods for manipulating arrays
 (1) compare

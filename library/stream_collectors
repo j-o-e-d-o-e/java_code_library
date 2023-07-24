@@ -1,0 +1,94 @@
+Stream->Collectors
+
+built-in class
+
+- contains various implementations of reduction/accumulating operations
+(1) general
+- toCollection(Supplier<T> supplier)
+    - supplier: provides new empty collection into which results will be inserted
+    - returned collector accumulates elems into collection provided by supplier in encounter order
+- toList() returns collector that accumulates elems into new List
+- toSet() returns collector that accumulates elems into new set
+- toMap(Function<? super T, ? extends K> kMapper, Function<? super T, ? extends U> vMapper, BinaryOperator<U> merge, Supplier<M> supplier)
+    - kMapper: applied to each elem and produces keys
+    - vMapper: applied to each elem and produces vals
+    - merge: resolves collisions between vals associated with the same key (optional)
+    - supplier: provides new empty map (optional)
+(2) for maps
+- groupingBy(Function<? super T, ? extends K> classifier, Supplier<M> supplier, Collector<? super T, A, D> downstream)
+    - classifier: produces keys
+    - supplier: provides new empty map (optional)
+    - downstream: implements downstream reduction (optional)
+    - returned collector groups elems according to classifier, and then performs reduction on vals associated with a given key using downstream
+- partitioningBy(Predicate<? super T> pred, Collector<? super T, A, D> downstream)
+    - pred: classifies elems
+    - downstream: implements downstream reduction (optional)
+    - returned collector partitions elems according to pred, and organizes them into a Map<Boolean, List<T>>
+(3) reduction to num
+- counting() returns collector that counts elems
+- maxBy(Comparator<? super T> comp) returns collector that returns the max elem according to comp as an Optional<T>
+- minBy(Comparator<? super T> comp) returns collector that returns the min elem according to comp
+- summingInt(ToIntFunction<? super T> mapper)
+    - returned collector produces sum of ints returned by mapper
+    - for double/long: summingDouble(ToDoubleFunction<? super T> m), summingLong(ToLongFunction<? super T> m)
+- averagingInt(ToIntFunction<? super T> mapper)
+    - returned collector produces arithmetic mean of ints returned by mapper
+    - for double/long: averagingDouble(), averagingLong()
+- summarizingInt(ToIntFunction<? super T> mapper)
+    - returned collector returns summary statistics for the vals returned by mapper
+    - for double/long: summarizingDouble(), summarizingLong()    
+(4) adapt/modify
+- collectingAndThen(Collector<T, A, R> downstream, Function<R, RR> finisher) adds a finishing transformation to downstream
+    - finisher: applied to final result of downstream
+- joining(CharSequence delimiter, CharSequence prefix, CharSequence suffix) returns Collector that concatenates elems into a String in encounter order
+    - delimiter: used between each element (optional)
+    - prefix/suffix: chars to be used at the beginning/end of joined result (optional)
+- teeing(Collector<? super T, ?, R1> down1, Collector<? super T, ?, R2> down2, BiFunction<? super R1, ? super R2, R> merger) returns composed collector
+    - down1/down2: 1st/2nd collector
+    - merger: merges two results into the single one
+    - returned collector aggregates down1 and down2 using merger
+- mapping(Function<? super T, ? extends U> mapper, Collector<? super U, A, R> downstream) returns collector that accepts elems of different type
+    - mapper: applied to each elems
+    - downstream: collector which will accept mapped vals
+- flatMapping(Function<? super T, ? extends Stream<? extends U>> mapper, Collector<? super U, A, R> downstream) returns collector that accepts elems of different type
+    - mapper: applied to elems and returns stream of results
+    -  downstream: collector which will receive elems of stream returned by mapper
+- filtering(Predicate<? super T> pred, Collector<? super T, A, R> downstream) returns collector that only accumulates if pred returns true
+- reducing(U identity, Function<? super T, ? extends U> mapper, BinaryOperator<U> op)
+    - identity: initial val for reduction (optional)
+    - mapper: applied to each input val (optional)
+    - op: reduces the mapped vals
+    - returned collector performs reduction of elems according to mapper and op
+
+EXAMPLE
+(1)
+Map<String, List<Integer>> m1 = Stream.of("j", "o", "e", "d", "o", "e")
+        .collect(Collectors.toMap(
+                Function.identity(),
+                s -> s.chars().boxed().collect(Collectors.toCollection(ArrayList::new)),
+                (v1, v2) -> {
+                    v1.addAll(v2);
+                    return v1;
+                })); // m1 = {d=[100], e=[101, 101], j=[106], o=[111, 111]}
+(2)
+Map<String, Long> m2 = Stream.of("j", "o", "e", "d", "o", "e")
+        .collect(Collectors.groupingBy(Function.identity(), Collectors.counting())); // m2 = {d=1, e=2, j=1, o=2}
+
+Map<Boolean, List<String>> m3 = Stream.of("j", "o", "e", "d", "o", "e")
+        .collect(Collectors.partitioningBy(s -> s.compareTo("j") < 0)); // m3 = {false=[j, o, o], true=[e, d, e]}
+(3)
+Double d = IntStream.rangeClosed(1, 3).boxed()
+        .collect(Collectors.averagingInt(Integer::intValue)); // d = 2.0
+
+record Person(String name, int age) {}
+Collector<Person, ?, IntSummaryStatistics> statsCollector = Collectors.summarizingInt(p -> p.age);
+IntSummaryStatistics stats = Stream.of(new Person("joe", 44), new Person("mary", 55))
+        .collect(statsCollector); // stats = IntSummaryStatistics{count=2, sum=99, min=44, average=49.500000, max=55}
+(4)
+Collector<Person, ?, Optional<Person>> ageCollector = Collectors.maxBy(Comparator.comparing(p -> p.age));
+Collector<Person, ?, String> composed = Collectors.collectingAndThen(ageCollector, op -> op.isPresent() ? op.get().name : "");
+String name = Stream.of(new Person("joe", 44), new Person("mary", 55))
+        .collect(composed); // name = mary
+
+String s = Stream.of("joe", "doe")
+        .collect(Collectors.joining("+", "*", "*")); // s = *joe+doe*

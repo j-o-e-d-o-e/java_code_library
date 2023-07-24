@@ -1,6 +1,6 @@
 lambda->functional interface
 
-built-in funcs
+api for lambda
 
 - @FunctionalInterface
     - purely informative annotation

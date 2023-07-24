@@ -1,6 +1,6 @@
 LocalDate
 
-built-in classes
+api for date/time
 
 - LocalDate, LocalTime, LocalDateTime
 (1) static methods of LocalDate

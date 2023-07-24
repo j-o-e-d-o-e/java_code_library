@@ -1,6 +1,6 @@
 List
 
-data structure/interface
+data structure
 
 - ordered, indexed iterable implementing Collection<T>
 - implementing classes: ArrayList<T>, LinkedList<T>, Stack<T>

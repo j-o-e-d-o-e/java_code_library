@@ -1,0 +1,45 @@
+Stream->Optional
+
+built-in class
+
+container-obj which may or may not contain a non-null val
+(1) static methods of Optional
+    - of(T val) returns Optional<T> describing val
+        - if val is null, throws Exception
+    - ofNullable(T val) returns Optional<T>
+        - if val is null, returns empty Optional
+    - empty() returns empty Optional<Object>
+(2) methods on Optional<T>-obj
+- retrieve
+    - get() returns val if present
+        - if not present, throws NoSuchElementException
+    - orElse(T other) returns val, if present; otherwise, returns other
+    - orElseGet(Supplier<? extends T> supplier) returns val if present
+        - if not, returns val produced by supplier
+    - orElseThrow() returns val if present; otherwise, throws NoSuchElementException
+    - orElseThrow(Supplier<? extends X> supplier) returns val if present
+        - if not, throws exception produced by supplier
+- intermediate
+    - or(Supplier<? extends Optional<? extends T>> supplier) returns Optional<T> if val is present
+        - if not, returns Optional<T> produced by supplier
+    - map(Function<? super T, ? extends U> mapper) applies mapper to val, if present, and returns Optional<U>
+        - if not present, returns empty Optional
+    - flatMap(Function<? super T, ? extends Optional<? extends U>> mapper) applies mapper to val and returns Optional<U>
+        - unlike map(), flatMap() does not wrap this with an additional Optional
+    - filter(Predicate<? super T> pred) returns Optional<T> if val is present and matches pred
+        - otherwise, returns an empty Optional
+- terminal
+    - ifPresent(Consumer<? super T> action) performs action on val, if val is present; otherwise, does nothing
+    - ifPresentOrElse(Consumer<? super T> action, Runnable empty) performs action on val, if present
+        - if val not present, performs empty
+- convert
+    - stream() returns Stream<T> containing only this val, if present; otherwise, returns an empty Stream<Object>
+- check
+    - isEmpty() returns true if val is not present
+    - isPresent() returns true if val is present
+
+EXAMPLE
+Optional<List<String>> o = Optional.of(List.of("joe", "doe"));
+Optional<Set<Integer>> ints = o.map(val -> val.stream()
+        .flatMapToInt(String::chars).boxed().collect(Collectors.toSet()));
+ints.get().forEach(i-> System.out.printf("%d ", i)); // 100 101 106 111
