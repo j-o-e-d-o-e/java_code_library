@@ -7,6 +7,17 @@ built-in class
   - StringBuilder(CharSequence seq)
       - CharSequence: interface which String, StringBuilder, StringBuffer implement
 - methods
+(1) retrieve
+    - charAt(int index) returns char at index
+    - length() returns length of this string
+    - indexOf(String str, int from) returns index of 1st occurrence of str
+        - from: where to start searching (optional)
+    - lastIndexOf(String str, int from) returns index of 1st occurrence of str
+        - from: where to start searching (optional)
+    - substring(int start, int end) returns substring from start (inclusive) to end (exclusive)
+    - subSequence(int start, int end) returns a CharSequence that is a subsequence of this sequence
+    - codePointAt(int index) returns Unicode code point of char at index
+    - codePointBefore(int index) returns Unicode code point of char before index
 (2) add (return StringBuilder)
     - append(String str) appends str to end of this
         - if str is null, the chars "null" are appended
@@ -20,18 +31,27 @@ built-in class
         - also for: int, float, double, long, boolean, char, char[], Object
     - insert(int index, CharSequence s, int start, int end) inserts subsequence of s to this
         - also for: char[]
-(3) modify (return StringBuilder)
+(3) update (return StringBuilder)
+    - setCharAt(int index, char ch) sets char at index to ch
     - replace(int start, int end, String str) repalces substring of this with str
     - reverse() replaces this by its reverse
 (4) remove (return StringBuilder)
     - deleteCharAt(int index) deletes char at index
     - delete(start, end) deletes chars from start to end (exclusive)
-(5) misc
-    - indexOf(String str, int from) returns index of 1st occurrence of str
-        - from: where to start searching (optional)
-    - lastIndexOf(String str, int from) returns index of 1st occurrence of str
-        - from: where to start searching (optional)
+(5) compare
     - compareTo(StringBuilder other) compares two StringBuilder lexicographically
+(6) convert
+    - getChars(int from, int to, char[] dst, int dFrom) copies chars from this to dst
+        - from/to: start/end indices in this
+        - dst: array to copy data into
+        - dFrom: start index in dst
+    - chars() returns IntStream according to char vals of this
+    - codePoints() returns IntStream of code point vals
+(7) check
+    - isEmpty() returns true if length() == 0
+
+- SEE ALSO
+    - /exercism/java/house
 
 EXAMPLE
 StringBuilder sb = new StringBuilder("joe");

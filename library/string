@@ -19,6 +19,8 @@ data type
     - length() returns length of this string
     - substring(int start, int end) returns substring from start (inclusive) to end (exclusive)
     - subSequence(int start, int end) returns a CharSequence that is a subsequence of this sequence
+    - codePointAt(int index) returns Unicode code point of char at index
+    - codePointBefore(int index) returns Unicode code point of char before index
 (2) update
     - concat(String str) concatenates str to the end of this string and returns new string
     - replace(char old, char nw) replaces all occurrences of old with nw and returns new string
@@ -35,9 +37,14 @@ data type
     - equalsIgnoseCase(String other) compares this String to other, ignoring case considerations
     - contentEquals(CharSequence cs) returns true if cs represents the same sequence of char vals
 (4) convert
+    - getChars(int from, int to, char[] dst, int dFrom) copies chars from this to dst
+        - from/to: start/end indices in this
+        - dst: array to copy data into
+        - dFrom: start index in dst
     - toCharArray() returns new array char[] containing the char sequence of this string
     - chars() returns IntStream according to char vals of this string
     - lines() returns Stream<String> of lines extracted from this string, separated by line terminators
+    - codePoints() returns IntStream of code point vals
 (5) format
     - repeat(int count) returns a string concatenated to itself repeated count times
     - strip() removes all leading and trailing white space and returns new string
