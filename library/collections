@@ -11,35 +11,35 @@ api for dynamic data structures
     - singletonMap(K key, V val) returns an immutable map containing only the specified entry
     - nCopies(int n, T o) returns immutable list consisting of n copies of o
 (2) add
-    - addAll(Collection<? super T> c, T... elems) adds elems to the end of c and returns boolean
+    - addAll(Collection<T> c, T... elems) adds elems to the end of c and returns boolean
         - useful to to add multiple single elems or an array of single elems
 (3) retrieve
-    - max(Collection<? extends T> c, Comparator<? super T> comp) returns max elem
+    - max(Collection<? extends T> c, Comparator<T> comp) returns max elem
         - comp: func (optional)
-    - min(Collection<? extends T> c, Comparator<? super T> comp) returns min elem
+    - min(Collection<? extends T> c, Comparator<T> comp) returns min elem
     - indexOfSubList(List<?> src, List<?> target) returns starting pos of 1st occurrence of target within src
         - if no such occurrence, returns -1
     - lastIndexOfSublist(List<?> src, List<?> target) returns starting pos of last occurrence
 (4) modify
-    - fill(List<? super T> ls, T o) replaces all elems of ls with o
+    - fill(List<T> ls, T o) replaces all elems of ls with o
     - rotate(List<?> ls, int distance) rotates elems in list by distance
     - shuffle(List<?> ls, Random rand) randomly permutes ls using rand (optional)
     - swap(List<?> ls, int i, int j) swaps elems at indices i and j in ls
     - reverse(List<?> ls) reverses ls
     - replaceAll(List<T> ls, T old, T nw) replaces all occurrences of old in ls with nw and returns boolean
-        - if ls contained one or more elems equal to old, returns true 
+        - if ls contained one or more elems equal to old, returns true
 (5) search
-    - binarySearch(List<? extends T> ls, T key, Comparator<? super T> comp) returns index of key in ls
+    - binarySearch(List<? extends T> ls, T key, Comparator<T> comp) returns index of key in ls
         - if key is not present, returns -1
         - ls must be sorted into a-/descending order prior to making this call
         - comp: comparator used for sorting (optional)
 (6) check
     - disjoint(Collection<?> c1, Collection<?> c2) returns true if c1 and c2 have no elems in common
-    - frequency(Collection<?> c, Object o) returns number of elems in c equal to o 
+    - frequency(Collection<?> c, Object o) returns number of elems in c equal to o
 (7) sort
-    - sort(List<T> ls, Comparator<? super T> comp) sorts ls according to comp (optional)
+    - sort(List<T> ls, Comparator<T> comp) sorts ls according to comp (optional)
 (8) utils
-    - copy(List<? super T> dest, List<? extends T> src) copies all elems from src into dest
+    - copy(List<T> dest, List<? extends T> src) copies all elems from src into dest
     - reverseOrder() returns comparator that imposes the reverse of the natural ordering
     - reverseOrder(Comparator<T> comp) returns comparator that imposes the reverse ordering of comparator
 

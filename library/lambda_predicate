@@ -4,9 +4,9 @@ built-in funcs
 
 - Predicate<T> accepts arg of type T and returns boolean
     - test(T t) evaluates this predicate on t
-    - and(Predicate<? super T> other) returns composed predicate of this and other
+    - and(Predicate<T> other) returns composed predicate of this and other
         - equivalent to: this && other
-    - and(Predicate<? super T> other) returns composed predicate of this or another
+    - and(Predicate<T> other) returns composed predicate of this or another
         - equivalent to: this || other
     - negate() returns a predicate that is the negation of this predicate
     - specializations of Predicate<T> for primitives: int, double, long, e.g.

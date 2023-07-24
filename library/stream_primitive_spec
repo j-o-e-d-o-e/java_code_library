@@ -9,7 +9,7 @@ specializations of Stream<T> for primitives: int, double, long
 - methods on IntStream
 (2) intermediate
     - boxed() returns stream consisting of the elems each boxed
-    - mapToObj(IntFunction<? extends U> mapper) applies mapper to each elem and returns returns obj-valued stream
+    - mapToObj(IntFunction<U> mapper) applies mapper to each elem and returns returns obj-valued stream
     - asDoubleStream() returns DoubleStream
     - mapToDouble(IntToDoubleFunction mapper) applies mapper and returns DoubleStream
     - asLongStream() returns LongStream

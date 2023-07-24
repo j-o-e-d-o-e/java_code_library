@@ -3,20 +3,20 @@ Comparator
 built-in interface
 
 - static methods of Comparator
-(1) comparing(Function<? super T, ? extends U> extract, Comparator<? super U> comp) returns a Comparator<T> that compares by val returned by extract using comp
+(1) comparing(Function<T, ? extends U> extract, Comparator<U> comp) returns a Comparator<T> that compares by val returned by extract using comp
     - extract: func that extracts a sort key of type T
     - comp: comparison func (optional)
     - specializations for primitives: int, double, long, e.g.
-        - comparingInt(ToIntFunction<? super T> extract) returns a Comparator<T> that compares by int returned by extract
-(2) nullsFirst(Comparator<? super T> comp) returns null-friendly comparator that considers null to be less than non-null
-(3) nullsFirst(Comparator<? super T> comp) returns null-friendly comparator that considers null to be greater than non-null
+        - comparingInt(ToIntFunction<T> extract) returns a Comparator<T> that compares by int returned by extract
+(2) nullsFirst(Comparator<T> comp) returns null-friendly comparator that considers null to be less than non-null
+(3) nullsFirst(Comparator<T> comp) returns null-friendly comparator that considers null to be greater than non-null
 (4) naturalOrder() returns comparator that compares Comparable objs in natural order
 (5) reverseOrder() returns comparator that imposes the reverse of the natural ordering
 - methods on Comparator<T>
 (6) compare(T o1, T o2) compares o1 and o2 and returns a negative int (o1 < o2), zero, or a positive int
-(7) thenComparing(Function<? super T, ? extends U> extract, Comparator<? super U> comp) returns composed comparator of this and then the sort key returned by extract using comp
+(7) thenComparing(Function<T, ? extends U> extract, Comparator<U> comp) returns composed comparator of this and then the sort key returned by extract using comp
     - specializations for primitives: int, double, long, e.g.
-        - thenComparingInt(ToIntFunction<? super T> extract) returns a Comparator<T> that compares by int returned by extract
+        - thenComparingInt(ToIntFunction<T> extract) returns a Comparator<T> that compares by int returned by extract
 
 - SEE ALSO
     - baeldung.com/java-8-comparator-comparing

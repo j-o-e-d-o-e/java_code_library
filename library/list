@@ -26,14 +26,14 @@ data structure
     - remove(int index) removes elem at index and returns elem
         - shifts subsequent elems to the left
     - remove(Object o) removes 1st occurence of o and returns true if o in list
-    - removeIf(Predicate<? super E> pred) removes all elems that satisfy pred
+    - removeIf(Predicate<E> pred) removes all elems that satisfy pred
     - removeAll(Collection<?> c) removes all elems that are in c and returns true/false
     - retainAll(Collection<?> c) removes all elems that are not in c and returns true/false
 (5) convert
     - stream() returns Stream<T> with this collection as its source
     - toArray(IntFunction<T[]> generator) returns new array T[] containing all elems in this collection
 (6) iterate
-    - forEach(Consumer<? super T> func) applies func to each elem
+    - forEach(Consumer<T> func) applies func to each elem
     - iterator() returns Iterator<T> over elems
     - listIterator() returns ListIterator<T> over elems
     - spliterator() returns Spliterator<T>
@@ -42,7 +42,7 @@ data structure
         - for all occurences, e.g. see example below
     - lastIndexOf(Object o) returns index of last occurence of o or -1
 (8) sort
-    - sort(Comparator<? super T> c) sorts list according to c
+    - sort(Comparator<T> c) sorts list according to c
         - all elems must be mutually comparable using c, i.e. c.compare(e1, e2) must not throw
 (9) check
     - contains(Object o) returns true if this list contains o

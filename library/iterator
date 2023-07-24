@@ -7,7 +7,7 @@ built-in interface
     - next() returns next elem of type T
     - remove() removes current elem from the underlying collection
         - useful to avoid ConcurrentModificationException while iterating
-    - forEachRemaining(Consumer<? super T> action) performs action for each elem
+    - forEachRemaining(Consumer<T> action) performs action for each elem
 (2) ListIterator<T> (additional methods to Iterator<T>)
     - hasPrevious() checks, whether this has a prev elem
     - previous() returns prev elem of type T

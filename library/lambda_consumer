@@ -7,13 +7,13 @@ built-in funcs
 - one arity (one arg)
 (1) Consumer<T> accepts single arg of type T
     - accept(T t) performs this operation on t
-    - andThen(Consumer<? super T> after) returns composed func that first performs this operation and then after
+    - andThen(Consumer<T> after) returns composed func that first performs this operation and then after
     - specializations of Consumer<T> for primitives: int, double, long, e.g.
         - IntConsumer accepts single int
 - two arity (two args)
 (2) BiConsumer<T, U> accepts two args of type T and U
     - accept(T t, U u) perfoms this operation on t and u
-    - andThen(BiConsumer<? super T, ? super U> after) returns composed func
+    - andThen(BiConsumer<T, U> after) returns composed func
     - specializations of Consumer<T> for primites: int, double, long, e.g.
         - ObjIntConsumer<T> accepts an obj and an int as args
 

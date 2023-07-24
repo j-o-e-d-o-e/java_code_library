@@ -6,7 +6,7 @@ data structure
 - implementing classes: HashSet<T>, TreeSet<T>
 (1) add
     - add(T elem) adds elem and returns true if elem is not already present
-    - addAll(Collection<? extends T> c) adds all elems from c and returns true if this set changed as a result
+    - addAll(Collection<T> c) adds all elems from c and returns true if this set changed as a result
         - if c is also a set, effectively modifies this set so that its value is the union of the two sets
 (2) retrieve
     - size() returns number of elems in this set

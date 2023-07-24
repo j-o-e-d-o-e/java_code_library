@@ -4,7 +4,7 @@ built-in class
 
 - join(CharSequence delimiter, CharSequence... elems)
     - returns a new String that is composed of the elems separated by delimiter
-- join(CharSequence delimiter, Iterable<? extends CharSequence> elements)
+- join(CharSequence delimiter, Iterable<CharSequence> elements)
 - valueOf(int i) returns string representation of i
     - also for: char, double, float, boolean, char[], Object
 - format(Locale locale, String format, Object... args) returns formatted string
@@ -20,4 +20,3 @@ built-in class
 
 - SEE ALSO
     - javatpoint.com/java-string-format
-
