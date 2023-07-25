@@ -4,7 +4,7 @@ data type
 
 - implements CharSequence, Comparable<String>
 (1) retrieve
-    - split(String regex, int limit) splits this string around matches of regex and returns String[]
+    - split(String regex, int limit) splits this around matches of regex and returns String[]
         - limit: how many splits (optional)
     - charAt(int index) returns char at index
     - getChars(int srcBegin, int srcEnd, char[] dst, int dstBegin) copies chars from this string into dst
