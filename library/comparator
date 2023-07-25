@@ -1,8 +1,7 @@
 Comparator
 
-built-in interface
+utility class
 
-- static methods of Comparator
 (1) comparing(Function<T, ? extends U> extract, Comparator<U> comp) returns a Comparator<T> that compares by val returned by extract using comp
     - extract: func that extracts a sort key of type T
     - comp: comparison func (optional)

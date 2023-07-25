@@ -1,0 +1,23 @@
+record
+
+
+
+- immutable data class
+- automatically includes
+    - public constructor
+    - getters for each field
+    - equals() returns true, if two objs have same type and vals
+    - toString()
+- static vars and methods may be added
+- since Java 14
+
+EXAMPLE
+record Person(String first, String last) {
+    static String GREET = "Hi there";
+
+    String sayName() {
+        return String.format("%s, I am %s %s", GREET, first, last);
+    }
+}
+Person p = new Person("Joe", "Doe");
+System.out.println(p.sayName()); // Hi there, I am Joe Doe

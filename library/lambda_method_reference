@@ -2,50 +2,34 @@ lambda->method::reference
 
 
 
-- <obj>::<method>
-- allows for converting a method call into an instance of a @FunctionalInterface
-- can only replace a single method lambda expression (which replaces an @FunctionalInterface)
-- instead of using an anonymous class, one can use a lambda expression
-- and if this lambda just calls one method, one can use a method reference instead
-- method references passes no args
-- four types of method references (lambda ==>> method reference):
-    - method reference to a static method: Class::staticMethod (1)
-    - reference to an instance method of a particular object: instance::instanceMethod (2)
-    - reference to an instance method of an arbitrary obj of a particular type: Class:instanceMethod (3)
-    - method reference to a constructor: Class::new (4)
+- can only replace lambda with single method-call
+- four types of method references to
+    (1) a constructor: Class::new
+    (2) a static method: Class::staticMethod
+    (3) an instance method of a particular obj: instance::instanceMethod
+    (4) an instance method of an arbitrary obj of a particular type: Class:instanceMethod
+
 
 EXAMPLE
-// (1) STATIC METHOD
+(1)
+Supplier<StringBuilder> supplier = StringBuilder::new;
+(2)
 List<String> names = Arrays.asList("joe doe", "mary jane");
 names.forEach(System.out::println);
-
-// (2) INSTANCE METHOD OF A PARTICULAR OBJ
-private static class MyComparator {
-    public int compare(final Integer a, final Integer b) {
+(3)
+static class CustomComparator<T extends Comparable<T>> {
+    public int compare(final T a, final T b) {
         return a.compareTo(b);
     }
-MyComparator myComparator = new MyComparator();
-List<Integer> list = Arrays.asList(8, 3, 1, 5, 6, 2, 7, 9, 4);
-Collections.sort(list, myComparator::compare);
-
-// (3) INSTANCE METHOD OF AN ARBITRARY OBJ
-public class Person {
-    String name;
-    Person(String name) {
-        this.name = name;
-    }
-    void printName() {
-        System.out.println(name);
+}
+CustomComparator<Integer> comp = new CustomComparator<>();
+List<Integer> ls = Arrays.asList(2, 3, 1);
+ls.sort(comp::compare); // ls = [1, 2, 3]
+(4)
+record Person(String first, String last) {
+    void sayName() {
+        System.out.printf("%s %s%n", first, last);
     }
 }
-List<Person> people = Arrays.asList(new Person("dan"), new Person("laura"));
-people.forEach(Person::printName);
-
-// (4) REFERENCE TO CONSTRUCTOR
-List<Integer> numbers = Arrays.asList(4, 9, 16, 25, 36);
-List<Double> squaredNumbers = findSquareRoot(numbers, Integer::new);
-static List<Double> findSquareRoot(List<Integer> list, Function<Integer, Integer> f) {
-    List<Double> result = new ArrayList<Double>();
-    list.forEach(x -> result.add(Math.sqrt(f.apply((Integer) x))));
-    return result;
-}
+List<Person> people = List.of(new Person("joe", "doe"), new Person("mary", "jane"));
+people.forEach(Person::sayName);

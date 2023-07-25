@@ -1,6 +1,6 @@
 array->Arrays
 
-api for arrays
+utility class
 
 - contains static methods for manipulating arrays
 (1) compare
@@ -34,7 +34,7 @@ api for arrays
         - a: array to be searched
         - key: val to be searched for
         - c: func to order array prior to search (optional)
-        - if not found, returns negative int (-(insertion point) - 1) 
+        - if not found, returns negative int (-(insertion point) - 1)
     - mismatch(T[] a, int aFrom, int aTo, T[] b, int bFrom, int bTo, Comparator c)
         - returns index of 1st mismatch between a and b, otherwise -1
 (6) sort

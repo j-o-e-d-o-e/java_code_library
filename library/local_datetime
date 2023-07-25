@@ -1,6 +1,6 @@
-LocalDate
+LocalDateTime
 
-api for date/time
+
 
 - LocalDate, LocalTime, LocalDateTime
 (1) static methods of LocalDate
@@ -23,7 +23,7 @@ api for date/time
     - withMonth(int i), withYear(int i), withDayOfMonth(int i), withDayOfYear(int i)
 - operations
     - minus(TemporalAmount amountToSubtract)
-    - minus(long amountToSubtract, TemporalUnit unit) 
+    - minus(long amountToSubtract, TemporalUnit unit)
     - minusDays(long i), minusMonths(long i), minusWeeks(long i), minusYears(long i)
     - plus(TemporalAmount amountToSubtract)
     - plus(long amountToAdd, TemporalUnit unit)
@@ -36,7 +36,7 @@ api for date/time
 
 - SEE ALSO
     - baeldung.com/java-8-date-time-intro
-    
+
 EXAMPLE
 (1)
 LocalTime noon = LocalTime.parse("12:00");

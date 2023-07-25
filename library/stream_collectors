@@ -1,6 +1,6 @@
 Stream->Collectors
 
-built-in class
+utility class
 
 - contains various implementations of reduction/accumulating operations
 (1) general

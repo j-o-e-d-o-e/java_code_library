@@ -1,6 +1,6 @@
 Stream
 
-api for sequences
+sequential data structure
 
 - sequence of elems supporting sequential and parallel aggregate operations
 (1) static methods of Stream

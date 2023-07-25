@@ -38,7 +38,6 @@ static class BasicRun implements Runnable {
         }
     }
 }
-
 public static void main(String[] args) {
     ExecutorService executor = Executors.newFixedThreadPool(3);
     IntStream.rangeClosed(1, 5).forEach(i -> {

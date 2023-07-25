@@ -1,6 +1,6 @@
 Character
 
-built-in class
+utility class
 
 - retrieve
     - valueOf(char c) returns Character of c

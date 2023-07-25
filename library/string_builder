@@ -1,6 +1,6 @@
 String->StringBuilder
 
-built-in class
+wrapped data type
 
 (1) constructors
   - StringBuilder(String str)

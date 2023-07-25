@@ -2,7 +2,7 @@ Thread
 
 built-in class
 
-- basic examples to run threads
+- basic examples to run threads using a
     (1) subclass of Thread
     (2) functional interface Runnable
 
@@ -16,7 +16,6 @@ static class BasicThread extends Thread {
         while (i < 3) System.out.printf("%s: %d%n", this.getName(), i++);
     }
 }
-
 public static void main(String[] args) {
     IntStream.rangeClosed(1, 2).mapToObj(i -> {
         BasicThread t = new BasicThread();
@@ -34,7 +33,6 @@ public static void main(String[] args) {
 } // t1: 0 t1: 1 t1: 2 Main: 3 t2: 0 t2: 1 t2: 2 Main: 3
 (2)
 static int i = 0;
-
 public static void main(String[] args) {
     Runnable r = () -> {
         while (i < 3) System.out.printf("%s: %d%n", Thread.currentThread().getName(), i++);

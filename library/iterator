@@ -2,6 +2,7 @@ Iterator
 
 built-in interface
 
+- instances which implement Iterator<T> may be returned by Collections and its subtypes
 (1) Iterator<T>
     - hasNext() checks, whether this has at least one more elem
     - next() returns next elem of type T
@@ -29,4 +30,4 @@ for (ListIterator<Integer> lit = ls.listIterator(); lit.hasNext(); ) {
     if (n < 6) lit.set(n + 1);
     else if (n == 6) lit.add(7);
     else lit.remove();
-} // s = [6, 6, 7]
+} // ls = [6, 6, 7]

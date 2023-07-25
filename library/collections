@@ -1,6 +1,6 @@
 Collections
 
-api for dynamic data structures
+utility class
 
 (1) create
     - emptyList() returns empty, immutable list

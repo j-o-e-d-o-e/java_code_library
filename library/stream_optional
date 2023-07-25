@@ -1,6 +1,6 @@
 Stream->Optional
 
-built-in class
+wrapped data type
 
 container-obj which may or may not contain a non-null val
 (1) static methods of Optional

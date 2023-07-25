@@ -1,6 +1,6 @@
 Integer
 
-built-in class
+utility class
 
 - retrieve
     - max(int a, int b) returns the greater of two int vals

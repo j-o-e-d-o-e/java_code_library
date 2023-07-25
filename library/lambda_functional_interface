@@ -1,10 +1,11 @@
 lambda->functional interface
 
-api for lambda
+
 
 - @FunctionalInterface
     - purely informative annotation
     - interface contains single abstract method only
+    - allows to implement callback with type safety
 - functional interfaces in java.util.function
 - one arity (one arg)
 (1) Function<T, R> accepts arg of type T and has return type of R

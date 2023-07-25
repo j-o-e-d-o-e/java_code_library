@@ -1,6 +1,6 @@
 String->String
 
-built-in class
+utility class
 
 - join(CharSequence delimiter, CharSequence... elems)
     - returns a new String that is composed of the elems separated by delimiter

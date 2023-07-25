@@ -27,7 +27,6 @@ static class BasicCall implements Callable<Integer> {
         return fact;
     }
 }
-
 public static void main(String[] args) {
     ExecutorService executor = Executors.newCachedThreadPool();
     IntStream.rangeClosed(1, 5).forEach(i -> {
