@@ -1,8 +1,9 @@
-Thread->stream
+Stream->parallel
 
 
 
-- parallel() allows to execute streams in parallel
+- Stream<T>.parallel() allows to execute this in parallel
+- intermediate operation
 
 EXAMPLE
 static Map<Character, Integer> letterCounts(String input) {

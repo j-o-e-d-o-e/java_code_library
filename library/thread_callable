@@ -10,7 +10,7 @@ Thread->Callable
 
 - SEE ALSO
     - baeldung.com/java-runnable-callable
-
+    - /exercism/java/parallel-letter-frequency
 
 EXAMPLE
 static class BasicCall implements Callable<Integer> {

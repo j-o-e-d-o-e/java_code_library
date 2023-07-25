@@ -3,7 +3,7 @@ array
 data structure
 
 - immutable, indexed iterable
-    - useful as effectively final var
+- useful as effectively final var
 
 EXAMPLE
 int[] a = {4,5,6};        // a = [4, 5, 6]
