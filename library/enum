@@ -2,52 +2,51 @@ enum
 
 data type
 
-- special data type that enables for a variable to be a set of predefined constants
-- common examples: compass directions(NORTH, SOUTH, EAST, WEST) & the days of the week
-- because they are constants, the names of an enum type's fields are in uppercase letters
-- CONSTANT.ordinal() returns the position of this CONSTANT in the declaration (initial constant = 0)
-- enum.values() returns an array containing all of the values of the 'enum' in the order they are declared. Commonly used in combination with the for-each construct to iterate over the values of an enum type
+- a set of predefined constants
+- ordinal() returns index of this according to declaration-order (starting at zero)
+- values() returns array containing all constants in declaration-order
+
 - SEE ALSO: /exercism/java/food-chain
 
 EXAMPLE
-public enum Day {SUNDAY, MONDAY, TUESDAY, WEDNESDAY,
-    THURSDAY, FRIDAY, SATURDAY 
-}
------------------
-enum Arbeitstag {
-    MONTAG, DIENSTAG, MITTWOCH, DONNERSTAG, FREITAG;
+enum WeekDay {
+    MON("1st"), TUE("2nd"), WED("3rd"), THU("4th"), FRI("5th");
 
-    boolean istNach(Arbeitstag tag) {
-        return this.ordinal() > tag.ordinal();
+    final String th;
+
+    WeekDay(String th) {
+        this.th = th;
     }
 
-    boolean istVor(Arbeitstag tag) {
-        return this.ordinal() < tag.ordinal();
+    boolean isAfter(WeekDay other) {
+        return this.ordinal() > other.ordinal();
     }
 
-    Arbeitstag naechsterArbeitstag() {
-        int morgenIndex = this.ordinal() + 1;
-        if (morgenIndex == Arbeitstag.values().length)
-            morgenIndex = 0;
-        return Arbeitstag.values()[morgenIndex];
+    boolean isBefore(WeekDay other) {
+        return this.ordinal() < other.ordinal();
     }
 
-    Arbeitstag vorherigerArbeitstag() {
-        int gesternIndex = this.ordinal() - 1;
-        if (gesternIndex < 0)
-            gesternIndex = Arbeitstag.values().length - 1;
-        return Arbeitstag.values()[gesternIndex];
+    WeekDay nextDay() {
+        int tomorrow = this.ordinal() + 1;
+        if (tomorrow == WeekDay.values().length) tomorrow = 0;
+        return WeekDay.values()[tomorrow];
     }
-}
 
-public class Test {
-    public static void main(String[] args) {
-        Arbeitstag a = Arbeitstag.MITTWOCH;
-        System.out.println(a.istVor(Arbeitstag.MONTAG)); // prints: false
-        System.out.println(a.istVor(Arbeitstag.DONNERSTAG)); // prints: true
-        System.out.println(a.istNach(Arbeitstag.DIENSTAG)); // prints: true
-        System.out.println(a.istNach(Arbeitstag.MITTWOCH)); // prints: false
-        System.out.println(a.naechsterArbeitstag()); // prints: DONNERSTAG
-        System.out.println(a.vorherigerArbeitstag()); // prints: DIENSTAG
+    WeekDay prevDay() {
+        int yesterday = this.ordinal() - 1;
+        if (yesterday < 0) yesterday = WeekDay.values().length - 1;
+        return WeekDay.values()[yesterday];
+    }
+
+    @Override
+    public String toString() {
+        return String.format("It's the %s day of the week.", this.th);
     }
 }
+WeekDay d = WeekDay.WED;
+String s = d.toString();                // It's the 3rd day of the week.
+d.isBefore(WeekDay.THU);                // true
+d.isAfter(WeekDay.TUE);                 // true
+d.isAfter(WeekDay.WED);                 // false
+WeekDay next = WeekDay.FRI.nextDay();   // next: MON
+WeekDay prev = WeekDay.MON.prevDay();   // prev: FRI

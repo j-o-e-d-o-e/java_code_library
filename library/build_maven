@@ -2,4 +2,30 @@ build->maven
 
 
 
-- repository folder: ~/.m2/repository/
+- 3 stages: default (1) -> clean (2) -> site (3)
+    (1) builds executable
+    (2) removes \target (if present)
+    (3) creates documentation
+- maven archtetpye: template for a specific type of project
+- pom.xml
+    - <properties>
+        - <maven.compiler.source>: which jdk
+        - <maven.compiler.target>: which jvm to run execuable on
+    - <parent>
+        - defines build steps, dependencies
+    - <dependencies>
+        - scopes
+            - compile: default scope
+            - provided: provided at runtime by JDK or a container
+            - runtime: required at runtime, but not needed for compilation)
+            - test: only used for tests
+        - <exclusions> allows to remove transitive dependencies
+    - <build> <plugins>, e.g.
+        - maven-clean-plugin: allows to remove \target
+        - maven-resources-plugin: handles copying of project resources to output dir
+        - maven-compiler-plugin: compiles the sources
+        - maven-surefire-plugin: executes the unit tests
+        - maven-jar-plugin: builds jars
+        - maven-deploy-plugin: adds your artifact(s) to a remote repository
+        - maven-install-plugin: adds artifacts to local repository
+            - path: ~/.m2/repository/

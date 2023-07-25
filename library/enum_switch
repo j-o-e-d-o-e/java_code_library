@@ -1,37 +1,23 @@
 enum->switch
 
 
-
-- the statement of the matching condition and every following statements are executed
-- default-statement is always executed
-- break-statements terminate the switch-statement without executing the follwing nor the default statement
+- using :
+    - block of the matching condition and every following block are executed
+    - break terminates current block without executing the following nor default
+- using ->
+    - only block of matching condition is executed
+    - break not needed
 
 EXAMPLE
-// inputs a month as byte and returns its days, e.g. 1 (January) -> 31 days
-Scanner reader = new Scanner(System.in);
 System.out.println("Enter a number of a month to get its days: ");
-byte monat = reader.nextByte(); //bytes are within this range: -128 - 127
-
+Scanner reader = new Scanner(System.in);
+byte monat = reader.nextByte();
+String days;
 switch (monat) {
-    case 1:
-    case 3:
-    case 5:
-    case 8:
-    case 10:
-    case 12:
-        System.out.println("This month has 31 days.");
-        break;
-    case 4:
-    case 6:
-    case 7:
-    case 9:
-    case 11:
-        System.out.println("This month has 30 days.");
-        break;
-    case 2:
-        System.out.println("This month has either 28 or somethimes 29 days.");
-        break;
-    default:
-        System.out.println("This is not a month.");
+    case 1, 3, 5, 8, 10, 12 -> days = "31";
+    case 4, 6, 7, 9, 11 -> days = "30";
+    case 2 -> days = "either 28 or sometimes 29";
+    default -> throw new IllegalArgumentException("This is not a month.");
 }
+System.out.printf("This month has %s days.", days);
 reader.close();
