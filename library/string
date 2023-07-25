@@ -7,9 +7,6 @@ data type
     - split(String regex, int limit) splits this around matches of regex and returns String[]
         - limit: how many splits (optional)
     - charAt(int index) returns char at index
-    - getChars(int srcBegin, int srcEnd, char[] dst, int dstBegin) copies chars from this string into dst
-        - srcBegin/dstBegin: start indices of src/dest (inclusive)
-        - srdEnd: end index of src (exclusive)
     - indexOf(String str, int from) returns index of 1st occurrence of str starting at from
         - from: from where to start search (optional)
         - if str not present in this string, returns -1

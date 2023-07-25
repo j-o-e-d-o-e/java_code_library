@@ -13,10 +13,14 @@ specializations of Stream<T> for primitives: int, double, long
 (2) intermediate
     - boxed() returns stream consisting of the elems each boxed
     - mapToObj(IntFunction<U> mapper) applies mapper to each elem and returns returns obj-valued stream
-    - asDoubleStream() returns DoubleStream
-    - mapToDouble(IntToDoubleFunction mapper) applies mapper and returns DoubleStream
-    - asLongStream() returns LongStream
-    - mapToLong(IntToLongFunction mapper) applies mapper and returns LongStream
+    - mapToInt(DoubleToIntFunction mapper) applies mapper to DoubleStream and returns IntStream
+        - for LongStream: mapToInt(LongToIntFunction mapper)
+    - mapToDouble(IntToDoubleFunction mapper) applies mapper to IntStream and returns DoubleStream
+        - for LongStream: mapToDouble(LongToDoubleFunction mapper)
+    - mapToLong(IntToLongFunction mapper) applies mapper to IntStream and returns LongStream
+        - for DoubleStream: mapToLong(DoubleToLongFunction mapper)
+    - asIntStream() returns IntStream consisting of the elem of this, converted to int
+        - also for double, long: asDoubleStream(), asLongStream() 
 (3) terminal
     - sum() returns sum of all elems
     - average() returns average
