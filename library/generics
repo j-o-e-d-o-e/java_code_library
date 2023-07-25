@@ -1,6 +1,6 @@
 generics
 
-generics
+
 
 allow for different (parameterized) types and still ensure type safety
     - type parameter cannot be a primitive

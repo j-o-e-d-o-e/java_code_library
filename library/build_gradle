@@ -1,6 +1,6 @@
 build->gradle
 
-tool
+
 
 - 3 stages: init (1) -> configure (2) -> execute (3)
     (1) evaluation of settings.gradle
