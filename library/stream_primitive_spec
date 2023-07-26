@@ -25,6 +25,9 @@ specializations of Stream<T> for primitives: int, double, long
     - sum() returns sum of all elems
     - average() returns average
 
+- SEE ALSO
+    - /exercism/java/pascals-triangle (IntStream reduced to 2-dim-array)
+
 EXAMPLE
 (1)
 int[] a = IntStream.iterate(5, i -> i > 0, i -> i - 2).toArray(); // a = [5, 3, 1]
