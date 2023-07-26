@@ -6,6 +6,7 @@ lambda->functional interface
     - purely informative annotation
     - interface contains single abstract method (SAM) only
         - mostly, implemented inline using lambda
+    - additionally, may contain static and default methods
     - allows to implement callback with type safety
     - bundled in java.util.function
 - one arity (one arg)

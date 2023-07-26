@@ -2,18 +2,32 @@ lambda->Predicate
 
 built-in funcs
 
-- Predicate<T> accepts arg of type T and returns boolean
-    - test(T t) evaluates this predicate on t
-    - and(Predicate<T> other) returns composed predicate of this and other
+- one arity (one arg)
+(1) Predicate<T> accepts arg of type T and returns boolean
+    - test(T t) evaluates this predicate on t (SAM to be implemented)
+    - and(Predicate<T> other) returns composed predicate of this 'and' other
         - equivalent to: this && other
-    - and(Predicate<T> other) returns composed predicate of this or another
+    - or(Predicate<T> other) returns composed predicate of this 'or' other
         - equivalent to: this || other
     - negate() returns a predicate that is the negation of this predicate
     - specializations of Predicate<T> for primitives: int, double, long, e.g.
         - IntPredicate accepts arg of int and returns boolean
+- two arity (two args)
+(2) BiPredicate<T, U> accepts two args of type T and U and returns boolean
+    - test(T t, U u) evaluates this on t and u
+    - and(BiPredicate<T, U> other) returns composed predicate of this 'and' other
+    - or(BiPredicate<T, U> other) returns composed predicate of this 'or' other
+    - negate() returns a predicate that is the negation of this predicate
 
 EXAMPLE
+(1)
 Predicate<List<Integer>> isSmall = ls -> ls.size() < 2;
 Predicate<List<Integer>> contains3 = ls -> ls.contains(3);
 Predicate<List<Integer>> composed = isSmall.or(contains3);
-boolean a = composed.test(List.of(1, 2, 3)); // a = true
+boolean a = composed.test(List.of(1, 2, 3));    // a = true
+
+(2)
+BiPredicate<Character, String> isGreater = (c, str) -> Character.toString(c).compareTo(str) > 0;
+boolean b = isGreater.test('a', "abc");         // b = false
+BiPredicate<Character, String> isLess = isGreater.negate();
+boolean c = isLess.test('a', "abc");            // c = true

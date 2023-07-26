@@ -3,6 +3,7 @@ lambda
 anonymous func
 
 - primarily, used for inline implementation of a functional interface
+    - more concisely, of the single abstract method (SAM) within this interface
 - (param, param) -> { body }
     - type declaration for params optional
     - parenthesis optional, if only single param without type

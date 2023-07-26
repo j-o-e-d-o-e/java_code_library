@@ -5,7 +5,7 @@ built-in funcs
 - accepts arg(s) and returns val of same type
 - one arity (one arg)
 (1) UnaryOperator<T> accepts single arg of type T
-    - apply(T arg) applies this operator to arg of type T and returns val of type T
+    - apply(T arg) applies this operator to arg of type T and returns val of type T (SAM)
     - andThen(Function< super R, V> after) returns composed func that first applies this and then after
     - compose(Function<V, T> before) returns composed func that first applies before and then this
     - specializations of UnaryOperator<T> for primitives: int, double, long, e.g.

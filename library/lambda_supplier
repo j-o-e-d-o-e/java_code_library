@@ -4,7 +4,7 @@ built-in funcs
 
 - accepts no args, but returns val (contrary to Consumer<T>)
 - Supplier<T> has return type of T
-    - get() returns the next result
+    - get() returns the next result (SAM to be implemented)
     - useful for lazy generation of vals based on an external state
 - specializations of Supplier<T> for primitives: boolean, int, double, long, e.g.
     - BooleanSupplier has return type of boolean

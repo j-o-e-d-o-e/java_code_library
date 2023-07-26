@@ -6,7 +6,7 @@ built-in funcs
     - expected to operate via side-effects (unlike most other functional interfaces)
 - one arity (one arg)
 (1) Consumer<T> accepts single arg of type T
-    - accept(T t) performs this operation on t
+    - accept(T t) performs this operation on t (SAM)
     - andThen(Consumer<T> after) returns composed func that first performs this operation and then after
     - specializations of Consumer<T> for primitives: int, double, long, e.g.
         - IntConsumer accepts single int
