@@ -3,11 +3,11 @@ Comparable
 built-in interface
 
 
-- Comparable<T> contains one single abstract method: compareTo(T o)
-- declared in
-(1) class definition
-(2) method declaration
-    - <T extends Comparable<T>> accepts all classes which implement 'compareTo()'
+- Comparable<T> contains one single abstract method (SAM): compareTo(T o)
+- may be declared in
+    (1) class definition
+    (2) method declaration
+- <T extends Comparable<T>> accepts all classes which implement compareTo()
 
 - SEE ALSO
     - entry: generics

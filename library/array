@@ -2,7 +2,7 @@ array
 
 data structure
 
-- immutable, indexed iterable
+- size-fixed, indexed collection
 - useful as effectively final var
 
 EXAMPLE
@@ -12,3 +12,4 @@ int b = a.length;         // b = 3
 int[][] c = new int[3][]; // c = [ null, null, null]
 c[0] = new int[2];        // c = [[0, 0], null, null]
 c[0][1] = 1;              // c = [[0, 1], null, null]
+c[1] = new int[]{2, 3};   // c = [[0, 1], [2, 3], null]

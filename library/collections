@@ -41,7 +41,7 @@ utility class
 (8) utils
     - copy(List<T> dest, List<? extends T> src) copies all elems from src into dest
     - reverseOrder() returns comparator that imposes the reverse of the natural ordering
-    - reverseOrder(Comparator<T> comp) returns comparator that imposes the reverse ordering of comparator
+    - reverseOrder(Comparator<T> comp) returns comparator that imposes the reverse ordering of comp
 
 EXAMPLE
 (1)

@@ -4,18 +4,20 @@ lambda->functional interface
 
 - @FunctionalInterface
     - purely informative annotation
-    - interface contains single abstract method only
+    - interface contains single abstract method (SAM) only
+        - mostly, implemented inline using lambda
     - allows to implement callback with type safety
-- functional interfaces in java.util.function
+    - bundled in java.util.function
 - one arity (one arg)
 (1) Function<T, R> accepts arg of type T and has return type of R
-    - apply(T arg) applies this func to arg and returns val of type R
+    - apply(T arg) applies this func to arg and returns val of type R (SAM to be implemented)
     - andThen(Function<R, V> after) returns composed func that first applies this func and then after
     - compose(Function<V, T> before) returns composed func that first applies before and then this func
     - specializations of Function<T, R> for primitives: int, double, long, e.g.
         (1.1) IntFunction<R> accepts arg of type int and has return type of R
         (1.2) ToIntFunction<T> accepts arg of type T and has return type of int
         (1.3) IntToDoubleFunction accepts arg of type int and has return type of double
+    - Funtion.identity() returns a func that always returns its input arg (static)
 - two arity (two args)
 (2) BiFunction<T, U, R> accepts two args of type T and U and has return type of R
     - apply(T t, U u) applies this func to args and returns val of type R

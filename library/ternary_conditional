@@ -1,6 +1,6 @@
 ternary conditional
 
-
+operator
 
 - boolean expression ? value-if-true : value-if-false;
 

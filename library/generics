@@ -2,14 +2,14 @@ generics
 
 
 
-allow for different (parameterized) types and still ensure type safety
+- allow for different (parameterized) types and still ensure type safety
     - type parameter cannot be a primitive
 (1) bounds/constraints
     - <T extends superclass>: superclass and all its subtypes
-(2) multiple bounds
-    - e.g. List<T extends Number & Comparable>: list of Number and its subtypes that implement Comparable
-    - classes declared first (here: Number before Comparable)
-(3) generic methods
+    - multiple bounds
+        - e.g. List<T extends Number & Comparable>: list of Number and its subtypes that implement Comparable
+        - classes declared before interfaces (here: Number before Comparable)
+(2) generic methods
     - <T> T name(T t)
     - type parameter (here: <T>) before return type (here: T)
     - multiple type params separated by commas within diamond opreator
@@ -41,7 +41,7 @@ static public <T extends Comparable<T>> Boolean isLess(List<T> ls1, List<T> ls2)
     if (ls1.size() != ls2.size()) return null;
     return IntStream.range(0, ls1.size()).anyMatch(i -> ls1.get(i).compareTo(ls2.get(i)) < 0);
 }
-Boolean b1 = isLess(List.of(1, 1), List.of(1, 2));         // b1 = true
-Boolean b2 = isLess(List.of("1", "2"), List.of("1", "2")); // b2 = false
-Boolean b3 = isLess(List.of('1', '3'), List.of('1', '2')); // b3 = false
-Boolean b4 = isLess(List.of(1, 1), List.of(1));        // b4 = null
+Boolean b1 = isLess(List.of(1, 1), List.of(1, 2));          // b1 = true
+Boolean b2 = isLess(List.of("1", "2"), List.of("1", "2"));  // b2 = false
+Boolean b3 = isLess(List.of('1', '3'), List.of('1', '2'));  // b3 = false
+Boolean b4 = isLess(List.of(1, 1), List.of(1));             // b4 = null

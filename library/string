@@ -2,7 +2,7 @@ String
 
 data type
 
-- implements CharSequence, Comparable<String>
+- immutable obj; implements CharSequence, Comparable<String>
 (1) retrieve
     - split(String regex, int limit) splits this around matches of regex and returns String[]
         - limit: how many splits (optional)
@@ -18,9 +18,9 @@ data type
     - subSequence(int start, int end) returns a CharSequence that is a subsequence of this sequence
     - codePointAt(int index) returns Unicode code point of char at index
     - codePointBefore(int index) returns Unicode code point of char before index
-(2) update
-    - concat(String str) concatenates str to the end of this string and returns new string
-    - replace(char old, char nw) replaces all occurrences of old with nw and returns new string
+(2) update (return new string)
+    - concat(String str) concatenates str to the end of this string
+    - replace(char old, char nw) replaces all occurrences of old with nw
     - replace(CharSequence target, CharSequence repl) replaces each substring that matches target with repl
     - replaceFirst(String regex, String repl) replaces 1st substring that matches regex with repl
     - replaceAll(String regex, String repl) replaces each substring that matches regex with repl
@@ -42,9 +42,9 @@ data type
     - chars() returns IntStream according to char vals of this string
     - lines() returns Stream<String> of lines extracted from this string, separated by line terminators
     - codePoints() returns IntStream of code point vals
-(5) format
+(5) format (return new string)
     - repeat(int count) returns a string concatenated to itself repeated count times
-    - strip() removes all leading and trailing white space and returns new string
+    - strip() removes all leading and trailing white space
     - stripLeading() removes all leading whitespace
     - stripTrailing() removes all trailing whitespace
     - trim() removes all leading and trailing space
