@@ -6,12 +6,16 @@ data structure
     (1) Arrays.asList(T... a)
         - fixed size
         - mutable
+        - accepts null vals
     (2) List.of(T... elems)
         - immutable
+        - accepts no null vals
     (3) new ArrayList<>(List.of(T... elems))
         - mutable
+        - acccepts null vals
     (4) new ArrayList<>(Arrays.asList(T... a))
         - mutable
+        - accepts null vals
 
 - SEE ALSO
     - baeldung.com/java-init-list-one-line
