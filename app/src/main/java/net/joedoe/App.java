@@ -22,8 +22,8 @@ public class App {
     static final int TOC = 0;
     static final int EXIT = 667;
     static final String[] LITERATURE = {
-            "Joshua Bloch (2018): Effective Java, 3rd edition, Addison-Wesley. [e]",
-            "<author> (<YYYY>): <title>, <edition>, <publisher>. [<char>]"
+            "Joshua Bloch (2018): Effective Java, 3rd edition, Addison-Wesley. [effective]",
+            "<author> (<YYYY>): <title>, <edition>, <publisher>. [abbreviation]"
     };
 
     public static void main(String[] args) {
@@ -94,9 +94,9 @@ public class App {
 
     static void flags(String arg) {
         if (arg.equals("-h") || arg.equals("--h") || arg.equals("-help") || arg.equals("--help")) {
-            outputFormat(String.format("%s %s %s%nCommands:\t- %d: Table of Content (or any char)%n\t- %d: Exit%n",
-                    Library.DELIMITER_TOC, "JAVA CODE LIBRARY", Library.DELIMITER_TOC, TOC, EXIT));
-            outputFormat("Literature:");
+            outputFormat(String.format("%s %s %s%n",Library.DELIMITER_TOC, "JAVA CODE LIBRARY", Library.DELIMITER_TOC));
+            outputFormat(String.format("Commands:\n\t- %d  : Table of Content (or any char)%n\t- %d: Exit\n\t -s: : Search%n", TOC, EXIT));
+            outputFormat("Literature:\n");
             for (String s : LITERATURE) outputFormat(String.format("\t- %s\n", s));
         }
     }
