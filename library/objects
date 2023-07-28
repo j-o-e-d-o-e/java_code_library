@@ -1,0 +1,16 @@
+Objects
+
+utility class
+
+- isNull(Object obj) returns true if obj is null
+- nonNull(Object obj) returns true if obj is non-null
+- requireNonNull(T obj, String msg) checks that obj is not null
+    - otherwise, throws NullPointerException with msg
+    - msg: error message (optional)
+        - may also be of type Supplier<String>
+- requireNonNullElse(T obj, T default) returns obj if it is non-null
+    - otherwise, returns non-null default
+- requireNonNullElseGet(T obj, Supplier<? extends T> supplier) returns obj if it is non-null
+    - otherwise, returns val of supplier.get()
+- equals(Object a, Object b) returns true if a and b are equal
+- deepEquals(Object a, Object b) returns true if a and b are deeply equal
