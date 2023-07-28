@@ -64,7 +64,7 @@ sequential data structure
             - supplier: creates a new mutable result container
             - accumulator: folds an elem into a result container
             - combiner: accepts two partial result containers and folds elems from 2nd container into 1st container
-        - toList() returns List<T> containing all elems
+        - toList() returns immutable List<T> containing all elems (may include null vals)
         - toArray() returns Object[]
 (4) check (terminal)
     - allMatch(Predicate<T> pred) returns true if pred holds true for all elems
