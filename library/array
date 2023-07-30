@@ -3,7 +3,7 @@ array
 data structure
 
 - size-fixed, indexed collection
-- useful as effectively final var
+- useful as effectively final var (see entry: Stream)
 
 EXAMPLE
 int[] a = {4,5,6};        // a = [4, 5, 6]
