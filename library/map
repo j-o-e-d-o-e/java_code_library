@@ -2,7 +2,7 @@ Map
 
 data structure
 
-- unordered iterable containing key/value-pairs with unique keys only
+- unordered collection containing key/value-pairs with unique keys only
 - implementing classes: HashMap<K, V>, TreeMap<K, V>
 - methods
 (1) add/update
@@ -52,6 +52,7 @@ data structure
 
 - SEE ALSO
     - /exercism/java/forth
+    - stackoverflow.com/questions/2889777/difference-between-hashmap-linkedhashmap-and-treemap
 
 EXAMPLE
 Map<String, Integer> m = new HashMap<>(Map.of("a", 1, "b", 2)); // {a=1, b=2}

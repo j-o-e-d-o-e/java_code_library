@@ -2,7 +2,7 @@ Map->TreeMap
 
 data structure
 
-- ordered map implementation of Map<K, V> and NavigableMap<K, V>
+- ordered map implementation of SortedMap<K, V>
     - maintains natural order or order by comparator given to constructor
 (1) init (additionally to map)
     - new TreeMap<>(Comparator<K> c) creates new, empty map with ordered keys according to c
