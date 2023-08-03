@@ -43,6 +43,7 @@ data type
     - lines() returns Stream<String> of lines extracted from this string, separated by line terminators
     - codePoints() returns IntStream of code point vals
 (5) format (return new string)
+    - formatted(Object... args) replaces format-specifiers in this with args (see entry: String->String)
     - repeat(int count) returns a string concatenated to itself repeated count times
     - strip() removes all leading and trailing white space
     - stripLeading() removes all leading whitespace
