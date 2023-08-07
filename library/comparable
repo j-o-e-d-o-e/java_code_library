@@ -20,7 +20,7 @@ record Person(String name) implements Comparable<Person> {
         return name.compareTo(o.name);
     }
 }
-List<Person> ls = new java.util.ArrayList<>(List.of(new Person("mary"), new Person("joe")));
+List<Person> ls = new ArrayList<>(List.of(new Person("mary"), new Person("joe")));
 Collections.sort(ls); // ls = [Person[name=joe], Person[name=mary]]
 
 (2)
