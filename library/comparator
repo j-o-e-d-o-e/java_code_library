@@ -2,6 +2,9 @@ Comparator
 
 utility class
 
+- @FunctionalInterface with single abstract method (SAM): int compare(T o1, T o2)
+    - unlike Comparable<T>, since its SAM compareTo(T o) requires `this` in the defined scope as 2nd value
+- default implementations
 (1) comparing(Function<T, ? extends U> extract, Comparator<U> comp) returns a Comparator<T> that compares by val returned by extract using comp
     - extract: func that extracts a sort key of type T
     - comp: comparison func (optional)

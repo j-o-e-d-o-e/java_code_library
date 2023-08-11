@@ -3,6 +3,7 @@ array
 data structure
 
 - size-fixed, indexed collection
+- is an object and may be assigned to A var of type Object (does not implement e.g. Collection<t>)
 - useful as effectively final var (see entry: Stream)
 
 EXAMPLE

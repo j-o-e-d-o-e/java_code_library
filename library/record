@@ -1,8 +1,9 @@
 record
 
-
+data type
 
 - immutable data class
+    - instances allocated on the heap (like objs of classes)
 - automatically includes
     - public constructor
     - getters for each field
@@ -10,6 +11,9 @@ record
     - toString()
 - static vars and methods may be added
 - since Java 14
+
+- SEE ALSO
+    - stackoverflow.com/questions/64756584/are-java-records-stack-allocated-like-c-sharp-structs
 
 EXAMPLE
 record Person(String first, String last) {

@@ -3,19 +3,24 @@ List->LinkedList
 data structure
 
 - doubly-linked list implementation of List<T> and Queue<T> interfaces
+    - each node contains two references (to the previous and next node) and a value
 - methods (additionally to list and queue)
 (1) add
+    - add(int i, T elem) inserts elem at index i and shifts preceding elems to the right
+    - addAll(int i, Collection<T> c) inserts all elems from c starting at i and returns true if succeeded
+        - i: where elems are to be inserted (optional); defaults to end of list
     - addFirst(T elem) inserts elem at the beginning 
+    - add(T elem)/addLast(T elem) appends elem to the end
     - offerFirst(T elem) inserts elem at beginnging and returns boolean
-    - addLast(T elem) appends elem to the end
     - offerLast(T elem) inserts elem at the end and returns boolean
     - push(T elem) inserts elem at the front
 (2) retrieve
-    - getFirst() returns 1st elem (head)
+    - get(int i) returns elem at index i
+    - element()/getFirst() returns 1st elem (head)
         - if list is empty, throws Exception
     - getLast() returns last elem (tail)
         - if list is empty, throws Exception
-    - peekFirst() returns 1stt elem or null if list is empty
+    - peek()/peekFirst() returns 1st elem or null if list is empty
     - peekLast() returns last elem or null if list is empty
 (3) delete
     - removeFirst() removes and returns 1st elem
@@ -30,11 +35,14 @@ data structure
     - pollLast() removes and returns last elem or null if list is empty
     - pop() returns 1st elem
         - if list is empty, throws Exception
-(4) iterate
+(4) search
+    - indexOf(Object o) returns index of 1st occurence of o; if not found, returns -1
+        - for all occurences, e.g. see example below
+    - lastIndexOf(Object o) returns index of last occurence of o or -1
+(5) iterate
     - descendingIterator() returns Iterator<T> over elem in reverse order
 
 EXAMPLE
-(3)
-LinkedList<Integer> a = new LinkedList<>(List.of(1, 2, 3));
-boolean b = a.removeFirstOccurrence(1); // true, a = [2, 3]
-b = a.removeLastOccurrence(1); // false
+LinkedList<Integer> ls = new LinkedList<>(List.of(1, 2, 3));
+boolean a = ls.removeFirstOccurrence(2); // a = true, ls = [1, 3]
+ls.add(1,2); // ls = [1, 3]
