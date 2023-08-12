@@ -1,6 +1,5 @@
 package net.joedoe;
 
-
 import java.util.List;
 
 import static net.joedoe.Format.*;
@@ -16,7 +15,7 @@ public class Library {
                     " ".repeat(e.index < 10 ? 1 : 0),
                     e.index,
                     e.title);
-            if (e.tags.length() > 0) str += " ".repeat(47 - e.title.length()) + e.tags;
+            if (!e.tags.isEmpty()) str += " ".repeat(47 - e.title.length()) + e.tags;
             if (i % 2 == 0) outputFormat(str, GREEN);
             else outputFormat(str, CYAN, true, false, false);
             System.out.println();

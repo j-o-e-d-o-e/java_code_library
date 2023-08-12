@@ -9,10 +9,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static net.joedoe.Format.format;
 import static net.joedoe.Format.outputFormat;
@@ -33,21 +32,30 @@ public class App {
         }
         List<Entry> entries = setupLib();
         Library.printToc(entries);
-        LineReader reader = LineReaderBuilder.builder().build();
+        Hist hist = new Hist();
+        LineReader reader = LineReaderBuilder.builder().history(hist).build();
         while (true) {
             String input = reader.readLine(format("\nWhat would you like to read? "));
             if (input.startsWith("s:")) {
-                System.out.println();
                 String search = input.substring(2).trim();
-                Library.printToc(entries.stream()
+                List<Entry> tmp = entries.stream()
                         .filter(entry -> entry.tags.toLowerCase().contains(search))
-                        .collect(Collectors.toList()));
+                        .collect(Collectors.toList());
+                if (!tmp.isEmpty()) {
+                    System.out.println();
+                    Library.printToc(tmp);
+                } else {
+                    hist.removeLast();
+                    outputFormat("No match found.\n");
+                }
                 continue;
             }
             int num;
             try {
+                input = input.replaceFirst(" \\(.+\\)$", "");
                 num = Integer.parseInt(input);
             } catch (NumberFormatException e) {
+                hist.removeLast();
                 outputFormat("Not a valid input.\n");
                 continue;
             }
@@ -59,17 +67,20 @@ public class App {
                 outputFormat("Devil's neighbour wishes you a good day.\n");
                 break;
             } else if (num < 0 || num > entries.size()) {
-                outputFormat("Not a valid number.");
+                hist.removeLast();
+                outputFormat("Not a valid number.\n");
                 continue;
             }
-            entries.get(num - 1).printEntry();
+            Entry e = entries.get(num - 1);
+            hist.addTitle(input, e.title);
+            e.printEntry();
         }
     }
 
     static List<Entry> setupLib() {
         List<Path> paths = new ArrayList<>();
-        try {
-            paths = Files.walk(Paths.get(DIR)).filter(Files::isRegularFile).collect(Collectors.toList());
+        try (Stream<Path> p = Files.walk(Paths.get(DIR))) {
+            paths = p.filter(Files::isRegularFile).collect(Collectors.toList());
         } catch (IOException e) {
             outputFormat("Opening Directory " + DIR + " failed.");
         }
@@ -83,7 +94,7 @@ public class App {
                 entry.tags = br.readLine();
                 entries.add(entry);
             } catch (IOException e) {
-                e.printStackTrace();
+                outputFormat("Opening File " + path + " failed.");
             }
         }
         Collections.sort(entries);
@@ -94,7 +105,7 @@ public class App {
 
     static void flags(String arg) {
         if (arg.equals("-h") || arg.equals("--h") || arg.equals("-help") || arg.equals("--help")) {
-            outputFormat(String.format("%s %s %s%n",Library.DELIMITER_TOC, "JAVA CODE LIBRARY", Library.DELIMITER_TOC));
+            outputFormat(String.format("%s %s %s%n", Library.DELIMITER_TOC, "JAVA CODE LIBRARY", Library.DELIMITER_TOC));
             outputFormat(String.format("Commands:\n\t- %d  : Table of Content (or any char)%n\t- %d: Exit\n\t -s: : Search%n", TOC, EXIT));
             outputFormat("Literature:\n");
             for (String s : LITERATURE) outputFormat(String.format("\t- %s\n", s));
