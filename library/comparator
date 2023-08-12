@@ -2,8 +2,9 @@ Comparator
 
 utility class
 
-- @FunctionalInterface with single abstract method (SAM): int compare(T o1, T o2)
+- @FunctionalInterface with single abstract method (SAM): compare(T o1, T o2)
     - unlike Comparable<T>, since its SAM compareTo(T o) requires `this` in the defined scope as 2nd value
+- compare(T o1, T o2) compares o1 and o2 and returns a negative int (if o1 < o2), zero, or a positive int
 - default implementations
 (1) comparing(Function<T, ? extends U> extract, Comparator<U> comp) returns a Comparator<T> that compares by val returned by extract using comp
     - extract: func that extracts a sort key of type T
@@ -15,8 +16,7 @@ utility class
 (4) naturalOrder() returns comparator that compares Comparable objs in natural order
 (5) reverseOrder() returns comparator that imposes the reverse of the natural ordering
 - methods on Comparator<T>
-(6) compare(T o1, T o2) compares o1 and o2 and returns a negative int (o1 < o2), zero, or a positive int
-(7) thenComparing(Function<T, ? extends U> extract, Comparator<U> comp) returns composed comparator of this and then the sort key returned by extract using comp
+(6) thenComparing(Function<T, ? extends U> extract, Comparator<U> comp) returns composed comparator of this and then the sort key returned by extract using comp
     - specializations for primitives: int, double, long, e.g.
         - thenComparingInt(ToIntFunction<T> extract) returns a Comparator<T> that compares by int returned by extract
 
@@ -30,7 +30,7 @@ List<Person> ls = new ArrayList<>(List.of(new Person("Mary", "Jane"), new Person
 Comparator<Person> byLastName = Comparator.comparing(p -> p.lastName);
 ls.sort(byLastName);
 // ls = [Person[firstName=Joey, lastName=Doe], Person[firstName=Joe, lastName=Doe], Person[firstName=Mary, lastName=Jane]]
-(7)
+(6)
 Comparator<Person> byLastNameThenByFirstName = byLastName.thenComparing(Person::firstName);
 ls.sort(byLastNameThenByFirstName);
 // ls = [Person[firstName=Joe, lastName=Doe], Person[firstName=Joey, lastName=Doe], Person[firstName=Mary, lastName=Jane]]
