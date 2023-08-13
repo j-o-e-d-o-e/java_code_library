@@ -24,7 +24,7 @@ utility class
     - pred: classifies elems
     - downstream: implements downstream reduction (optional)
     - returned collector partitions elems according to pred, and organizes them into a Map<Boolean, List<T>>
-(3) reduction to num
+(3) reduction to single val
 - counting() returns collector that counts elems
 - maxBy(Comparator<T> comp) returns collector that returns the max elem according to comp as an Optional<T>
 - minBy(Comparator<T> comp) returns collector that returns the min elem according to comp
