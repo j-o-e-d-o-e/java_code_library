@@ -15,7 +15,7 @@ public class Entry implements Comparable<Entry> {
 
     public void printEntry() {
         outputFormat(String.format("%n%s%n", DELIMITER_ENTRY));
-        int color = index % 2 == 0 ? GREEN : CYAN;
+        int color = index % 2 != 0 ? GREEN : CYAN;
         outputFormat(String.format("%d - %s%n%n", index, title), color, false, true, true);
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             int count = 0;
