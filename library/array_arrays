@@ -34,6 +34,7 @@ utility class
         - a: array to be searched
         - key: val to be searched for
         - c: func to order array prior to search (optional)
+            - prerequisite: a must be sorted
         - if not found, returns negative int (-(insertion point) - 1)
     - mismatch(T[] a, int aFrom, int aTo, T[] b, int bFrom, int bTo, Comparator c)
         - returns index of 1st mismatch between a and b, otherwise -1
