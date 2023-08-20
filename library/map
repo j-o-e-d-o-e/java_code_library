@@ -3,7 +3,7 @@ Map
 data structure
 
 - unordered collection containing key/value-pairs with unique keys only
-- implementing classes: HashMap<K, V>, TreeMap<K, V>
+- implementing classes: HashMap<K, V>, LinkedHashMap<K, V>, TreeMap<K, V>
 - methods
 (1) add/update
     - put(K key, V val) adds/updates entry and returns null or previous val
