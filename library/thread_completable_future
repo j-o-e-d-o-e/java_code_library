@@ -1,0 +1,54 @@
+Thread->CompletableFuture
+
+async
+
+- provides methods for composing, combining and executing async computation-steps and error handling
+- implements Future<T>, CompletionStage<T> (in java.util.concurrent)
+- stages: completed/failed
+- init
+    - CompletableFuture()
+    - CompletableFuture(Object r)
+- static methods, e.g.
+    - completedFuture(T val) returns completed CompletableFuture<T> containing val
+    - failedFuture(Throwable ex) returns failed CompletableFuture<T> containing ex
+    - runAsync(Runnable r) returns CompletableFuture<Void> that is completed async by r
+    - supplyAsync(Supplier<T> s) returns CompletableFuture<T> that is completed async by s
+- instance methods, e.g.
+    - get() returns result T (triggers completion and waits/blocks for the result to finish)
+    - complete(T val) sets value returned by get() to val if not already completed and returns boolean
+    - thenApply(Function<T, R> func) applies func to this stage's result and returns CompletableFuture<R>
+        - analogous to: Optional.map() and Stream.map()
+    - thenAccept(Consumer<T> action) performs action on this and returns CompletableFuture<Void>
+    - thenRun(Runnable r) performs action and returns CompletableFuture<Void>
+    - thenCompose(Function<T, CompletionStage<R>> func) returns CompletableFuture<R> returned by func
+
+SEE ALSO
+    - baeldung.com/java-completablefuture
+
+EXAMPLE
+int[] op1 = {1, 2, 3};
+int[] op2 = {4, 5, 6};
+CompletableFuture<Integer> t1 = App.sumAsync(op1);
+CompletableFuture<Integer> t2 = App.sumAsync(op2);
+try {
+    Function<int[], String> join = ints -> String.join(" + ", Arrays.stream(ints).mapToObj(Integer::toString).toList());
+    System.out.printf("\n%s = %2d%n", join.apply(op1), t1.get());
+    System.out.printf("%s = %2d%n", join.apply(op2), t2.get());
+} catch (InterruptedException | ExecutionException e) {
+    e.printStackTrace();
+}
+
+static CompletableFuture<Integer> sumAsync(int[] ints) {
+    return CompletableFuture.supplyAsync(() -> {
+        int res = 0;
+        for (int i : ints) {
+            System.out.printf("%2d +%2d...", res, i);
+            res += i;
+        }
+        return res;
+    });
+}
+// could not reproduce afterwards, but it did output:
+// 0 + 1... 1 + 2... 0 + 4... 4 + 5... 3 + 3... 9 + 6...
+// 1 + 2 + 3 =  6
+// 4 + 5 + 6 = 15

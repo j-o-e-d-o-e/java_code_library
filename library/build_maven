@@ -6,6 +6,9 @@ build->maven
     (1) builds executable
     (2) removes \target (if present)
     (3) creates documentation
+- commands
+    - maven package: builds project
+        - to run, e.g. java -cp target/test-1.0-SNAPSHOT.jar net.joedoe.App 
 - maven archtetpye: template for a specific type of project
 - pom.xml
     - <properties>
