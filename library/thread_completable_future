@@ -28,29 +28,22 @@ SEE ALSO
 EXAMPLE
 int[] op1 = {1, 2, 3};
 int[] op2 = {4, 5, 6};
-List<CompletableFuture<Integer>> ls1 = sumAsync(op1);
-List<CompletableFuture<Integer>> ls2 = sumAsync(op2);
+AtomicInteger res1 = new AtomicInteger();
+AtomicInteger res2 = new AtomicInteger();
+List<CompletableFuture<Void>> ls1 = sumAsync(op1, res1);
+List<CompletableFuture<Void>> ls2 = sumAsync(op2, res2);
 CompletableFuture<Void> all = CompletableFuture.allOf(Stream.concat(ls1.stream(), ls2.stream()).toArray(CompletableFuture[]::new));
 try {
     all.get();
     Function<int[], String> join = ints -> Arrays.stream(ints).mapToObj(Integer::toString).collect(Collectors.joining(" + "));
-    System.out.printf("%n%s = %2d", join.apply(op1), ls1.get(0).get());
-    System.out.printf("%n%s = %2d", join.apply(op2), ls2.get(0).get());
+    System.out.printf("%n%s = %2d", join.apply(op1), res1.get());
+    System.out.printf("%n%s = %2d", join.apply(op2), res2.get());
 } catch (InterruptedException | ExecutionException e) {
     e.printStackTrace();
 }
 
-static List<CompletableFuture<Integer>> sumAsync(int[] ints) {
-    List<CompletableFuture<Integer>> futures = new ArrayList<>();
-    AtomicInteger res = new AtomicInteger();
-    for (int i : ints) {
-        futures.add(CompletableFuture.supplyAsync(() -> {
-            System.out.printf("%-2d+%2d... ", res.getAndAdd(i), i);
-            return res.get();
-        }));
-    }
-    return futures;
+static List<CompletableFuture<Void>> sumAsync(int[] ints, AtomicInteger a) {
+    return Arrays.stream(ints)
+        .mapToObj(i -> CompletableFuture.runAsync(() -> System.out.printf("%-2d+%2d... ", a.getAndAdd(i), i)))
+        .toList();
 }
-// 0 + 1... 9 + 6... 4 + 5... 0 + 4... 3 + 3... 1 + 2... 
-// 1 + 2 + 3 =  6
-// 4 + 5 + 6 = 15
