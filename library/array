@@ -3,7 +3,7 @@ array
 data structure
 
 - size-fixed, indexed collection
-- is an object and may be assigned to A var of type Object (does not implement e.g. Collection<t>)
+- is an object and may be assigned to a var of type Object (does not implement e.g. Collection<T>)
 - useful as effectively final var (see entry: Stream)
 
 EXAMPLE
@@ -14,3 +14,6 @@ int[][] c = new int[3][]; // c = [ null, null, null]
 c[0] = new int[2];        // c = [[0, 0], null, null]
 c[0][1] = 1;              // c = [[0, 1], null, null]
 c[1] = new int[]{2, 3};   // c = [[0, 1], [2, 3], null]
+
+int[][] d = new int[][]{{1, 2}, {3, 4}};
+Arrays.stream(d).forEach(a -> Arrays.stream(a).forEach(System.out::print)); // 1234
