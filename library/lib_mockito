@@ -2,35 +2,12 @@ lib->mockito
 
 testing
 
-- @Mock annotates mock objects
-- two ways to trigger creation of mock objects: 
-    (1) MockitoAnnotations.initMocks(this) (in method body of setUp())
-    (2) @Rule public MockitoRule mockitoRule = MockitoJUnit.rule(); (invokes method under 1)
-    (3) @RunWith(MockitoJUnitRunner.class) (testClass to be annotated with this)
+- annotations for unit-tests
+    - @ExtendWith(MockitoExtension.class): for test-class
+    - @InjectMocks: for SUT ("system under test")
+    - @Mock: for dependencies used by SUT
+        - when(T methodCall).thenReturn(R val): returns val when mock is invoked
 
-EXAMPLE
-// this test demonstrates how to return values based on the input
-@Test
-public void testReturnValueDependentOnMethodParameter()  {
-        Comparable<String> c= mock(Comparable.class);
-        when(c.compareTo("Mockito")).thenReturn(1);
-        when(c.compareTo("Eclipse")).thenReturn(2);
-        //assert
-        assertEquals(1, c.compareTo("Mockito"));
-}
-
-// return a value based on the type of the provide parameter
-
-@Test
-public void testReturnValueInDependentOnMethodParameter2()  {
-        Comparable<Todo> c= mock(Comparable.class);
-        when(c.compareTo(isA(Todo.class))).thenReturn(0);
-        //assert
-        assertEquals(0, c.compareTo(new Todo(1)));
-}
-
-// now check if method testing was called with the parameter 12
-verify(test).testing(ArgumentMatchers.eq(12));
-
-// was the method called twice?
-verify(test, times(2)).getUniqueId();
+- SEE ALSO
+    - site.mockito.org/
+    - vogella.com/tutorials/Mockito/article.html
