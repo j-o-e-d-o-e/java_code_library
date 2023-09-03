@@ -5,9 +5,14 @@ testing
 - annotations for unit-tests
     - @ExtendWith(MockitoExtension.class): for test-class
     - @InjectMocks: for SUT ("system under test")
-    - @Mock: for dependencies used by SUT
+    - @Mock: for dependencies used by SUT to be mocked
         - when(T methodCall).thenReturn(R val): returns val when mock is invoked
+- annotations for integration-tests
+    - @SpringBoot: for test-class
+    - @Autowired: for SUT (and other beans to be injected)
+    - @MockBean: for dependencies used by SUT to be mocked
 
 - SEE ALSO
     - site.mockito.org/
     - vogella.com/tutorials/Mockito/article.html
+    - stackoverflow.com/questions/70035681/spring-boot-mockito-injectmocks-how-to-mock-selected-dependencies-only
