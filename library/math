@@ -3,6 +3,12 @@ Math
 utiliy class
 
 - random() returns pseudo-random float between 0 and 1
+- round(float a) returns the closest int to a
+- ...
 
 EXAMPLE
-int rand = (int) (Math.random() * 5) + 1;
+int[] a = {1, 2, 3, 4, 5, 6};
+int sum = Arrays.stream(a).sum();                        // sum = 21
+long count = Arrays.stream(a).filter(i-> i < 3).count(); // count = 2
+float percentage = count / (float) sum * 100;            // percentage = 9.523809
+percentage = Math.round(percentage * 100) / 100f;        // percentage = 9.52
