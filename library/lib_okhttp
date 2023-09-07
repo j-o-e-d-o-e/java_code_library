@@ -1,0 +1,8 @@
+lib->okhttp
+
+http-client
+
+- for creating requests, sending and receiving network calls
+
+- SEE ALSO
+    - vogella.com/tutorials/JavaLibrary-OkHttp/article.html
