@@ -70,4 +70,4 @@ m.computeIfPresent("e", (k, v) -> null);        // {a=1, b=2, c=13, d=10}
 m.replace("b", 2, 4); // {a=1, b=4, c=13, d=10}
 m.replaceAll((k, v) -> k.compareTo("b") < 0 ? v: v + 10);     // {a=1, b=14, c=23, d=20}
 
-m.merge("a", 100, Integer::sum);    // {a=11, b=14, c=23, d=20}
+m.merge("a", 100, Integer::sum);    // {a=101, b=14, c=23, d=20}
