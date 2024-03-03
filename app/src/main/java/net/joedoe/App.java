@@ -17,7 +17,7 @@ import static net.joedoe.Format.format;
 import static net.joedoe.Format.outputFormat;
 
 public class App {
-    static final String DIR = "./library";
+    static final String DIR = "/home/joe/prog/java/code_library/library";
     static final int TOC = 0;
     static final int EXIT = 667;
     static final String[] LITERATURE = {

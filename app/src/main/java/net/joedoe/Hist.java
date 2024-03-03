@@ -6,8 +6,6 @@ import java.time.Instant;
 import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.Objects;
-
-
 class Hist extends DefaultHistory {
     @Override
     protected void internalAdd(Instant time, String line, boolean checkDuplicates) {
