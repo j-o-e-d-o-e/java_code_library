@@ -11,8 +11,58 @@ testing
     - @SpringBoot: for test-class
     - @Autowired: for SUT (and other beans to be injected)
     - @MockBean: for dependencies used by SUT to be mocked
+- dependency vector (additionally to JUnit 5)
+    <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-junit-jupiter</artifactId>
+        <version>5.11.0</version>
+    </dependency>
 
 - SEE ALSO
     - site.mockito.org/
     - vogella.com/tutorials/Mockito/article.html
     - stackoverflow.com/questions/70035681/spring-boot-mockito-injectmocks-how-to-mock-selected-dependencies-only
+
+EXAMPLE
+// production
+public class IntegerService {
+    private final Database<Integer> database;
+
+    public IntegerService(Database<Integer> database) {
+        this.database = database;
+    }
+
+    public List<Integer> query(String query) {
+        return database.select(query);
+    }
+}
+
+public interface Database<T> {
+    List<T> select(String query);
+}
+
+// test
+import java.util.List;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import static org.junit.jupiter.api.Assertions.*;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.when;
+
+@ExtendWith(MockitoExtension.class)
+class IntegerServiceTest {
+    @InjectMocks
+    IntegerService service;
+    @Mock
+    Database<Integer> databaseMock;
+
+    @Test
+    public void testQuery() {
+        assertNotNull(databaseMock);
+        when(databaseMock.select(anyString())).thenReturn(List.of(1, 2, 3));
+        assertEquals(List.of(1, 2, 3), service.query("select * from flights"));
+    }
+}

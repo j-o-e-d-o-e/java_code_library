@@ -2,7 +2,6 @@ Comparable
 
 built-in interface
 
-
 - Comparable<T> contains one single abstract method (SAM): compareTo(T o)
 - may be declared in
     (1) class definition
@@ -21,11 +20,11 @@ record Person(String name) implements Comparable<Person> {
     }
 }
 List<Person> ls = new ArrayList<>(List.of(new Person("mary"), new Person("joe")));
-Collections.sort(ls); // ls = [Person[name=joe], Person[name=mary]]
+Collections.sort(ls);               // ls = [Person[name=joe], Person[name=mary]]
 
 (2)
 static <T extends Comparable<T>> T max(T m, T n) {
     return m.compareTo(n) > 0 ? m : n;
 }
-String max1 = max("cat", "dog");// max1 = dog
-Integer max2 = max(2, 1);// max2 = 2
+String max1 = max("cat", "dog");    // max1 = dog
+Integer max2 = max(2, 1);           // max2 = 2

@@ -10,12 +10,11 @@ generics
         - e.g. List<T extends Number & Comparable>: list of Number and its subtypes that implement Comparable
         - classes declared before interfaces (here: Number before Comparable)
 (2) generic methods
-    - <T> T name(T t)
-    - type parameter (here: <T>) before return type (here: T)
-    - multiple type params separated by commas within diamond opreator
+    - <T> T name(T t): type parameter (here: <T>) before return type (here: T)
+    - multiple type params separated by commas within diamond operator
 
 - see also
-    - entry comparable
+    - entry: comparable
     - /exercism/java/binary-search-tree
     - baeldung.com/java-generics
 

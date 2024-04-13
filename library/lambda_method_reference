@@ -9,7 +9,6 @@ lambda->method::reference
     (3) an instance method of a particular obj: instance::instanceMethod
     (4) an instance method of an arbitrary obj of a particular type: Class:instanceMethod
 
-
 EXAMPLE
 (1)
 Supplier<StringBuilder> supplier = StringBuilder::new;

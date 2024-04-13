@@ -3,8 +3,7 @@ Map
 data structure
 
 - unordered collection containing key/value-pairs with unique keys only
-- implementing classes: HashMap<K, V>, LinkedHashMap<K, V>, TreeMap<K, V>
-- methods
+- implementing classes: HashMap<K, V> (here), LinkedHashMap<K, V>, TreeMap<K, V>
 (1) add/update
     - put(K key, V val) adds/updates entry and returns null or previous val
         - if key is present, updates val and returns previous val
@@ -42,7 +41,7 @@ data structure
         - returned set is backed by the map, so changes to the map are reflected in the set, and vice-versa
     - keySet() returns a Set<K> of the keys
         - returned set is backed by the map
-    - values() returns a Collection<V> of th vals
+    - values() returns a Collection<V> of the vals
         - returned collection is backed by the map
 (6) check
     - containsKey(Object key) returns true if map contains key
@@ -56,19 +55,19 @@ data structure
     - stackoverflow.com/questions/2889777/difference-between-hashmap-linkedhashmap-and-treemap
 
 EXAMPLE
-Map<String, Integer> m = new HashMap<>(Map.of("a", 1, "b", 2)); // {a=1, b=2}
+Map<String, Integer> m = new HashMap<>(Map.of("a", 1, "b", 2));
 (1)
-m.put("c", null);           // {a=1, b=2, c=null}
-m.putIfAbsent("c", 3);      // {a=1, b=2, c=3}
+m.put("c", null);                                           // {a=1, b=2, c=null}
+m.putIfAbsent("c", 3);                                      // {a=1, b=2, c=3}
 
 BiFunction<String, Integer, Integer> bi = (k, v) -> (v == null) ? 10 : v + 10;
-m.compute("c", bi);         // {a=1, b=2, c=13}
-m.compute("d", bi);         // {d=10, a=1, b=2, c=13}
+m.compute("c", bi);                                         // {a=1, b=2, c=13}
+m.compute("d", bi);                                         // {d=10, a=1, b=2, c=13}
 
-m.computeIfAbsent("e", k -> (int) k.charAt(0)); // {a=1, b=2, c=13, d=10, e=101}
-m.computeIfPresent("e", (k, v) -> null);        // {a=1, b=2, c=13, d=10}
+m.computeIfAbsent("e", k -> (int) k.charAt(0));             // {a=1, b=2, c=13, d=10, e=101}
+m.computeIfPresent("e", (k, v) -> null);                    // {a=1, b=2, c=13, d=10}
 (3)
 m.replace("b", 2, 4); // {a=1, b=4, c=13, d=10}
-m.replaceAll((k, v) -> k.compareTo("b") < 0 ? v: v + 10);     // {a=1, b=14, c=23, d=20}
+m.replaceAll((k, v) -> k.compareTo("b") < 0 ? v: v + 10);   // {a=1, b=14, c=23, d=20}
 
-m.merge("a", 100, Integer::sum);    // {a=101, b=14, c=23, d=20}
+m.merge("a", 100, Integer::sum);                            // {a=101, b=14, c=23, d=20}

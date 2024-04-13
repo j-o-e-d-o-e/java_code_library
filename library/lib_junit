@@ -2,68 +2,41 @@ lib->junit
 
 testing
 
-- normally, original source-code and test-code are defined in two separate classes. Therefore, create a new TestClass as 'JUnit Test Case'.
-- test-classes are subclasses of 'junit.framework.TestCase': either TestClass 'extends junit.framework.TestCase' or 'import static org.junit.Assert.*'
-- testMethod needs to be 'public', 'void', have no parameters & begin with 'test...()'
-- 'assertEquals(["message"],expected, actual) checks if the values for 'expected' and 'actual' are equal. '["message"]' is optional and gets displayed if test fails
-- 'setUp()' is used for initialization of objects and is executed before testMethod. 'tearDown()' is executed after testMethod for shutdown
+- assertions: bundled in org.junit.jupiter.api.Assertions
+- dependency vector
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>5.9.2</version>
+        <scope>test</scope>
+    </dependency>
 
 EXAMPLE
-import static org.junit.Assert.*;
-
-import org.junit.Test; // needed for '@Test'-functionality
-
-class Add {
-    public int add(int x, int y) {
-        int z = x + y;
-        return z;
-    }
+// Production
+@FunctionalInterface
+interface MathOperation {
+    int apply(int a, int b);
 }
 
-// class name 'Test' is not allowed
-public class TestAdd {
-
-    @Test // indicates JUnit that method is part of test
-    public void testAdd() {
-        Add a = new Add();
-        int expected = 5;
-        int result = a.add(2, 3);
-        assertEquals(expected, result); // correct
-        assertEquals("Leider falsch", 6, a.add(2, 3));
-        // prompts: Leider falsch expected:<6> but was:<5>
-    }
-
-    /*
-     * @Test. 'test2Add()' is not part of test, since '@Test' is invalid.
-     * Applies only if 'import static org.junit.Assert.*' is used instead of
-     * 'public class TestAdd extends junit.framework.TestCase'
-     */
-    public void test2Add() {
-        Add b = new Add();
-        assertEquals(5, b.add(2, 3));
-    }
-}
--------------------------
-//alternatively, using 'setUp()':
-
-class Add {
-    public int add(int x, int y) {
-        int z = x + y;
-        return z;
-    }
+class Plus {
+    static MathOperation op = Integer::sum;
 }
 
-public class TestAdd extends junit.framework.TestCase {
-    Add a;
+class Minus {
+    static MathOperation op = (a, b) -> a - b;
+}
+// Test suite
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
-    public void setUp() {
-        a = new Add();
+class MathOperationTest {
+    @Test
+    void plus() {
+        assertEquals(3, Plus.op.apply(1, 2));
     }
 
-    public void testAdd() {
-        int expected = 5;
-        int result = a.add(2, 3);
-        assertEquals(expected, result); // correct
+    @Test
+    void minus() {
+        assertEquals(-1, Minus.op.apply(1, 2));
     }
 }
-#testing

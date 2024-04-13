@@ -3,15 +3,15 @@ Integer
 utility class
 
 - retrieve
-    - max(int a, int b) returns the greater of two int vals
-        alternatively, Math.max(int a, int b)
-    - min(int a, int b) returns the smaller of two int vals
-        - alternatively, Math.min(int a, int b)
+    - max(int a, int b) returns the greater of a and b
+        alternatively: Math.max(int a, int b)
+    - min(int a, int b) returns the smaller
+        - alternatively: Math.min(int a, int b)
     - sum(int a, int b) returns sum
     - valueOf(int x) boxes x
     - valueOf(String s, int radix) returns val represented by s in the specified radix
         - radix: base (optional)
-        - if no radix given, equivalent to: parseInt(String s)
+        - if radix not given, equivalent to: parseInt(String s)
     - parseInt(CharSequence s, int begin, int end, int radix ) returns int represented by subsequence in radix
 - compare
     - compareTo(int x, int y) compares two ints

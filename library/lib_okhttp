@@ -3,6 +3,11 @@ lib->okhttp
 http-client
 
 - for creating requests, sending and receiving network calls
+- dependency vector
+    <dependency>
+        <groupId>com.squareup.okhttp3</groupId>
+        <artifactId>okhttp</artifactId>
+    </dependency>
 
 - SEE ALSO
     - vogella.com/tutorials/JavaLibrary-OkHttp/article.html

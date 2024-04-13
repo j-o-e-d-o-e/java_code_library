@@ -2,9 +2,14 @@ enum
 
 data type
 
-- a set of predefined constants
-- ordinal() returns index of this according to declaration-order (starting at zero)
-- values() returns array containing all constants in declaration-order
+- static methods
+    - values() returns array containing all constants in declaration-order
+    - valueOf(String name) returns enum constant according to specified name
+- instance methods 
+    - ordinal() returns index of this according to declaration-order (starting at zero)
+    - name() returns name of this constant as declared
+    - compareTo(T o)
+    - equals(Object o)
 
 - SEE ALSO: /exercism/java/food-chain
 

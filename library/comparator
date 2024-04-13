@@ -3,22 +3,22 @@ Comparator
 utility class
 
 - @FunctionalInterface with single abstract method (SAM): compare(T o1, T o2)
-    - unlike Comparable<T>, since its SAM compareTo(T o) requires `this` in the defined scope as 2nd value
-- compare(T o1, T o2) compares o1 and o2 and returns a negative int (if o1 < o2), zero, or a positive int
-- default implementations
-(1) comparing(Function<T, ? extends U> extract, Comparator<U> comp) returns a Comparator<T> that compares by val returned by extract using comp
-    - extract: func that extracts a sort key of type T
-    - comp: comparison func (optional)
-    - specializations for primitives: int, double, long, e.g.
-        - comparingInt(ToIntFunction<T> extract) returns a Comparator<T> that compares by int returned by extract
-(2) nullsFirst(Comparator<T> comp) returns null-friendly comparator that considers null to be less than non-null
-(3) nullsFirst(Comparator<T> comp) returns null-friendly comparator that considers null to be greater than non-null
-(4) naturalOrder() returns comparator that compares Comparable objs in natural order
-(5) reverseOrder() returns comparator that imposes the reverse of the natural ordering
-- methods on Comparator<T>
-(6) thenComparing(Function<T, ? extends U> extract, Comparator<U> comp) returns composed comparator of this and then the sort key returned by extract using comp
-    - specializations for primitives: int, double, long, e.g.
-        - thenComparingInt(ToIntFunction<T> extract) returns a Comparator<T> that compares by int returned by extract
+    - with 2 args, unlike Comparable<T> (compareTo(T o) uses `this` in defining scope as 2nd arg)
+- compare(T o1, T o2) compares o1 and o2 and returns negative int (if o1 < o2), zero, or a positive int
+(1) static methods
+    - comparing(Function<T, ? extends U> extract, Comparator<U> comp) returns Comparator<T>
+        - extract: func that extracts sort-key of type T
+        - comp: comparison func (optional)
+        - specializations for primitives: int, double, long, e.g.
+            - comparingInt(ToIntFunction<T> extract) returns a Comparator<T> that compares by int returned by extract
+    - nullsFirst(Comparator<T> comp) returns null-friendly comparator that considers null to be less than non-null
+        - similar, nullsLast(Comparator<T> comp): for null to be greater than non-null
+    - naturalOrder() returns comparator that compares Comparable objs in natural order
+        - similar, reverseOrder(): for the reverse of the natural ordering
+(2) methods on Comparator<T>
+    - thenComparing(Function<T, ? extends U> extract, Comparator<U> comp) returns composed comparator
+        - specializations for primitives: int, double, long, e.g.
+            - thenComparingInt(ToIntFunction<T> extract) returns a Comparator<T> that compares by int returned by extract
 
 - SEE ALSO
     - baeldung.com/java-8-comparator-comparing
@@ -30,7 +30,7 @@ List<Person> ls = new ArrayList<>(List.of(new Person("Mary", "Jane"), new Person
 Comparator<Person> byLastName = Comparator.comparing(p -> p.lastName);
 ls.sort(byLastName);
 // ls = [Person[firstName=Joey, lastName=Doe], Person[firstName=Joe, lastName=Doe], Person[firstName=Mary, lastName=Jane]]
-(6)
+(2)
 Comparator<Person> byLastNameThenByFirstName = byLastName.thenComparing(Person::firstName);
 ls.sort(byLastNameThenByFirstName);
 // ls = [Person[firstName=Joe, lastName=Doe], Person[firstName=Joey, lastName=Doe], Person[firstName=Mary, lastName=Jane]]

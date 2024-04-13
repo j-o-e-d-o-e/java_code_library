@@ -3,13 +3,11 @@ Collections
 utility class
 
 (1) create
-    - emptyList() returns empty, immutable list
-    - emptySet() returns empty, immutable set
-    - emptyMap() returns empty, immutable map
-    - singletonList(T o) returns an immutable list containing only o
-    - singleton(T o) returns an immutable set containing only o
-    - singletonMap(K key, V val) returns an immutable map containing only the specified entry
-    - nCopies(int n, T o) returns immutable list consisting of n copies of o
+    - emptyList() returns empty, immutable List<T>
+        - for Set<T>, Map<K, V>: emptySet(), emptyMap()
+    - singletonList(T o) returns an immutable List<T> containing only o
+        - for Set<T>, Map<K, V>: singleton(T o), singletonMap(K key, V val)
+    - nCopies(int n, T o) returns immutable List<T> consisting of n copies of o
 (2) add
     - addAll(Collection<T> c, T... elems) adds elems to the end of c and returns boolean
         - useful to to add multiple single elems or an array of single elems
@@ -18,20 +16,21 @@ utility class
         - comp: func (optional)
     - min(Collection<? extends T> c, Comparator<T> comp) returns min elem
     - indexOfSubList(List<?> src, List<?> target) returns starting pos of 1st occurrence of target within src
-        - if no such occurrence, returns -1
+        - if not present, returns -1
     - lastIndexOfSublist(List<?> src, List<?> target) returns starting pos of last occurrence
 (4) modify
+    - replaceAll(List<T> ls, T old, T nw) replaces all occurrences of old with nw
+        - if old present in ls, returns true
     - fill(List<T> ls, T o) replaces all elems of ls with o
-    - rotate(List<?> ls, int distance) rotates elems in list by distance
-    - shuffle(List<?> ls, Random rand) randomly permutes ls using rand (optional)
     - swap(List<?> ls, int i, int j) swaps elems at indices i and j in ls
     - reverse(List<?> ls) reverses ls
-    - replaceAll(List<T> ls, T old, T nw) replaces all occurrences of old in ls with nw and returns boolean
-        - if ls contained one or more elems equal to old, returns true
+    - rotate(List<?> ls, int distance) shifts all elems in list by distance
+        - if distance neg resp pos, shifts to left resp right
+    - shuffle(List<?> ls, Random rand) randomly permutes ls using rand (optional)
 (5) search
     - binarySearch(List<? extends T> ls, T key, Comparator<T> comp) returns index of key in ls
-        - if key is not present, returns -1
-        - ls must be sorted into a-/descending order prior to making this call
+        - if key not present, returns -1
+        - ls must be sorted into a-/descending order prior to invocation
         - comp: comparator used for sorting (optional)
 (6) check
     - disjoint(Collection<?> c1, Collection<?> c2) returns true if c1 and c2 have no elems in common
@@ -45,18 +44,20 @@ utility class
 
 EXAMPLE
 (1)
-List<Integer> ls = new ArrayList<>(Collections.nCopies(2, 1));
-ls.addAll(Collections.nCopies(2, 2)); // ls = [1, 1, 2, 2]
+List<Integer> l = new ArrayList<>(Collections.nCopies(2, 1));
+l.addAll(Collections.nCopies(2, 2)); // l = [1, 1, 2, 2]
 (2)
-Collections.addAll(ls, 3, 3); // ls = [1, 1, 2, 2, 3, 3]
+Collections.addAll(l, 3, 3); // l = [1, 1, 2, 2, 3, 3]
 (4)
-List<String> l = new ArrayList<>(List.of("b", "c", "d", "e", "a"));
-Collections.rotate(l, 1); // l = [a, b, c, d, e]
-List<String> sub = l.subList(1, 4); // sub = [b, c, d]
-Collections.rotate(sub, -1); // l =  [a, c, d, b, e]
+List<String> m = new ArrayList<>(List.of("b", "c", "d", "e", "a"));
+Collections.rotate(m, 1);           // m = [a, b, c, d, e]
+List<String> sub = m.subList(1, 4); // sub = [b, c, d]
+Collections.rotate(sub, -1);        // sub = [c, d, b]
+                                    // m = [a, c, d, b, e]
 (5+7)
-Collections.sort(l); // l = [a, b, c, d, e]
-int x = Collections.binarySearch(l, "b"); // x = 1
+List<Integer> n = new ArrayList<>(List.of(5, 2, 4, 1, 3));
+Collections.sort(n);                    // n = [1, 2, 3, 4, 5]
+int x = Collections.binarySearch(n, 3); // x = 2
 (6)
 int y = Collections.frequency(List.of(1, 1, 2, 3), 1); // y = 2
 (8)

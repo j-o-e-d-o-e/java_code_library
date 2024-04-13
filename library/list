@@ -3,7 +3,7 @@ List
 data structure
 
 - ordered, indexed collection implementing Collection<T>
-- implementing classes: ArrayList<T>, LinkedList<T>, Stack<T>
+- implementing classes: ArrayList<T> (here), LinkedList<T>, Stack<T>
 (1) add
     - add(T elem) appends elem and returns true/false
     - add(int index, T elem) inserts elem at index
@@ -22,13 +22,13 @@ data structure
     - set(int index, T elem) replaces elem at index with specified elem and returns former elem
     - replaceAll(UnaryOperator<T> func) replaces each elem with result of applying func to that elem
 (4) delete
-    - clear() removes all elems
     - remove(int index) removes elem at index and returns elem
         - shifts subsequent elems to the left
     - remove(Object o) removes 1st occurence of o and returns true if o in list
     - removeIf(Predicate<E> pred) removes all elems that satisfy pred
     - removeAll(Collection<?> c) removes all elems that are in c and returns true/false
     - retainAll(Collection<?> c) removes all elems that are not in c and returns true/false
+    - clear() removes all elems
 (5) convert
     - stream() returns Stream<T> with this collection as its source
     - toArray(IntFunction<T[]> generator) returns new array T[] containing all elems in this collection
@@ -53,19 +53,18 @@ data structure
 EXAMPLE
 (2)
 List<Integer> a = new ArrayList<>(List.of(1, 2, 3));
-a.subList(1, 3).clear(); // a = [1]
+a.subList(1, 3).clear();                                // a = [1]
 (3)
-List<String> a = new ArrayList<>(List.of("joe", "doe"));
-a.replaceAll(s -> s + "y"); // [joey, doey]
+List<String> b = new ArrayList<>(List.of("joe", "doe"));
+b.replaceAll(s -> s + "y");                             // b = [joey, doey]
 (4)
-List<Integer> a = new ArrayList<>(List.of(1, 2, 3));
-a.remove(Integer.valueOf(1)); // [2, 3]
+List<Integer> c = new ArrayList<>(List.of(1, 2, 3));
+c.remove(Integer.valueOf(1));                           // c = [2, 3]
 
-List<Integer> a = new ArrayList<>(List.of(1, 2, 3));
-a.retainAll(List.of(1, 2));  // [1, 2]
+List<Integer> d = new ArrayList<>(List.of(1, 2, 3));
+d.retainAll(List.of(1, 2));                             // d = [1, 2]
 (5)
-List<Integer> a = new ArrayList<>(List.of(1, 2, 3));
-Integer[] b = a.toArray(Integer[]::new); // b = [1, 2, 3]
+Integer[] e = List.of(1, 2, 3).toArray(Integer[]::new); // e = [1, 2, 3]
 (7)
 static <T> List<Integer> allOccurrences(List<T> ls, T elem) {
     List<Integer> res = new ArrayList<>();
@@ -78,6 +77,7 @@ static <T> List<Integer> allOccurrences(List<T> ls, T elem) {
     }
     return res;
 }
+List<Integer> f = allOccurrences(List.of(1,3,3), 3);    // f = [1, 2]
 (8)
-List<Integer> a = new ArrayList<>(List.of(3, 1, 2));
-a.sort(Comparator.naturalOrder()); // [1, 2, 3]
+List<Integer> g = new ArrayList<>(List.of(3, 1, 2));
+g.sort(Comparator.naturalOrder());                      // g = [1, 2, 3]

@@ -14,13 +14,11 @@ data type
 EXAMPLE
 (1)
 BigInteger bg = BigInteger.valueOf(123L);
-bg = bg.add(BigInteger.valueOf(321L));
-System.out.println(bg); // 444
-bg = bg.mod(BigInteger.valueOf(4L));
-System.out.println(bg); // 0
+bg = bg.add(BigInteger.valueOf(321L));  // 444
+bg = bg.mod(BigInteger.valueOf(4L));    // 0
 (2)
-// computes power with big int as exponent
-BigInteger pow(BigInteger base, BigInteger exponent) {
+/** computes power with big int as exponent */
+static BigInteger pow(BigInteger base, BigInteger exponent) {
     BigInteger res = BigInteger.ONE;
     while (exponent.signum() > 0) {
         if (exponent.testBit(0)) res = res.multiply(base);

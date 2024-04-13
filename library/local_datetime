@@ -9,7 +9,7 @@ LocalDateTime
     - from(TemporalAccessor temporal)
     - parse(CharSequence text, DateTimeFormatter formatter)
         - formatter: optional
-(2) methods on LocalDate-obj
+(2) instance methods of LocalDate
 - get
     - get(TemporalField field)
     - getMonth(), getYear(), getDayOfWeek(), getDayOfMonth, getDayOfYear, etc.

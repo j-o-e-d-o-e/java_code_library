@@ -4,16 +4,16 @@ LocalDateTime->Period/Duration
 
 - Period
     - represents time in terms of years, months and days
-    - used to modify LocalDate or to obtain difference between two of them
+    - to modify LocalDate or to obtain difference between two of them
 - Duration
     - represents time in terms of seconds and nanoseconds
-    - used to modify LocalDateTime or to obtain difference between two of them
+    - to modify LocalDateTime or to obtain difference between two of them
 (1) static methods of Period
     - of(int years, int months, int days)
     - ofDays(int i), ofWeeks(int i), ofMonths(int i ), ofYears(int i)
     - between(LocalDate startDateInclusive, endDateExclusive)
     - from(TemporalAmount amount)
-(2) methods on Period-obj
+(2) instance methods of Period
 - get
     - get(TemporalUnit unit)
     - getDays(), getMonths(), getYears()

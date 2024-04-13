@@ -2,10 +2,10 @@ javadocs
 
 documentation
 
-- '@param' describes a method parameter
-- '@return' describes the return value
-- '@throws' describes an exception that may be thrown
-- '@see' provides a link to other element of documentation
+- @param: describes a method parameter
+- @return: describes the return value
+- @throws: describes an exception that may be thrown
+- @see: provides a link to other element of documentation
 
 EXAMPLE
 /**
