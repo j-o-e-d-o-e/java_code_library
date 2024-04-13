@@ -11,7 +11,8 @@ data type
     - compareTo(T o)
     - equals(Object o)
 
-- SEE ALSO: /exercism/java/food-chain
+- SEE ALSO
+    - /exercism/java/food-chain
 
 EXAMPLE
 enum WeekDay {

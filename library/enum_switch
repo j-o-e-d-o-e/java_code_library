@@ -9,6 +9,9 @@ enum->switch
     - only block of matching condition is executed
     - break not needed
 
+- SEE ALSO
+    - ~/prog/exercism/java/calculator-conundrum
+
 EXAMPLE
 byte monat = 2;
 String days = switch (monat) {
