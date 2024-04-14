@@ -20,3 +20,6 @@ utility class
 
 - SEE ALSO
     - javatpoint.com/java-string-format
+
+EXAMPLE
+String a = String.join("+", "%s", "%s").formatted("joe", "mary"); // joe+mary

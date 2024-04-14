@@ -4,11 +4,11 @@ Thread->ThreadExecutor
 
 - allows to run Runnables and Callables without creating new threads
 - takes care of thread-creation and re-using the already created ones (thread pools)
-- framework since JDK5
 - factory methods to create thread pools, e.g.
     - newCachedThreadPool(): threads are created as needed
     - newFixedThreadPool(int n): fixed sized thread pool
     - newSingleThreadExecutor(): single thread
+- framework since JDK5
 
 - SEE ALSO
     - geeksforgeeks.org/thread-pools-java/
@@ -46,7 +46,7 @@ public static void main(String[] args) {
     });
     executor.shutdown();
 }
-// summary:
+// summary (abbreviated output):
 // Initialize task 1-3: 00:00
 // Execute task 1-3: 00:01-00:03
 // Completed first two tasks, e.g. 2 & 3

@@ -2,46 +2,46 @@ varargs
 
 
 
-- variable arguments allow methods to take a variable number of arguments of the same type
+- variable arguments allow methods to take variable number of args of the same type
 - need to be last method param
 
+- SEE ALSO
+    - /exercism/java/two-buckets
+
 EXAMPLE
-// FROM: exercism/java/two-buckets
-static class Move {
-    Operation op;
-    Bucket actor, other;
+static class Bucket {
+    int size;
+    int amount;
 
-    Move(Operation op, Bucket... buckets) {
-        this.op = op;
-        this.actor = buckets[0];
-        this.other = buckets.length == 2 ? buckets[1] : null;
-        this.op.apply(this.actor, this.other);
+    Bucket(int size, int amount) {
+        this.size = size;
+        this.amount = amount;
     }
+}
 
-    enum Operation {
-        // pouring from either bucket to another
-        POUR {
-            public void apply(Bucket... buckets) {
-                if (buckets[0].amount >= (buckets[1].size - buckets[1].amount)) {
-                    buckets[0].amount -= (buckets[1].size - buckets[1].amount);
-                    buckets[1].amount = buckets[1].size;
-                } else {
-                    buckets[1].amount += buckets[0].amount;
-                    buckets[0].amount = 0;
-                }
-            }
-        }, // emptying either bucket and doing nothing to the other
-        EMPTY {
-            public void apply(Bucket... buckets) {
-                buckets[0].amount = 0;
-            }
-        }, // filling either bucket and doing nothing to the other
-        FILL {
-            public void apply(Bucket... buckets) {
-                buckets[0].amount = buckets[0].size;
-            }
-        };
+enum Operation {
+    POUR {  // pour from either bucket to another
+        public void apply(Bucket... buckets) {
+            buckets[1].amount += buckets[0].amount;
+            buckets[0].amount = 0;
+        }
+    },
+    EMPTY { // empty either bucket and doing nothing with the other
+        public void apply(Bucket... buckets) {
+            buckets[0].amount = 0;
+        }
+    },
+    FILL {  // fill either bucket and do nothing with the other
+        public void apply(Bucket... buckets) {
+            buckets[0].amount = buckets[0].size;
+        }
+    };
 
-        public abstract void apply(Bucket... buckets);
-    }
+    public abstract void apply(Bucket... buckets);
+}
+
+public static void main(String[] args) {
+    Bucket actor = new Bucket(3, 1);
+    Bucket other = new Bucket(3, 2);
+    Operation.POUR.apply(actor, other); // actor.amount = 0, other.amount = 3
 }

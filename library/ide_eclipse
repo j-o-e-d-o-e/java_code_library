@@ -6,7 +6,14 @@ ide->eclipse
     - ide: ~/eclipse/jee-2024-03/eclipse
     - workspace (config/artifacts): ~/eclipse-workspace
     - internal: ~/.eclipse
+- shortcuts
+    - F3: opens declaration in separate tab
+    - Shift+Ctrl+C: un-/comment line
+    - Shift+Ctrl+F: format src-file
+    - Shift+Ctrl+M: add import
+    - Ctrl+W: close tab
 
 - SEE ALSO
     - eclipse.org/downloads/packages/ (install)
     - itsfoss.com/install-latest-eclipse-ubuntu/ (install)
+    - baeldung.com/eclipse-shortcuts

@@ -3,7 +3,7 @@ Stream->custom collector
 
 
 - to create custom implementation, use following default factory method provided by interface Collector<T, A, R>
-    - allows to add a finishing transformation and to further adapt returnd collector via methods in Collectors
+    - allows to add a finishing transformation and to further adapt returned collector via methods in Collectors
     - invoked via: Stream<T>.collect(Collector<T, A, R> collector)
     - T: the type of input elems to the reduction operation
     - A: the mutable accumulation type of the reduction operation (often hidden as an implementation detail)
@@ -23,12 +23,15 @@ private static Collector<Integer, StringBuilder, String> createCollector(int end
         sb.append(i + 1).append(".").append(text[i]);
         if (i != end) sb.append("\n");
     };
-    BinaryOperator<StringBuilder> combiner = StringBuilder::append;
-    Function<StringBuilder, String> finisher = StringBuilder::toString;
+    BinaryOperator<StringBuilder> combiner = (sb1, sb2)-> sb1.append(sb2);
+    Function<StringBuilder, String> finisher = sb -> sb.toString();
     Collector<Integer, StringBuilder, String> collector = Collector.of(supplier, accumulator, combiner, finisher);
     return collector;
 }
-int start = 0, end = 3;
-Collector<Integer, StringBuilder, String> collector = createCollector(end);
-String res = IntStream.range(start, end).boxed().collect(collector);  // 3.mary
-                                                                      // 4.jane
+
+public static void main(String[] args) {
+    int start = 0, end = 2;
+    Collector<Integer, StringBuilder, String> collector = createCollector(end);
+    String res = IntStream.rangeClosed(start, end).boxed().collect(collector);  // 1.joe
+}                                                                               // 2.doe
+                                                                                // 3.mary

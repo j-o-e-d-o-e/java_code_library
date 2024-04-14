@@ -4,20 +4,20 @@ async
 
 - provides methods for composing, combining and executing async computation-steps and error handling
 - implements Future<T>, CompletionStage<T> (in java.util.concurrent)
-- init
+(1) init
     - CompletableFuture()
-    - CompletableFuture(Object r)
-- static methods, e.g.
+    - CompletableFuture(Object o)
+(2) static methods, e.g.
     - completedFuture(T val) returns completed CompletableFuture<T> containing val
     - failedFuture(Throwable ex) returns failed CompletableFuture<T> containing ex
     - runAsync(Runnable r) returns CompletableFuture<Void> that is completed async by r
     - supplyAsync(Supplier<T> s) returns CompletableFuture<T> that is completed async by s
     - allOf(CompletableFuture<?>... fs) returns CompletableFuture<Void> that is completed when all fs complete
-- instance methods, e.g.
+(3) instance methods, e.g.
     - get() returns result T (triggers completion and waits/blocks for the result to finish)
     - complete(T val) sets value returned by get() to val if not already completed and returns boolean
     - thenApply(Function<T, R> func) applies func to this stage's result and returns CompletableFuture<R>
-        - analogous to: Optional.map() and Stream.map()
+        - analog to: Optional.map() and Stream.map()
     - thenAccept(Consumer<T> action) performs action on this and returns CompletableFuture<Void>
     - thenRun(Runnable r) performs action and returns CompletableFuture<Void>
     - thenCompose(Function<T, CompletionStage<R>> func) returns CompletableFuture<R> returned by func
@@ -26,24 +26,26 @@ SEE ALSO
     - baeldung.com/java-completablefuture
 
 EXAMPLE
-int[] op1 = {1, 2, 3};
-int[] op2 = {4, 5, 6};
-AtomicInteger res1 = new AtomicInteger();
-AtomicInteger res2 = new AtomicInteger();
-List<CompletableFuture<Void>> ls1 = sumAsync(op1, res1);
-List<CompletableFuture<Void>> ls2 = sumAsync(op2, res2);
-CompletableFuture<Void> all = CompletableFuture.allOf(Stream.concat(ls1.stream(), ls2.stream()).toArray(CompletableFuture[]::new));
-try {
-    all.get();
-    Function<int[], String> join = ints -> Arrays.stream(ints).mapToObj(Integer::toString).collect(Collectors.joining(" + "));
-    System.out.printf("%n%s = %2d", join.apply(op1), res1.get());
-    System.out.printf("%n%s = %2d", join.apply(op2), res2.get());
-} catch (InterruptedException | ExecutionException e) {
-    e.printStackTrace();
-}
-
 static List<CompletableFuture<Void>> sumAsync(int[] ints, AtomicInteger a) {
     return Arrays.stream(ints)
-        .mapToObj(i -> CompletableFuture.runAsync(() -> System.out.printf("%-2d+%2d... ", a.getAndAdd(i), i)))
-        .toList();
+            .mapToObj(i -> CompletableFuture.runAsync(() -> System.out.printf("%-2d+%2d... ", a.getAndAdd(i), i)))
+            .toList(); // 0 + 1... 9 + 6... 4 + 5... 0 + 4... 3 + 3... 1 + 2... 
+}
+
+public static void main(String[] args) {
+    int[] op1 = {1, 2, 3};
+    int[] op2 = {4, 5, 6};
+    AtomicInteger res1 = new AtomicInteger();
+    AtomicInteger res2 = new AtomicInteger();
+    List<CompletableFuture<Void>> ls1 = sumAsync(op1, res1);
+    List<CompletableFuture<Void>> ls2 = sumAsync(op2, res2);
+    CompletableFuture<Void> all = CompletableFuture.allOf(Stream.concat(ls1.stream(), ls2.stream()).toArray(CompletableFuture[]::new));
+    try {
+        all.get();
+        Function<int[], String> join = ints -> Arrays.stream(ints).mapToObj(Integer::toString).collect(Collectors.joining(" + "));
+        System.out.printf("%n%s = %2d", join.apply(op1), res1.get()); // 1 + 2 + 3 =  6
+        System.out.printf("%n%s = %2d", join.apply(op2), res2.get()); // 4 + 5 + 6 = 15
+    } catch (InterruptedException | ExecutionException e) {
+        e.printStackTrace();
+    }
 }

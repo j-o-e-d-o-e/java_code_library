@@ -4,15 +4,15 @@ data types
 
 (1) Integer.toString(Integer i) converts i to String
 (2) Integer.parseInt(String s) converts s to Integer
-(3) (char) i converts i to char
-(4) (int) c converts c to int
+(3) (char) i: converts int i to char
+(4) (int) c: converts char c to int
 
 EXAMPLE
 (1)
-String a = Integer.toString(20); // a = 20
+String a = Integer.toString(20);    // a = 20
 (2)
-int b = Integer.parseInt("20"); // b = "20"
+int b = Integer.parseInt("20");     // b = "20"
 (3)
-int c = 'a';        // c = 97
+int c = 'a';                        // c = 97
 (4)
-char d = (char) 97; // d = 'a'
+char d = (char) 97;                 // d = 'a'

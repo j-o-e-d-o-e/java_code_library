@@ -11,9 +11,10 @@ static Map<Character, Integer> letterCounts(String input) {
             .filter(Character::isAlphabetic)
             .map(Character::toLowerCase)
             .boxed()
-            .collect(Collectors.toConcurrentMap(k -> (char) k.intValue(), k -> 1, Integer::sum));
+            .collect(Collectors.toConcurrentMap(k -> (char) k.intValue(), v -> 1, Integer::sum));
 }
+
 public static void main(String[] args) {
-    Map<Character, Integer> res = letterCounts("joe doe and mary jane");
+    Map<Character, Integer> res = letterCounts("Joe Doe and Mary Jane");
     System.out.println(res); // {a=3, r=1, d=2, e=3, y=1, j=2, m=1, n=2, o=2}
 }
