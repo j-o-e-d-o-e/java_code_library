@@ -3,6 +3,7 @@ Map->LinkedHashMap
 data structure
 
 - ordered subclass of HashMap<K, V>
+    - unlike HashMap, maintains a doubly-linked list running through all of its entries
     - maintains insertion order (by default, like List) or access order
 - init (additionally to hashmap)
     - LinkedHashMap(int initCapacity, float loadFactor, boolean accessOrder)

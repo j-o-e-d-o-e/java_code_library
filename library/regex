@@ -7,7 +7,7 @@ regex
         - limit: how many splits (optional)
     - replaceFirst(String regex, String repl) replaces 1st substring that matches regex with repl
     - replaceAll(String regex, String repl) replaces each substring that matches regex with repl
-    - matches(String regex) tells whether or not this string matches regex
+    - matches(String regex) returns true if this string matches regex
 (2) Pattern/Matcher classes
     - Pattern to define regex and create Matcher obj
         - compile(String regex): static method which returns Pattern obj

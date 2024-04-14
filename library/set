@@ -2,28 +2,31 @@ Set
 
 data structure
 
-- unordered iterable implementing Collection<T> containing only unique elems
-- implementing classes: HashSet<T>, LinkedHashSet<T>, TreeSet<T>
-(1) add
+- unordered collection with unique elems implementing Collection<T>
+- implementing classes: HashSet<T> (here), LinkedHashSet<T>, TreeSet<T>
+(1) init
+    - new HashSet()
+    - new HashSet(Collection<? extends T> c)
+(2) add
     - add(T elem) adds elem and returns true if elem is not already present
     - addAll(Collection<T> c) adds all elems from c and returns true if this set changed as a result
-        - if c is also a set, effectively modifies this set so that its value is the union of the two sets
-(2) retrieve
+        - if c is also a set, effectively modifies this set so that it is the union of the two sets
+(3) retrieve
     - size() returns number of elems in this set
-(3) delete
-    - clear() removes all elems
+(4) delete
     - remove(Object o) removes o and returns true if o was present
     - removeAll(Collection<?> c) removes all elems that are in c and returns true if this set changed
-        - if c is also a set, effectively modifies this set so that its value is the asymmetric set difference of the two sets
+        - if c is also a set, effectively modifies this set so that it is the asymmetric set difference of the two sets
     - retainAll(Collection<?> c) removes all elems that are not in c and returns true/false
-        - if c is also a set, effectively modifies this set so that its value is the intersection of the two sets
-(4) convert
+        - if c is also a set, effectively modifies this set so that it is the intersection of the two sets
+    - clear() removes all elems
+(5) convert
     - stream() returns Stream<T> with this collection as its source
     - toArray(IntFunction<T[]> generator) returns new array T[] containing all elems in this collection
-(5) iterate
+(6) iterate
     - iterator() returns Iterator<T> over elems
     - spliterator() returns Spliterator<T>
-(6) check
+(7) check
     - contains(Object o) returns true if this set contains o
     - containsAll(Collection<?> c) returns true if this set contains all elems of c
     - equals(Object o) returns true if o is a set and both have the same size and contain the same elems
@@ -31,10 +34,10 @@ data structure
 
 EXAMPLE
 Set<Integer> s = new HashSet<>(Set.of(1, 2, 3));
-(1)
-s.addAll(Set.of(1, 4));     // s = [1, 2, 3, 4]
-(3)
-s.removeAll(Set.of(1, 2));  // s = [3, 4]
-s.removeAll(Set.of(2, 3));  // s = [4]
+(2)
+s.addAll(Set.of(1, 4));                     // s = [1, 2, 3, 4]
 (4)
-Integer[] a = s.toArray(Integer[]::new); // a = [4]
+s.removeAll(Set.of(1, 2));                  // s = [3, 4]
+s.removeAll(Set.of(2, 3));                  // s = [4]
+(5)
+Integer[] a = s.toArray(Integer[]::new);    // a = [4]

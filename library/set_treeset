@@ -4,9 +4,9 @@ data structure
 
 - sorted set implementation of NavigableSet<T>, SortedSet<T>
     - maintains natural order or order by comparator given to constructor
-(1) init (additionally to set)
+- in the following, additionally to HashSet<T>
+(1) init
     - new TreeSet<>(Comparator<T> c) creates new, empty set ordered according to c
-- methods (additionally to set)
 (2) retrieve
     - first() returns 1st (lowest) elem according to order
     - last() returns last (highest) elem
@@ -33,13 +33,13 @@ data structure
 
 EXAMPLE
 (1)
-TreeSet<Integer> s = new TreeSet<>(Comparator.reverseOrder());
-s.addAll(Arrays.asList(1, 1, 3, 5)); // s = [3, 2, 1]
+TreeSet<Integer> a = new TreeSet<>(Comparator.reverseOrder());
+a.addAll(Arrays.asList(1, 1, 3, 5));                    // a = [5, 3, 1]
 (2)
-var s = new TreeSet<>(Set.of(1, 3, 5));
-Integer a = s.first(); // a = 1
-Integer b = s.ceiling(2); // b = 3
+var b = new TreeSet<>(Set.of(1, 3, 5));
+Integer x = b.first();                                  // x = 1
+Integer y = b.ceiling(2);                               // y = 3
 (3)
-Integer c = s.pollLast(); // c = 5
+Integer z = b.pollLast();                               // z = 5
 (4)
-var s = new TreeSet<>(Set.of(1, 3, 5)).descendingSet(); // s = [5, 3, 1]
+var c = new TreeSet<>(Set.of(1, 3, 5)).descendingSet(); // c = [5, 3, 1]

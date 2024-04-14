@@ -40,13 +40,14 @@ data structure
 
 EXAMPLE
 (1)
-TreeMap<String, Integer> m = new TreeMap<>(Comparator.reverseOrder());
-m.putAll(Map.of("a", 1, "b", 2));                               // {b=2, a=1}
+TreeMap<String, Integer> a = new TreeMap<>(Comparator.reverseOrder());
+a.putAll(Map.of("a", 1, "b", 2));                               // a = {b=2, a=1}
 (2)
-var m = new TreeMap<>(Map.of("a", 1, "c", 2));                  // {a=1, d=2}
-Map.Entry<String, Integer> x = m.firstEntry();                  // x = a=1
-String y = m.ceilingKey("b");                                   // y = c
+var b = new TreeMap<>(Map.of("b", 2, "a", 1 ));                 // b = {a=1, b=2}
+Map.Entry<String, Integer> x = b.firstEntry();                  // x = a=1
+String y = b.ceilingKey("b");                                   // y = b
 (3)
-Map.Entry<String, Integer> z = m.pollLastEntry();               // z = c=2
+Map.Entry<String, Integer> z = b.pollLastEntry();               // z = b=2
+                                                                // b = {a=1}
 (4)
-var m = new TreeMap<>(Map.of("a", 1, "b", 2)).descendingMap();  // {b=2, a=1}
+var c = new TreeMap<>(Map.of("a", 1, "b", 2)).descendingMap();  // c = {b=2, a=1}

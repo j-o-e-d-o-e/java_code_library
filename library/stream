@@ -56,6 +56,7 @@ sequential data structure
         - min(Comparator<T> comp) returns min according to c
         - max(Comparator<T> comp) returns max according to c
         - count() returns num of elems in this
+        - sum() returns sum of elems
         - findFirst() returns Optional<T> of 1st elem
         - findAny() is free to select any elem in this
     - returns something
@@ -73,33 +74,30 @@ sequential data structure
 
 EXAMPLE
 (1)
-Stream<Integer> s1 = Stream.of(1, 2, 3);
-Stream<Integer> s2 = Stream.iterate(4, i -> i < 7, i -> i + 1);
-Stream<Integer> s = Stream.concat(s1, s2);
-s.forEach(i -> System.out.printf("%d ", i));    // 1 2 3 4 5 6
-
+Stream<Integer> a = Stream.of(1, 2, 3);
+Stream<Integer> b = Stream.iterate(4, i -> i < 7, i -> i + 1);
+Stream<Integer> c = Stream.concat(a, b);
+c.forEach(i -> System.out.printf("%d ", i));                // 1 2 3 4 5 6
 (2)
-Stream<Integer> si = Stream.of(1, 2, 3);
-List<Integer> lsi = si.dropWhile(n -> n % 2 == 1).toList(); // [2, 3]
+Stream<Integer> d = Stream.of(1, 2, 3);
+List<Integer> lsd = d.dropWhile(i -> i % 2 == 1).toList();  // lsd = [2, 3]
 
-DoubleStream sd = Stream.of(1, 2).mapToDouble(i -> i + i / 10d);
-sd.forEach(d -> System.out.printf("%.2f ", d)); // 1.10 2.20
+DoubleStream e = Stream.of(1, 2).mapToDouble(i -> i + i / 10d);
+e.forEach(x -> System.out.printf("%.2f ", x));              // 1.10 2.20
 
-Stream<String> a = Stream.of("a", "b");
-List<String> lsa = a.flatMap(str -> Stream.of(str + 1, str + "2"))
-        .toList();  // lsa = [a1, a2, b1, b2]
+Stream<String> f = Stream.of("a", "b");
+List<String> lsf = f.flatMap(str -> Stream.of(str + 1, str + "2"))
+        .toList();                                          // lsf = [a1, a2, b1, b2]
 
-Stream<String> b = Stream.of("a", "b");
-List<String> lsb = b.<String>mapMulti((str, c) -> {
-    c.accept(str + 1);
-    c.accept(str + 2);
-}).toList();        // lsb = [a1, a2, b1, b2]
-
+Stream<String> g = Stream.of("a", "b");
+List<String> lsg = g.<String>mapMulti((str, i) -> {         // lsg = [a1, a2, b1, b2]
+    i.accept(str + 1);
+    i.accept(str + 2);
+}).toList();
 (3)
-Stream<Integer> s = Stream.of(3, 2, 1);
-Integer i = s.reduce(601, (res, elem) -> res + elem * 10 + 2); // i == 667
+Stream<Integer> h = Stream.of(3, 2, 1);
+Integer y = h.reduce(601, (acc, cur) -> acc + cur * 10 + 2);// y = 667
 
-StringBuilder res = IntStream.rangeClosed(97, 121)
-        .collect(() -> new StringBuilder(), (sb, e) -> sb.appendCodePoint(e), (sb1, sb2) -> sb1.append(sb2));
-        // .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append);
-        // abcdefghijklmnopqrstuvwxy
+StringBuilder z = IntStream.rangeClosed(97, 121)            // z = abcdefghijklmnopqrstuvwxy
+        .collect(() -> new StringBuilder(), (sb, x) -> sb.appendCodePoint(x), (sb1, sb2) -> sb1.append(sb2));
+// .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append);

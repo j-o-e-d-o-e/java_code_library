@@ -4,7 +4,10 @@ data structure
 
 - unordered collection containing key/value-pairs with unique keys only
 - implementing classes: HashMap<K, V> (here), LinkedHashMap<K, V>, TreeMap<K, V>
-(1) add/update
+(1) init
+    - new HashMap()
+    - new HashMap(Map<? extends K, ? extends V> m) 
+(2) add/update
     - put(K key, V val) adds/updates entry and returns null or previous val
         - if key is present, updates val and returns previous val
     - putIfAbsent(K key, V val) adds entry only if key is not present or its val is null
@@ -17,11 +20,11 @@ data structure
         - useful for creating a value for a key based on the given key
     - computeIfPresent(K key, BiFunction<K, V,V> func) updates val of key with result of func
         - if func returns null, removes entry
-(2) retrieve
+(3) retrieve
     - get(Object key) returns val of key or null if key not present
     - getOrDefault(Object key, V default) returns val of key or default if key not present
     - size() returns number of entries in this map
-(3) update
+(4) update
     - replace(K key, V val) updates val of key with given val if key is present and returns previous val
         - if key not present, returns null
     - replace(K key, V old, V new) updates val of key with new only if key maps to old and returns boolean
@@ -30,12 +33,12 @@ data structure
     - merge(K key, V val, BiFunction<V, V, V> func) replaces val of key with result of func if key is present
         - if key not present, adds key with given val
         - func merges previous val with given val
-(4) delete
+(5) delete
     - clear() removes all elems
     - remove(Object key) removes entry for key and returns its val if it was present
         - if key not present, returns null
     - remove(Object key, V val) removes entry for key and returns true if present
-(5) iterate
+(6) iterate
     - forEach(BiConsumer<K, V> func) applies func to each entry
     - entrySet() returns a Set<Map.Entry<K, V> of the entries in this map
         - returned set is backed by the map, so changes to the map are reflected in the set, and vice-versa
@@ -43,7 +46,7 @@ data structure
         - returned set is backed by the map
     - values() returns a Collection<V> of the vals
         - returned collection is backed by the map
-(6) check
+(7) check
     - containsKey(Object key) returns true if map contains key
     - containsValue(Object val) returns true if this map maps one or more keys to val
     - equals(Object o) returns true if o is a map and both have the same mappings
@@ -56,7 +59,7 @@ data structure
 
 EXAMPLE
 Map<String, Integer> m = new HashMap<>(Map.of("a", 1, "b", 2));
-(1)
+(2)
 m.put("c", null);                                           // {a=1, b=2, c=null}
 m.putIfAbsent("c", 3);                                      // {a=1, b=2, c=3}
 
@@ -66,7 +69,7 @@ m.compute("d", bi);                                         // {d=10, a=1, b=2, 
 
 m.computeIfAbsent("e", k -> (int) k.charAt(0));             // {a=1, b=2, c=13, d=10, e=101}
 m.computeIfPresent("e", (k, v) -> null);                    // {a=1, b=2, c=13, d=10}
-(3)
+(4)
 m.replace("b", 2, 4); // {a=1, b=4, c=13, d=10}
 m.replaceAll((k, v) -> k.compareTo("b") < 0 ? v: v + 10);   // {a=1, b=14, c=23, d=20}
 

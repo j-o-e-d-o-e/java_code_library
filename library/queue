@@ -6,19 +6,18 @@ data structure
     - designed for holding elems prior to processing
     - typically, orders its elems in FIFO manner (first in, first out)
 - implementing classes: LinkedList<T>, PriorityQueue<T>
-- methods
-    - add
-        - add(T elem) inserts elem at the end and return true upon success
-            - if insertion fails, throws Exception
-        - offer(T elem) inserts elem at the end and returns boolean
-    - retrieve
-        - element() returns the head (front)
-            - if queue is empty, throws Exception
-        - peek() returns the head or null if queue is empty
-    - remove
-        - remove() removes and returns elem from the front
-            - if queue is empty, throws Exception
-        - poll() removes and returns elem from the front or null if queue is empty
+(1) add
+    - add(T elem) inserts elem at the end and return true upon success
+        - if insertion fails, throws Exception
+    - offer(T elem) inserts elem at the end and returns boolean
+(2) retrieve
+    - element() returns the head (front)
+        - if queue is empty, throws Exception
+    - peek() returns the head or null if queue is empty
+(3) remove
+    - remove() removes and returns elem from the front
+        - if queue is empty, throws Exception
+    - poll() removes and returns elem from the front or null if queue is empty
 
 - SEE ALSO
     - javatpoint.com/java-queue

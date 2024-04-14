@@ -3,11 +3,11 @@ record
 data type
 
 - immutable data class
-    - instances allocated on the heap (like objs of classes)
+    - instances allocated on heap (like objs of classes)
 - automatically includes
     - public constructor
-    - getters for each field
-    - equals() returns true, if two objs have same type and vals
+    - getters: for each field
+    - equals(): returns true, if two objs have same type and vals
     - toString()
 - may be generic, e.g. record Person<T>(T first, T last){}
 - static vars and methods may be added

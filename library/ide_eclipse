@@ -1,0 +1,12 @@
+ide->eclipse
+
+
+
+- installed via official installer
+    - ide: ~/eclipse/jee-2024-03/eclipse
+    - workspace (config/artifacts): ~/eclipse-workspace
+    - internal: ~/.eclipse
+
+- SEE ALSO
+    - eclipse.org/downloads/packages/ (install)
+    - itsfoss.com/install-latest-eclipse-ubuntu/ (install)

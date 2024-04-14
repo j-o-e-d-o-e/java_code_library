@@ -2,9 +2,21 @@ Math
 
 utiliy class
 
-- random() returns pseudo-random float between 0 and 1
 - round(float a) returns the closest int to a
-- ...
+    - similar: round(double d) returns closest long to d
+- floor(double d) rounds down and returns it as double
+- ceil(double d) rounds up
+- floorDiv(int x, int y) returns rounded down res of division as int
+    - overloads: floorDiv(long x, int y), floorDiv(long x, long y)
+    - similar: floorMod(int x, int y)
+- abs(int x) returns abs val
+    - overloads: abs(float x), abs(double x), abs(long x)
+    - similar, with additional type checking: absExcact(int x)
+- max(int a, int b) returns the greater of a and b
+    - overloads for float, double, long
+- min(int a, int b) returns the smaller of a and b
+- pow(double a, double b) return a ** b as double
+- random() returns pseudo-random float between 0 and 1
 
 EXAMPLE
 int[] a = {1, 2, 3, 4, 5, 6};

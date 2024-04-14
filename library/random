@@ -2,20 +2,22 @@ Random
 
 built-in class
 
-- instance methods
-    - nextInt(int origin, int bound) returns int between origin (incl) and bound (excl)
-        - if origin resp. bound not given, defaults to 0 resp. Integer.MAX_VALUE
-        - if only one val given, bound is set
-    - nextFloat(float origin, float bound) returns float between origin (incl) and bound (excl)
-        - if origin resp. bound not given, defaults to 0.0 resp. 1        
-    - nextDouble(double origin, double bound) returns double between origin (incl) and bound (excl)
-    - nextBoolean() returns either true or false
-    - nextLong() returns long
-    - ints(long n, int origin, int bound) returns IntStream with n ints each between origin and bound
-        - if no args or origin and bound not given, returns infinitive stream
-    - doubles(long n, double origin, double bound) returns DoubleStream
-    - longs(long n, long origin, long bound) returns DoubleStream
+- init
+    - Random(): sets seed to val very likely to be distinct from any other invocation of this constructor
+    - Random(long seed): sets seed (initial value of the internal state) to seed
+- nextInt(int origin, int bound) returns int between origin (incl) and bound (excl)
+    - if origin resp. bound not given, defaults to 0 resp. Integer.MAX_VALUE
+    - if only one val given, bound is set
+- nextFloat(float origin, float bound) returns float between origin (incl) and bound (excl)
+    - if origin resp. bound not given, defaults to 0.0 resp. 1        
+- nextDouble(double origin, double bound) returns double between origin (incl) and bound (excl)
+- nextBoolean() returns either true or false
+- nextLong() returns long
+- ints(long n, int origin, int bound) returns IntStream with n ints each between origin and bound
+    - if no args or origin and bound not given, returns infinitive stream
+- doubles(long n, double origin, double bound) returns DoubleStream
+- longs(long n, long origin, long bound) returns DoubleStream
 
 EXAMPLE
-Random rand = new Random();
-int i = rand.nextInt(360);
+Random rand = new Random(System.currentTimeMillis());
+rand.ints(3, 0, 10).forEachOrdered(System.out::print);
