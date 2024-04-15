@@ -1,2 +1,0 @@
-# ./code_library
-gnome-terminal -- java -jar code_library.jar $1

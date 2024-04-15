@@ -2,16 +2,24 @@ ide->eclipse
 
 
 
-- installed via official installer
-    - ide: ~/eclipse/jee-2024-03/eclipse
-    - workspace (config/artifacts): ~/eclipse-workspace
-    - internal: ~/.eclipse
 - shortcuts
+    - F2: show javadocs
     - F3: opens declaration in separate tab
+    - F11: run
+    - Shift+Ctrl+F11: run with coverage
     - Shift+Ctrl+C: un-/comment line
     - Shift+Ctrl+F: format src-file
     - Shift+Ctrl+M: add import
     - Ctrl+W: close tab
+- installed via official installer
+    - ide: ~/eclipse/jee-2024-03/eclipse
+    - workspace (config/artifacts): ~/eclipse-workspace
+    - internal: ~/.eclipse
+- colors
+    - uses partially system-colors
+    - therefore to read javadocs, change color for tooltips
+        - in ubuntu: 
+        - in debian: System Settings -> Colors: edit current schema
 
 - SEE ALSO
     - eclipse.org/downloads/packages/ (install)
