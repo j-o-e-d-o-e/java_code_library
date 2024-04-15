@@ -3,22 +3,47 @@ ide->eclipse
 
 
 - shortcuts
-    - F2: show javadocs
-    - F3: opens declaration in separate tab
-    - F11: run
-    - Shift+Ctrl+F11: run with coverage
-    - Shift+Ctrl+C: un-/comment line
-    - Shift+Ctrl+F: format src-file
-    - Shift+Ctrl+M: add import
-    - Ctrl+W: close tab
+(1) edit
+    - move line: Alt+UP, Alt+DOWN
+    - delete line: Ctrl+D
+    - rename: Alt+Shift+R
+    - refactor: Alt+Shift+T (show options)
+    - auto completion: Ctrl+SPACE
+    - easy fix: Ctrl+1
+    - add import: Shift+Ctrl+M
+    - format file: Shift+Ctrl+F
+    - un-/comment line: Ctrl+/ (without Shift)
+        - alternatively, Shift+Ctrl+C
+    - find/replace: Ctrl+F
+    - open edit-menu: Alt+Shift+S
+(2) navigate
+    - close tab: Ctrl+W
+    - switch tabs: Ctrl+3 (opens Find Action)
+        - doubled: shows views etc.
+    - open resource: Ctrl+Shift+R (e.g. source-file)
+        - type first few letters for matching candidates
+    - open type: Ctrl+Shift+T (e.g. class declaration)
+    - find usage: Ctrl+G (once type is highlighted)
+    - go to line: Ctrl+L
+    - search: Ctrl+H
+(3) run
+    - run in debug: F11
+    - run with coverage: Shift+Ctrl+F11
+        - to remove highlighting: in tab Coverage, click X
+    - open run-menu: Alt+R
+(4) info
+    - show javadocs: F2
+    - open declaration: F3 (once highlighted)
 - installed via official installer
     - ide: ~/eclipse/jee-2024-03/eclipse
-    - workspace (config/artifacts): ~/eclipse-workspace
+    - workspace (config/artifacts): ~/eclipse-workspaces
+        - default: ~/eclipse-workspaces/default
     - internal: ~/.eclipse
 - colors
     - uses partially system-colors
     - therefore to read javadocs, change color for tooltips
-        - in ubuntu: 
+        - in ubuntu
+            - temporary: WEBKIT_DISABLE_COMPOSITING_MODE=1 ./eclipse
         - in debian: System Settings -> Colors: edit current schema
 
 - SEE ALSO
