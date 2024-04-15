@@ -2,9 +2,10 @@ ide->eclipse
 
 
 
-- shortcuts
+- shortcuts (see: Windows->Preferences->General->Keys)
 (1) edit
     - move line: Alt+UP, Alt+DOWN
+    - copy line: Ctrl+Alt+C (user-defined)
     - delete line: Ctrl+D
     - rename: Alt+Shift+R
     - refactor: Alt+Shift+T (show options)
@@ -36,8 +37,9 @@ ide->eclipse
     - open declaration: F3 (once highlighted)
 - installed via official installer
     - ide: ~/eclipse/jee-2024-03/eclipse
-    - workspace (config/artifacts): ~/eclipse-workspaces
+    - workspace: ~/eclipse-workspaces
         - default: ~/eclipse-workspaces/default
+        - includes configs/artifacts, e.g. which jdk
     - internal: ~/.eclipse
 - colors
     - uses partially system-colors
