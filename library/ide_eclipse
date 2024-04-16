@@ -39,7 +39,8 @@ ide->eclipse
     - ide: ~/eclipse/jee-2024-03/eclipse
     - workspace: ~/eclipse-workspaces
         - default: ~/eclipse-workspaces/default
-        - includes configs/artifacts, e.g. which jdk
+        - includes configs/artifacts
+        - e.g. which jdk, user-defined keyboard shortcuts
     - internal: ~/.eclipse
 - colors
     - uses partially system-colors

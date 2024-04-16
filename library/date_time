@@ -1,6 +1,6 @@
-LocalDateTime
+date/time
 
-
+built-in classes
 
 - LocalDate, LocalTime, LocalDateTime
 (1) static methods of LocalDate
@@ -35,6 +35,8 @@ LocalDateTime
     - isEqual(ChronoLocalDate other)
 
 - SEE ALSO
+    - docs.oracle.com/en/java/javase/20/docs/api/java.base/java/time/format/DateTimeFormatter.html#patterns
+    - /exercism/java/booking-up-for-beauty
     - baeldung.com/java-8-date-time-intro
 
 EXAMPLE
@@ -42,6 +44,11 @@ EXAMPLE
 LocalTime noon = LocalTime.parse("12:00");
 LocalDate now = LocalDate.from(ZonedDateTime.now());
 LocalDateTime millennium = LocalDateTime.parse("2000-01-01T00:00:00");
+
+DateTimeFormatter parser = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+LocalDate date = LocalDate.parse("03/12/2007", parser);
+DateTimeFormatter printer = DateTimeFormatter.ofPattern("MMMM d, yyyy");
+System.out.println(printer.format(date)); // "December 3, 2007"
 (2)
 int dayOfMonth = now.get(ChronoField.DAY_OF_MONTH);
 LocalDateTime nowAtNoon = now.atTime(noon);
